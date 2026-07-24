@@ -1,0 +1,18 @@
+{
+  "code": "0",
+  "result_message": "success",
+  "success": "true",
+  "confidentialityStatement": "By accessing this API, you agree to treat the data with confidential",
+  "result_code": "OK",
+  "request_id": "0ba2887315178178017221014",
+  "productList": [
+    {
+      "productId": 12123,
+      "imageUrl": "https://",
+      "productLink": "https://",
+      "mainPicture": "https://",
+      "confidentialityStatement": "By accessing this API, you agree to treat the data with confidential",
+      "skuId": 21213
+    }
+  ]
+}

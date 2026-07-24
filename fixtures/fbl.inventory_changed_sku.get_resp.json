@@ -1,0 +1,16 @@
+{
+  "per_page": "10",
+  "code": "0",
+  "total_count": "100",
+  "sku_list": [
+    {
+      "fulfillment_sku_id": "322302784_SGAMZ-648014148",
+      "operate_log_count": "150"
+    }
+  ],
+  "success": "true",
+  "errCode": "INVALID PARAM",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014",
+  "errMessage": "invalid marketplace"
+}

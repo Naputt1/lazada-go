@@ -1,0 +1,12 @@
+{
+  "result": {
+    "success": "true",
+    "module": {},
+    "errorCode": {
+      "displayMessage": "partnerUserId is invalid",
+      "key": "LZD_MEMBER_USER_1001"
+    }
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,21 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "baseInfoList": [
+        {
+          "registerCountry": "*",
+          "phone": "*",
+          "shopName": "*",
+          "reqNo": "*",
+          "email": "*",
+          "status": "*"
+        }
+      ],
+      "companyName": "*",
+      "licenseNumber": "*"
+    }
+  ],
+  "success": "*",
+  "request_id": "0ba2887315178178017221014"
+}

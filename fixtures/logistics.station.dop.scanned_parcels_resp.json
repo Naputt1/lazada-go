@@ -1,0 +1,16 @@
+{
+  "traceId": "d2d9043316862098123051035df9da",
+  "code": "0",
+  "data": {
+    "stationCode": "STATION_123456",
+    "createdAt": "1686327372000",
+    "cageNumber": "123",
+    "sellerName": "Alpha.hardware",
+    "trackingNumber": "TEST1231124VN",
+    "pickupTplSlug": "lex-th"
+  },
+  "success": "true",
+  "errorCode": "CAGE_NOT_FOUND",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "Cage 123 is not found"
+}

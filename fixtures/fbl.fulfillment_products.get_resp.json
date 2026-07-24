@@ -1,0 +1,46 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "shelf_life_days": "365",
+      "precious": "true",
+      "color": "red",
+      "fulfillment_sku": "245906966_VNAMZ-315595775",
+      "serial_number_flag": "false",
+      "length": "0",
+      "offline_shelf_live": "60",
+      "barcodes": "[\"LZD15384547802531\"]",
+      "net_weight": "0",
+      "alert_shelf_live": "60",
+      "shelf_life_flag": "true",
+      "reject_shelf_live": "0",
+      "product_type": "other",
+      "seller_skus": [
+        "SKU1"
+      ],
+      "sn_sample_list": [
+        {
+          "sample_seq": "sample_seq",
+          "sample_desc": "sample_desc",
+          "sample_rule_list": [
+            {
+              "rule_regular_expression": "^[a-zA-Z0-9]",
+              "rule_desc": "default",
+              "rule_img_url": "default",
+              "rule_sample": "default"
+            }
+          ]
+        }
+      ],
+      "width": "0",
+      "temperature_requirement": "1",
+      "shipper_id": "4188058869",
+      "serial_number_mode": "1",
+      "hygroscopic": "true",
+      "fulfillment_sku_name": "Hạt Điều rang muối đặc biêt 500g",
+      "gross_weight": "0",
+      "height": "0"
+    }
+  ],
+  "request_id": "0ba2887315178178017221014"
+}

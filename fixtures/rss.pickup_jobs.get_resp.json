@@ -1,0 +1,61 @@
+{
+  "result": {
+    "data": [
+      {
+        "preferredPickupTime": "13:00-17:00",
+        "amendabilityCutOffDate": 1684135989000,
+        "pickedAt": 1684136189000,
+        "qtyFulfilledCount": 12,
+        "id": 123,
+        "category": "Dry",
+        "items": [
+          {
+            "shipmentsInfo": [
+              {
+                "orderId": "49e74qjnkprp1to4",
+                "qty": 5
+              },
+              {
+                "orderId": "49e74qjn1prp1to4",
+                "qty": 6
+              }
+            ],
+            "qtyFulfilled": 10,
+            "size": "2.5kg",
+            "rpc": 123456,
+            "qty": 11,
+            "imageUrl": "http://media.redmart.com/newmedia/1600x/i/m/xxx.jpg",
+            "name": "Salmon",
+            "vpc": "19739731408",
+            "minimumExpiryDate": 1770357600000,
+            "sku": "19739731408"
+          },
+          {
+            "shipmentsInfo": [
+              {
+                "orderId": "49e74qjnkprp1to4",
+                "qty": 2
+              }
+            ],
+            "qtyFulfilled": 2,
+            "size": "2.5kg",
+            "rpc": 123456,
+            "qty": 2,
+            "imageUrl": "http://media.redmart.com/newmedia/1600x/i/m/xxx.jpg",
+            "name": "Curry",
+            "vpc": "19739731408",
+            "minimumExpiryDate": 1770357600000,
+            "sku": "19739731408"
+          }
+        ],
+        "scheduledAt": 1684135189000,
+        "status": "pickedup",
+        "qtyCount": 13
+      }
+    ],
+    "success": "true",
+    "errorMessage": "An unexpected error occurred. If the error persists, please contact rm_partnersupport@care.lazada.com"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

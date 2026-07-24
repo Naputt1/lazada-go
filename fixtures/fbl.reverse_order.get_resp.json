@@ -1,0 +1,21 @@
+{
+  "error_message": "Internal system error",
+  "code": "0",
+  "data": [
+    {
+      "sales_order_number": "123456",
+      "create_time": "2021-10-27T03:07:00.000Z",
+      "type": "failed_delivery, customer_return",
+      "items": [
+        {
+          "quantity": "1",
+          "fulfillment_sku_id": "12345678",
+          "fulfillment_sku_code": "12345678_PH-12345678"
+        }
+      ],
+      "status": "request_created, request_accepted, completed_reinbounded, request_cancelled"
+    }
+  ],
+  "success": "true",
+  "request_id": "0ba2887315178178017221014"
+}

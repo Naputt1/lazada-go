@@ -1,0 +1,39 @@
+{
+  "error_msg": "Invalid Limit",
+  "code": "0",
+  "data": [
+    {
+      "global_item_id": "12312",
+      "item_id": "123121",
+      "products": [
+        {
+          "market": "LAZADA_SG",
+          "semi_status": "1",
+          "abs": "1",
+          "skus": [
+            {
+              "special_price": {
+                "amount": 3500,
+                "currency": "VND"
+              },
+              "price": {
+                "amount": 3500,
+                "currency": "VND"
+              },
+              "seller_sku": "sellerSku",
+              "no_postage_fee": {
+                "amount": 3500,
+                "currency": "VND"
+              },
+              "sku_id": "1231231"
+            }
+          ],
+          "item_id": "12312"
+        }
+      ]
+    }
+  ],
+  "success": "true",
+  "error_code": "E0019",
+  "request_id": "0ba2887315178178017221014"
+}

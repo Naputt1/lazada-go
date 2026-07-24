@@ -1,0 +1,14 @@
+{
+  "result": {
+    "biz_ext_map": {},
+    "headers": {},
+    "msg_code": "msg_code",
+    "http_status_code": "http_status_code",
+    "success": "success",
+    "msg_info": "msg_info",
+    "model": {},
+    "mapping_code": "mapping_code"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

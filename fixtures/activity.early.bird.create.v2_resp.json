@@ -1,0 +1,15 @@
+{
+  "result": {
+    "success": "true",
+    "module": {},
+    "error_code": {
+      "display_message": " illegal seller",
+      "log_message": " null",
+      "key": "EARLY_BIRD_BIZ_ERROR"
+    },
+    "repeated": "false",
+    "retry": "false"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

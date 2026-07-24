@@ -1,0 +1,14 @@
+{
+  "birthday": "1999-01-29",
+  "full_kyc_status": "false",
+  "cert_type": "passport",
+  "full_name": "Bob Davis",
+  "code": "0",
+  "phone": "09123123156",
+  "prefix": "63",
+  "cert_front_image": "base64 string",
+  "kyc_jump_url": "kycJumpUrl",
+  "userId": "500101968946",
+  "extend_info": "\"{\\\"AGE_VERIFY_PASS\\\":true}\"",
+  "request_id": "0ba2887315178178017221014"
+}

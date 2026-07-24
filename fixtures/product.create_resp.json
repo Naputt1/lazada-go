@@ -1,0 +1,15 @@
+{
+  "code": "0",
+  "data": {
+    "item_id": "2374791958",
+    "sku_list": [
+      {
+        "shop_sku": "2374791958_SGAMZ-13896560193",
+        "seller_sku": "test2022 03",
+        "sku_id": "13896560193"
+      }
+    ],
+    "item_status": "Active"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,21 @@
+{
+  "retryable": "false",
+  "traceId": "0ba2887315172940728551014",
+  "code": "0",
+  "data": {
+    "convertedAddress": {
+      "details": "62 Nam Ky Khoi Nghia",
+      "id": "R12345"
+    }
+  },
+  "success": "true",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.items.name",
+      "errorMessage": "name must not be blank"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "success": "true",
+    "errorCode": "SYSREM_ERROR",
+    "tradeOrders": [
+      {
+        "tradeOrderId": "31938200743006",
+        "paymentMethod": "OVO",
+        "paidTime": "2020-05-20T19:46:22.754+08:00[GMT+08:00]",
+        "tradeOrderLines": [
+          {
+            "deliveredTime": "2020-05-20T19:46:22.754+08:00[GMT+08:00]",
+            "tradeOrderLineId": "31938200743006",
+            "deliveryStatus": "DELIVERED",
+            "reverseStatus": "NO_ISSUE"
+          }
+        ]
+      }
+    ]
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

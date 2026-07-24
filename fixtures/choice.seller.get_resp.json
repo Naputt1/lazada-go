@@ -1,0 +1,15 @@
+{
+  "code": "0",
+  "data": {
+    "name_company": "alibaba group",
+    "name": "abc shop",
+    "verified": "true",
+    "location": "Singapore",
+    "seller_id": "10",
+    "email": "Beanbagmart.sg@gmail.com",
+    "short_code": "SG1015W",
+    "cb": "false",
+    "status": "Active"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

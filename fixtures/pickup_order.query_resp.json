@@ -1,0 +1,40 @@
+{
+  "result": {
+    "error_message": "null",
+    "data": {
+      "actual_pickup_time": "1697551100000",
+      "reason": "null",
+      "estimated_volume": "1000",
+      "purchase_order_no_list": [
+        "POJ1001"
+      ],
+      "create_time": "1697611111000",
+      "car_driver_phone": "10086",
+      "actual_arrive_time": "1697551100000",
+      "shipper_phone": "18736008156",
+      "car_driver_name": "car driver name",
+      "estimated_pickup_time": "1697551100000",
+      "actual_weight": "1325",
+      "update_time": "1697611111000",
+      "receive_store_code": "TEST",
+      "pickup_order_no": "FO20231010",
+      "receive_store_address": "Dummy, Fuyuan 1 Road, Tangwei Street, Fuyong Town",
+      "car_number": "P1001",
+      "estimated_weight": "1.650",
+      "logistics_no_list": [
+        "LBX0246854485209"
+      ],
+      "actual_logistics_no_list": [
+        "LBX0246854485209"
+      ],
+      "estimated_box_number": "1",
+      "shipper_name": "AET001",
+      "shipper_address": "test",
+      "status": "10"
+    },
+    "success": "true",
+    "error_code": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

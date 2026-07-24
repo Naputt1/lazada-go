@@ -1,0 +1,12 @@
+{
+  "result": {
+    "limitAmount": "100",
+    "topUpAmount": "100",
+    "status": "1"
+  },
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "-",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "invalid param"
+}

@@ -1,0 +1,18 @@
+{
+  "code": "0",
+  "data": {
+    "prop": {
+      "name": "Car Brand",
+      "id": "120013644",
+      "required": "false"
+    },
+    "propValue": [
+      {
+        "name": "Ariel",
+        "id": "20100",
+        "leaf": "false"
+      }
+    ]
+  },
+  "request_id": "0ba2887315178178017221014"
+}

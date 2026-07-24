@@ -1,0 +1,28 @@
+{
+  "error_msg": "null",
+  "code": "0",
+  "data": {
+    "period_end_time": "1630339199000",
+    "max_discount_offering_money_value": "null",
+    "criteria_over_money": "100",
+    "apply": "SPECIFIC_PRODUCTS",
+    "voucher_name": "test voucher",
+    "voucher_code": "null",
+    "offering_money_value_off": "1",
+    "order_used_budget": "null",
+    "offering_percentage_discount_off": "null",
+    "period_start_time": "1626969600000",
+    "display_area": "REGULAR_CHANNEL",
+    "voucher_type": "COLLECTIBLE_VOUCHER",
+    "limit": "1",
+    "collect_start": "1626969600000",
+    "voucher_discount_type": "MONEY_VALUE_OFF",
+    "currency": "SGD",
+    "id": "91471121126083",
+    "issued": "5",
+    "status": "SUSPEND"
+  },
+  "success": "true",
+  "error_code": "null",
+  "request_id": "0ba2887315178178017221014"
+}

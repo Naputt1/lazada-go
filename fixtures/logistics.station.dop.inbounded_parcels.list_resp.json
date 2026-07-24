@@ -1,0 +1,19 @@
+{
+  "traceId": "d2d9043316862098123051035df9da",
+  "code": "0",
+  "data": [
+    {
+      "cageNumber": "123",
+      "inboundedAt": "1686327372000",
+      "outboundedAt": "1686327372000",
+      "lostAt": "1686327372000",
+      "trackingNumber": "TEST1231124VN",
+      "status": "with_dop_waiting_for_pickup",
+      "pickupTplSlug": "lex-th"
+    }
+  ],
+  "success": "true",
+  "errorCode": "CAGE_NOT_FOUND",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "Cage 123 is not found"
+}

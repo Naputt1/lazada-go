@@ -1,0 +1,25 @@
+{
+  "code": "0",
+  "type": "0",
+  "message": "success",
+  "request_id": "0ba2887315178178017221014",
+  "data": {
+    "access_token": "50000601c30atpedfgu3LVvik87Ixlsvle3mSoB7701ceb156fPunYZ43GBg",
+    "country": "sg",
+    "refresh_token": "500016000300bwa2WteaQyfwBMnPxurcA0mXGhQdTt18356663CfcDTYpWoi",
+    "account_id": "7063844",
+    "account_platform": "seller_center",
+    "refresh_expires_in": "60",
+    "country_user_info": [
+      {
+        "country": "SG",
+        "user_id": "1001",
+        "seller_id": "1001",
+        "short_code": "SG1001"
+      }
+    ],
+    "expires_in": "10",
+    "request_id": "0ba2887315178178017221014",
+    "account": "xxx@126.com"
+  }
+}

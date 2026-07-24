@@ -1,0 +1,30 @@
+{
+  "result": {
+    "total": "15",
+    "data": [
+      {
+        "productCode": "P123",
+        "rpc": 12345,
+        "title": "Product Title",
+        "barcodes": [
+          "B123",
+          "B456"
+        ],
+        "pickupLocations": [
+          {
+            "id": "Location1"
+          }
+        ],
+        "status": {
+          "type": "Enabled"
+        }
+      }
+    ],
+    "success": "true",
+    "errorMessage": "error message",
+    "pageSize": "10",
+    "page": "1"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,31 @@
+{
+  "redirectUrl": "null",
+  "code": "0",
+  "data": {
+    "traceId": "213123qweqwe",
+    "total": "50",
+    "totalPages": "5",
+    "pageSize": "10",
+    "orderList": [
+      {
+        "premium": "4.37",
+        "expireTime": "1784715128000",
+        "orderDetailLink": "123123123",
+        "effectiveTime": "1741806000000",
+        "insuranceName": "Gadget_MY",
+        "orderStatus": "EXPIRED",
+        "zoneId": "Asiashanghai",
+        "policyLink": "https://my-test.zatech.com/claim/landing?policyNo=FJ3bHARDObqJKdpLRGWfC0dCGO75Ktn0jlCfrAqYqaVOSdK9hvU=&insurerCode=AIA&planName=Gadget%20Protection%20%28Repair%20and%20Replace%29&productName=fusion-my%20test",
+        "insuredName": "[\"23121233\"]",
+        "paidPremium": "4.37",
+        "transactionId": "490265400456001",
+        "productName": "fusion-my test"
+      }
+    ],
+    "pageNum": "1"
+  },
+  "success": "true",
+  "resultCode": "SUCCESS",
+  "resultMessage": "Success",
+  "request_id": "0ba2887315178178017221014"
+}

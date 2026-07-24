@@ -1,0 +1,25 @@
+{
+  "result": {
+    "error_message": "fulfillmentSkuIds, shipperId and storeCode are required",
+    "data": {
+      "store_code": "OMS-LAZADA-WH3",
+      "batch_list": [
+        {
+          "outbound_ban_date": "1780156800000",
+          "quantity": "10",
+          "fulfillment_sku_id": "604428257808",
+          "expiry_date": "1780156800000",
+          "manufacturing_date": "1780156800000",
+          "inventory_status": "1",
+          "product_batch": "500600056473002"
+        }
+      ],
+      "page_no": "1",
+      "page_size": "10"
+    },
+    "success": "false",
+    "error_code": "WHC_MISSING_PARAMETER"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

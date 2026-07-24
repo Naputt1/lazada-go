@@ -1,0 +1,21 @@
+{
+  "error_message": "Error Message",
+  "code": "0",
+  "data": {
+    "fulfillment_sku_id": "222222",
+    "stocks": [
+      {
+        "warehouse_code": "OMS-LAZADA-TH-W-1",
+        "channel_stocks": [
+          {
+            "quantity": "16",
+            "channel": "EXTERNAL"
+          }
+        ]
+      }
+    ]
+  },
+  "success": "TRUE",
+  "error_code": "Error Code",
+  "request_id": "0ba2887315178178017221014"
+}

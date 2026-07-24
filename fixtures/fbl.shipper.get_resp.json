@@ -1,0 +1,16 @@
+{
+  "error_message": "Internal system error",
+  "code": "0",
+  "data": {
+    "main_seller_site": "TH",
+    "main_shipper_id": "2000000000000",
+    "partner_name": "TEST",
+    "is_cb": "true",
+    "main_seller_id": "2000000000000",
+    "shipper_id": "2000000000000",
+    "is_mcl": "true"
+  },
+  "success": "true",
+  "error_code": "PARAM_VALID_ERROR",
+  "request_id": "0ba2887315178178017221014"
+}

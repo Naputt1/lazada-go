@@ -1,0 +1,5 @@
+{
+  "code": "0",
+  "data": "{\"data\":{\"retryable\":false,\"fail\":false,\"data\":{\"gmtOperated\":1766051362000,\"gmtModified\":1766051362000,\"supplierId\":1000000304751101,\"warehouseCode\":\"OMS-LAZADA-WH3\",\"outerVasOrderNo\":\"LBZ00201820007\",\"features\":{\"financeOrganizationCode\":\"FIN_CSLazSupplyChain\"},\"vasOrderNo\":\"ZVAS20251217005438003\",\"lines\":[{\"quantity\":6,\"operatedQuantity\":6,\"intOperatedQuantity\":6,\"scItemId\":566122254124,\"intQuantity\":6}],\"creator\":\"lzdvn0003(lzdvn0003@gmail.com)\",\"blameType\":\"null\",\"gmtCreate\":1765958945000,\"vasCode\":\"BUNDLING_TEST\",\"targetOrderType\":\"GOODS\",\"tenantId\":\"CSFBL\",\"financeOrganizationCode\":\"FIN_CSLazSupplyChain\",\"status\":\"OPERATED\"},\"success\":true,\"succAndNotNull\":true,\"message\":\"OK\"},\"code\":\"0\",\"request_id\":\"2101773f17679308323726963\",\"_trace_id_\":\"21076dc917679308322066562e1d74\"}",
+  "request_id": "0ba2887315178178017221014"
+}

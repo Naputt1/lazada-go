@@ -1,0 +1,10 @@
+{
+  "result": {
+    "result_message": "success",
+    "success": "true",
+    "result_code": "OK",
+    "url": "http://www.lazada.com/abc"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

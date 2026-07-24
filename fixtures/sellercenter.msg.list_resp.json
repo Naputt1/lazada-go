@@ -1,0 +1,31 @@
+{
+  "result": {
+    "data": {
+      "pageInfo": {
+        "current": "1",
+        "total": "20",
+        "pageSize": "10"
+      },
+      "dataSource": [
+        {
+          "message_content": {
+            "appLink": "app jump link",
+            "webLink": "web jump link",
+            "description": "description",
+            "title": "title",
+            "categoryName": "msg category name",
+            "picture": "msg img url"
+          },
+          "id": "msg id",
+          "time": "send time"
+        }
+      ]
+    },
+    "success": {},
+    "errorCode": "code",
+    "type": "type",
+    "error": "error"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

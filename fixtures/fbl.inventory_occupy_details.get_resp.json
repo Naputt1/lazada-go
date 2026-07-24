@@ -1,0 +1,12 @@
+{
+  "code": "0",
+  "request_id": "0ba2887315178178017221014",
+  "inventoryOccupyDetails": [
+    {
+      "orderType": "OUTBOUND",
+      "inventoryType": "SELLABLE",
+      "quantity": "1",
+      "orderCode": "DIFF20221229449164_1_OCCUPY_STG"
+    }
+  ]
+}

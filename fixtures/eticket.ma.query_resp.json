@@ -1,0 +1,23 @@
+{
+  "code": "0",
+  "resp_body": {
+    "certificate": {
+      "certificate_code": "a84086489cdb4744d4df",
+      "initial_num": "1",
+      "biz_type": "3001",
+      "end_time": "1600963199",
+      "outer_id": "37009000236004",
+      "qr_code_url": "null",
+      "locked_num": "0",
+      "start_time": "1598284800",
+      "available_num": "1",
+      "used_num": "0",
+      "attributes": {},
+      "consume_status": "1",
+      "code_status": "1"
+    }
+  },
+  "ret_msg": "操作成功",
+  "ret_code": "isv.success-all",
+  "request_id": "0ba2887315178178017221014"
+}

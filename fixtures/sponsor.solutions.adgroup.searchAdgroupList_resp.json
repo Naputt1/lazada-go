@@ -1,0 +1,46 @@
+{
+  "result": [
+    {
+      "unitsSold": "9",
+      "productOrders": "1",
+      "campaignSwitchStatus": "1",
+      "adAccountBalanceStatus": "1",
+      "revenue": "00",
+      "adgroupId": "1385156242",
+      "adgroupName": "TEST Lazmall item 1",
+      "imageUrl": "https://sg-live-02.slatic.net/original/9a3a9c9defb21cb818142b1f0a188ab7.jpg",
+      "spend": "14",
+      "cpc": "-",
+      "campaignScheduleStatus": "1",
+      "adSwitchStatus": "1",
+      "autoCreative": "1",
+      "ctr": "-",
+      "campaignDailyBudgetStatus": "1",
+      "productEligibleStatus": "1",
+      "sellerEligibleStatus": "1",
+      "storeRevenue": "1400",
+      "storeOrders": "2",
+      "impressions": "10",
+      "storeUnitsSold": "-",
+      "bidPrice": "14.12",
+      "audienceViewDTOList": [
+        {
+          "adCrowdTag": "1",
+          "discount": "10"
+        }
+      ],
+      "itemId": "30048182376",
+      "storeRoi": "1",
+      "productStockStatus": "1",
+      "adApproveStatus": "1",
+      "clicks": "140",
+      "status": "1"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "...",
+  "totalCount": "100",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "Internal_error."
+}

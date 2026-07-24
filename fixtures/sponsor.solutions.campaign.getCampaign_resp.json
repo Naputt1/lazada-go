@@ -1,0 +1,26 @@
+{
+  "result": {
+    "campaignObjective": "1",
+    "campaignType": "1",
+    "endDate": "3020-12-30",
+    "campaignId": "101100024772415",
+    "onlineStatus": "1",
+    "switchStatus": "1",
+    "platform": [],
+    "budgetUsedAmount": "0",
+    "autoItemSelect": "1",
+    "campaignModel": "99",
+    "maxBid": "-1",
+    "haveAdCount": "1",
+    "sceneId": "0",
+    "autoCreative": "1",
+    "campaignName": "Campaign_2023_04_07_15:17",
+    "startDate": "2023-04-07",
+    "dayBudget": "25.00"
+  },
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "...",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "Invalid param."
+}

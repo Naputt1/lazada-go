@@ -1,0 +1,10 @@
+{
+  "account_number": "lzd_test_001@tom.com",
+  "amount": "0.01",
+  "code": "0",
+  "withdrawable": "true",
+  "transfer_order_id": "test001",
+  "transfer_request_id": "open_100100_test001_id",
+  "deposit": "99.99",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,38 @@
+{
+  "retryable": "false",
+  "traceId": "traceId",
+  "code": "0",
+  "data": {
+    "gmtModified": "gmtModified",
+    "attachments": "attachments",
+    "orderId": "orderId",
+    "subject": "subject",
+    "contactName": "contactName",
+    "buyerEmail": "buyerEmail@gmail.com",
+    "sellerName": "sellerName",
+    "description": "description",
+    "buyerName": "buyerName",
+    "gmtCreate": "gmtCreate",
+    "ratingStar": "4",
+    "gmtDeleted": "gmtDeleted",
+    "mails": [],
+    "ratingRemark": "remark",
+    "merchantId": "merchantId",
+    "caseId": "2500000127480474",
+    "caseTemplateId": "caseTemplateId",
+    "sellerPhoneNo": "+84192163123",
+    "attributes": "attributes",
+    "actions": [],
+    "ratingReasons": [
+      "reason 1",
+      "reason 2"
+    ],
+    "trackingNumber": "trackingNumber",
+    "categoryId": "categoryId",
+    "status": "status"
+  },
+  "success": "true",
+  "errorMessage": "errorMessage",
+  "errorCode": "errorCode",
+  "request_id": "0ba2887315178178017221014"
+}

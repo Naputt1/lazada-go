@@ -1,0 +1,50 @@
+{
+  "result": {
+    "total": "50",
+    "success": "true",
+    "page_no": "1",
+    "items": [
+      {
+        "reverse_order_lines": [
+          {
+            "product": {
+              "product_sku": "0",
+              "product_id": "0"
+            },
+            "return_order_line_gmt_create": "0",
+            "platform_sku_id": "th-1001",
+            "trade_order_gmt_create": "0",
+            "is_need_refund": "true",
+            "reason_text": "Out of stock",
+            "item_unit_price": "0",
+            "sla": "1741672453926",
+            "return_order_line_gmt_modified": "0",
+            "trade_order_line_id": "0",
+            "ofc_status": "RETURN_CANCELED",
+            "seller_sku_id": "th-1000",
+            "refund_payment_method": "Alipay",
+            "buyer": {
+              "buyer_id": "0"
+            },
+            "reason_code": "123",
+            "whqc_decision": "scrap",
+            "reverse_status": "REQUEST_INITIATE",
+            "refund_amount": "0",
+            "tracking_number": "TH2404B29P6D",
+            "receiver_address": "62/4, Lazada Express Co., Ltd, Moo 5, Bang Samak, Bang PaKong, Chachoengsao, 24130 ",
+            "is_dispute": "true",
+            "reverse_order_line_id": "0"
+          }
+        ],
+        "reverse_order_id": "0",
+        "request_type": "CANCEL",
+        "is_rtm": "true",
+        "shipping_type": "DEFAULT",
+        "trade_order_id": "0"
+      }
+    ],
+    "page_size": "10"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

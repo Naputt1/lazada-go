@@ -1,0 +1,43 @@
+{
+  "error_msg": "null",
+  "code": "0",
+  "data": {
+    "data_list": [
+      {
+        "stackable": "false",
+        "apply": "SPECIFIC_PRODUCTS",
+        "gift_skus": [
+          {
+            "product_id": "600956022",
+            "sku_id": "1742246015"
+          }
+        ],
+        "end_time": "1593878399000",
+        "discount_value": [],
+        "sample_skus": [
+          {
+            "product_id": "640558086",
+            "sku_id": "1926072105"
+          }
+        ],
+        "discount_type": "freeGift",
+        "type": "Flexi-combo",
+        "start_time": "1593705600000",
+        "order_used_numbers": "20",
+        "name": "终极",
+        "platform_channel": "null",
+        "id": "9786600553530",
+        "criteria_type": "QUANTITY",
+        "criteria_value": [],
+        "order_numbers": "10",
+        "status": "ONGOING"
+      }
+    ],
+    "total": "118",
+    "current": "1",
+    "page_size": "10"
+  },
+  "success": "true",
+  "error_code": "null",
+  "request_id": "0ba2887315178178017221014"
+}

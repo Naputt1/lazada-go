@@ -1,0 +1,39 @@
+{
+  "msg": "null",
+  "code": "0",
+  "data": {
+    "page_info": {
+      "total_count": "1000",
+      "total_page": "100",
+      "page_num": "1",
+      "page_size": "10"
+    },
+    "transactions": [
+      {
+        "pmt_reference": "Bank Ref. TH1JHIY41G-20230220",
+        "payee_account": {
+          "description": "description",
+          "account": "1001"
+        },
+        "amount": "±0.01",
+        "sub_type": "Penarikan Dana Otomatis",
+        "transaction_number": "10000001",
+        "transaction_time": "2022-01-01 00:00:00",
+        "currency": "IDR",
+        "tracking_list": [
+          {
+            "update_time": "2022-01-01 00:00:00",
+            "name": "WITHDRAWAL_INITIATED",
+            "remark": "remark",
+            "status": "Penarikan Dana Dibuat"
+          }
+        ],
+        "type": "Penarikan Dana",
+        "remarks": " remarks"
+      }
+    ]
+  },
+  "success": "true",
+  "error_code": " error_code",
+  "request_id": "0ba2887315178178017221014"
+}

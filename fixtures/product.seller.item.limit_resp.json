@@ -1,0 +1,13 @@
+{
+  "code": "0",
+  "data": {
+    "payByrCnt": "30",
+    "payItemCnt": "20",
+    "itemLimit": "500",
+    "onlineItemCount": "100"
+  },
+  "success": "true",
+  "errorCodes": [],
+  "errorMsgs": [],
+  "request_id": "0ba2887315178178017221014"
+}

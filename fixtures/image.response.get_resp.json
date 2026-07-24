@@ -1,0 +1,19 @@
+{
+  "code": "0",
+  "data": {
+    "images": [
+      {
+        "hash_code": "1f2ac2d7af810c498f88b2fc18686850",
+        "url": "https://sg-staging.slatic.net/original/1f2ac2d7af810c498f88b2fc18686850.jpg"
+      }
+    ],
+    "errors": [
+      {
+        "msg": "Error download image",
+        "field": "http://static.somecdn.externalSite.com/img4.jpeg",
+        "original_url": "http://pic4.nipic.com/20091217/3885730_124701000519_2.jpg"
+      }
+    ]
+  },
+  "request_id": "0ba2887315178178017221014"
+}

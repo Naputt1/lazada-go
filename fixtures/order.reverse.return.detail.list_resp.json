@@ -1,0 +1,41 @@
+{
+  "code": "0",
+  "data": {
+    "reverse_order_id": "0",
+    "request_type": "CANCEL",
+    "reverseOrderLineDTOList": [
+      {
+        "return_order_line_gmt_create": "0",
+        "platform_sku_id": "th-000",
+        "is_need_refund": "true",
+        "trade_order_gmt_create": "0",
+        "reason_text": "Out of stock",
+        "item_unit_price": "0",
+        "sla": "1741672336776",
+        "trade_order_line_id": "0",
+        "return_order_line_gmt_modified": "0",
+        "ofc_status": "INITIAL",
+        "seller_sku_id": "th-123",
+        "productDTO": {
+          "product_id": "0",
+          "sku": "0"
+        },
+        "refund_payment_method": "Alipay",
+        "buyer": {
+          "user_id": "0"
+        },
+        "reason_code": "123",
+        "whqc_decision": "scrap",
+        "reverse_status": "REQUEST_INITIATE",
+        "refund_amount": "0",
+        "tracking_number": "NLRSGZ10444515",
+        "is_dispute": "true",
+        "reverse_order_line_id": "0"
+      }
+    ],
+    "shipping_type": "PICK_UP",
+    "is_rtm": "true",
+    "trade_order_id": "0"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

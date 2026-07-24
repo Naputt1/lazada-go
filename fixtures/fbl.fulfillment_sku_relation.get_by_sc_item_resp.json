@@ -1,0 +1,22 @@
+{
+  "result": {
+    "error_msg": "null",
+    "data": [
+      {
+        "site": "TH",
+        "item_id": "151579598",
+        "fulfillment_sku": "CB-885710187-1305210866",
+        "sc_item_user_id": "3370592432",
+        "sku_id": "177256899",
+        "source": "Lazada",
+        "seller_id": "100011046",
+        "sc_item_id": "567148194446"
+      }
+    ],
+    "failure": "false",
+    "success": "true",
+    "error_code": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

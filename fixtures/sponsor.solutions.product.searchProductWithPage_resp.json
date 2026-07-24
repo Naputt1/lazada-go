@@ -1,0 +1,31 @@
+{
+  "result": [
+    {
+      "avgSalesVolume": "0",
+      "isDigitalUtilities": "true",
+      "inventory": "99",
+      "productName": "xiaotian Test PH",
+      "bidPrice": "2.34",
+      "ipv": "1",
+      "tags": [
+        "SS",
+        "SP"
+      ],
+      "itemId": "200155812",
+      "competitionIndex": "10",
+      "imageUrl": "https://ph-live.slatic.net/original/8c82428287b375c4ce3cf6bd00f736aa.jpg",
+      "isBan": "true",
+      "pdpLink": "https://www.lazada.com.ph/products/xiaotian-test-ph-i200155812-s250760605.html",
+      "contentScore": "100",
+      "retailPrice": "10",
+      "categoryId": "62188201",
+      "cvr": "0"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "...",
+  "totalCount": "100",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "-"
+}

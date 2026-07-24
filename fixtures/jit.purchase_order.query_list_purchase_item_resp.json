@@ -1,0 +1,30 @@
+{
+  "result": {
+    "error_message": "null",
+    "data": [
+      {
+        "received_defective_qty": "0",
+        "sku_id": "10060",
+        "barcodes": [],
+        "product_title": "Test",
+        "buyer_qty": "10",
+        "sc_item_code": "test",
+        "img_url": "null",
+        "sc_item_name": "test",
+        "product_id": "10086",
+        "seller_sku": "10001",
+        "received_normal_qty": "10",
+        "purchase_order_no": "null",
+        "sc_item_id": "10010"
+      }
+    ],
+    "success": "true",
+    "total_count": "200",
+    "page_index": "1",
+    "total_page": "1",
+    "error_code": "null",
+    "page_size": "1"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

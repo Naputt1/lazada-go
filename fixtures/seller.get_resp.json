@@ -1,0 +1,17 @@
+{
+  "code": "0",
+  "data": {
+    "name_company": "alibaba group",
+    "logo_url": "http://xxxx.com/abc.jpg",
+    "name": "abc shop",
+    "verified": "true",
+    "location": "Hangzhou",
+    "marketplaceEaseMode": "true",
+    "seller_id": "10",
+    "email": "Beanbagmart.sg@gmail.com",
+    "short_code": "SG1015W",
+    "cb": "false",
+    "status": "ACTIVE"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

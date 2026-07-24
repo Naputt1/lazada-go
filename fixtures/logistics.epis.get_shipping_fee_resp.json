@@ -1,0 +1,21 @@
+{
+  "retryable": "false",
+  "traceId": "1666f8ce16709204399801013bf6cf",
+  "code": "0",
+  "data": {
+    "originEstimatedShippingFee": "125000",
+    "actualShippingFee": "125000",
+    "estimatedShippingFee": "125000",
+    "currency": "VND"
+  },
+  "success": "false",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.platformName",
+      "errorMessage": "$.platformName must not be blank"
+    }
+  ]
+}

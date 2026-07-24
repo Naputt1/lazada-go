@@ -1,0 +1,23 @@
+{
+  "error_message": "shipper error",
+  "per_page": "50",
+  "code": "0",
+  "data": [
+    {
+      "store_code": "OMS-LAZADA-SG-W-1",
+      "channel_ratio": [
+        {
+          "channel_code": "EXTERNAL",
+          "ratio": "100"
+        }
+      ],
+      "fulfillment_sku_id": "1234",
+      "auto_balancing": "true"
+    }
+  ],
+  "success": "true",
+  "total_count": "150",
+  "error_code": "SHIPPER_ERROR",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014"
+}

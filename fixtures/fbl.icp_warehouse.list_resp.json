@@ -1,0 +1,13 @@
+{
+  "error_message": "List failed",
+  "code": "0",
+  "data": [
+    {
+      "warehouse_name": "SG Test Warehouse",
+      "warehouse_code": "OMS-SG-001"
+    }
+  ],
+  "success": "true",
+  "error_code": "ERROR_SYSTEM",
+  "request_id": "0ba2887315178178017221014"
+}

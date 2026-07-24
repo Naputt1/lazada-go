@@ -1,0 +1,11 @@
+{
+  "error_message": "seller info not found",
+  "code": "0",
+  "data": {
+    "fulfillment_sku_id": "786543234",
+    "fulfillment_sku_code": "234612356_ID-45679245789"
+  },
+  "success": "true",
+  "error_code": "INVALID_PARAM",
+  "request_id": "0ba2887315178178017221014"
+}

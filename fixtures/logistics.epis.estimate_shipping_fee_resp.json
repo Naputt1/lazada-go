@@ -1,0 +1,25 @@
+{
+  "retryable": "false",
+  "traceId": "1666f8ce16709204399801013bf6cf",
+  "code": "0",
+  "data": [
+    {
+      "transactionType": "Delivery",
+      "amount": "100000.0",
+      "currency": "VND",
+      "transactionName": "Delivery",
+      "taxAmount": "11000.0",
+      "transactionId": "1234"
+    }
+  ],
+  "success": "false",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.platformName",
+      "errorMessage": "$.platformName must not be blank"
+    }
+  ]
+}

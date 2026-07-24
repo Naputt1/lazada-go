@@ -1,0 +1,9 @@
+{
+  "retryable": "false",
+  "traceId": "0ba2887315172940728551014",
+  "code": "0",
+  "success": "true",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,13 @@
+{
+  "error_msg": "error message",
+  "code": "0",
+  "data": [
+    {
+      "name": "Standard",
+      "value": "STANDARD"
+    }
+  ],
+  "success": "true",
+  "error_code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

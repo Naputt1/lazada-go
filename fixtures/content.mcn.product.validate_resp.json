@@ -1,0 +1,17 @@
+{
+  "result": {
+    "result_message": "success",
+    "success": "true",
+    "highRiskItemList": [
+      4078878428,
+      4234217729
+    ],
+    "normalItemList": [
+      4078878428,
+      4234217729
+    ],
+    "result_code": "OK"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

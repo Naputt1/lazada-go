@@ -1,0 +1,40 @@
+{
+  "result": {
+    "result": [
+      {
+        "ctr": "3.55",
+        "campaignObjective": "null",
+        "campaignType": "2",
+        "firstImpShare": "null",
+        "campaignId": "101100030626143",
+        "storeRevenue": "45348.59",
+        "storeCvr": "0.1398",
+        "storeA2c": "3851",
+        "storeOrders": "915",
+        "productUnitSold": "1160",
+        "impressions": "184528",
+        "productCvr": "0.0958",
+        "productOrders": "627",
+        "storeRoi": "15.49",
+        "cpc": "0.45",
+        "spend": "2928.51",
+        "clicks": "6543",
+        "productRevenue": "32151.02",
+        "storeUnitSold": "2272",
+        "campaignName": "12.12 2023",
+        "productType": "ALL",
+        "dayBudget": "314",
+        "productA2c": "2280"
+      }
+    ],
+    "errorKey": "null",
+    "errorDTOList": [],
+    "success": "true",
+    "analyseTraceId": "null",
+    "errorCode": "null",
+    "totalCount": "17",
+    "errorMsg": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

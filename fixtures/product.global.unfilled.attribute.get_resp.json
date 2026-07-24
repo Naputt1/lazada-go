@@ -1,0 +1,32 @@
+{
+  "error_msg": "E019: Invalid Limit",
+  "code": "0",
+  "data": {
+    "total_products": "2542",
+    "products": [
+      {
+        "item_id": "623904419103525",
+        "primary_category": "10000388",
+        "seller_sku": "sssss",
+        "attributes": [
+          {
+            "advanced": {
+              "is_key_prop": "0"
+            },
+            "input_type": "text",
+            "options": [],
+            "name": "video",
+            "is_mandatory": "0",
+            "attribute_type": "normal",
+            "label": "Video URL"
+          }
+        ]
+      }
+    ]
+  },
+  "success": "true",
+  "error_detail": "null",
+  "error_code": "19",
+  "request_id": "0ba2887315178178017221014",
+  "errors": "[]"
+}

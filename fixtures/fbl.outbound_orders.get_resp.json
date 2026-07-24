@@ -1,0 +1,33 @@
+{
+  "result": {
+    "per_page": "1",
+    "data": [
+      {
+        "marketplace": "LAZADA_SG",
+        "sku_approved": "0",
+        "item_requested": "1",
+        "created_at": "2019-08-15T08:31:48Z",
+        "outbound_time": "2019-08-27T16:00:00Z",
+        "shop_name": "name",
+        "fulfillment_order_number": "LBXxxxxx",
+        "reference_number": "refer",
+        "created_by": "Seller",
+        "item_outbounded": "0",
+        "sku_requested": "1",
+        "updated_at": "2019-08-15T08:31:48Z",
+        "estimate_time": "2019-08-27T16:00:00Z",
+        "delivery_type": "Dropoff",
+        "outbound_warehouse": "Default SG Warehouse",
+        "outbound_warehouse_code": "OMS-LAZADA-WH3",
+        "sku_outbounded": "0",
+        "outbound_reason": "RTS",
+        "oo_number": "IO022019081529321558623",
+        "status": "Created"
+      }
+    ],
+    "total_count": "15",
+    "page": "1"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

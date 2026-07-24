@@ -1,0 +1,23 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "skus": [
+        {
+          "fulfillment_sku": "OE702OTABNQVRKSGAMZ-132588140",
+          "seller_sku": "xxxxxxx",
+          "extend_fields": "{\"k\":\"v\"}",
+          "sku_status": "actice",
+          "platform_sku": "OE702OTABNQVRKSGAMZ-132588140",
+          "fulfillment_sku_name": "Pampers Baby Dry Diaper New Born 40s - 4 Packs "
+        }
+      ],
+      "marketplace": "LAZADA_SG",
+      "product_id": "222103860 ",
+      "platform_sku_name": "Pampers Baby Dry Diaper New Born 40s - 4 Packs ",
+      "source": "ascp-item-center",
+      "status": "actice"
+    }
+  ],
+  "request_id": "0ba2887315178178017221014"
+}

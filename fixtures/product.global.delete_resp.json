@@ -1,0 +1,19 @@
+{
+  "error_msg": "Invalid Limit",
+  "code": "0",
+  "data": {
+    "deleteICProductResult": "false",
+    "deleteIcProductFailResultList": [
+      {
+        "market": "LAZADA_MY",
+        "productId": "3042450256",
+        "updateMsg": "Product is not found in repository,scenario:UpShelf,productId:3042450256,serverIP:33.65.56.178",
+        "updateResult": "false"
+      }
+    ],
+    "deleteGspProductResult": "true"
+  },
+  "success": "true",
+  "error_code": "E0019",
+  "request_id": "0ba2887315178178017221014"
+}

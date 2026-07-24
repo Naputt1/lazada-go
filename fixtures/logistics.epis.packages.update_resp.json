@@ -1,0 +1,23 @@
+{
+  "retryable": "false",
+  "traceId": "0ba2887315172940728551014",
+  "code": "0",
+  "data": {
+    "convertedAddress": {
+      "details": "25A Nguyễn Đình Chiểu",
+      "id": "R6846129",
+      "type": "OLD"
+    }
+  },
+  "success": "false",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "receiverAddress",
+      "errorMessage": "Cannot found LM hub",
+      "errorCode": "CANNOT_FOUND_LM_HUB"
+    }
+  ]
+}

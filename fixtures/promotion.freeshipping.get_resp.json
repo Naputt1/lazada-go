@@ -1,0 +1,38 @@
+{
+  "error_msg": "null",
+  "code": "0",
+  "data": {
+    "period_end_time": "1630079999000",
+    "category_name": "null",
+    "apply": "ENTIRE_SHOP",
+    "budget_value": "2343.00",
+    "campaign_tag": "null",
+    "region_type": "ALL_REGIONS",
+    "region_value": [],
+    "promo_tier": {
+      "tiers": [
+        {
+          "filter": "1000.00",
+          "result": "1.50"
+        }
+      ],
+      "deal_criteria": "MONEY_VALUE_FROM_X",
+      "discount_type": "PARTIAL_SUBSIDY"
+    },
+    "template_code": "null",
+    "period_start_time": "1627574400000",
+    "promotion_name": "tyest012_34312342",
+    "used_budget_value": "0.00",
+    "platform_channel": "1",
+    "template_type": "MANUALLY",
+    "currency": "SGD",
+    "id": "91471121124115",
+    "budget_type": "LIMITED_BUDGET",
+    "period_type": "SPECIAL_PERIOD",
+    "delivery_option": "STANDARD",
+    "status": "NOT_START"
+  },
+  "success": "true",
+  "error_code": "null",
+  "request_id": "0ba2887315178178017221014"
+}

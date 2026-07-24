@@ -1,0 +1,26 @@
+{
+  "code": "0",
+  "data": {
+    "main_category_name": "Mobile & Tablet",
+    "indicators": [
+      {
+        "action_url": "/apps/review/manage",
+        "score": "92.0",
+        "score_format": "PERCENTAGE",
+        "formatted_score": "92%",
+        "name": "Positive Seller Rating",
+        "tip": "<div style='font-weight: bold' >Positive Seller Rating</div><br />The ratio of total positive ratings to total ratings from verified buyers. This is measured for period of last 8 weeks.",
+        "type": "POSITIVE_SELLER_RATING",
+        "formatted_target": "≥ 85%",
+        "target": "85.0",
+        "target_format": "GREATER_THAN_PERCENTAGE",
+        "target_respected": "true"
+      }
+    ],
+    "seller_id": "42",
+    "main_category_id": "12356"
+  },
+  "success": "true",
+  "error_code": "REQUEST_CANNOT_BE_NULL",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,13 @@
+{
+  "error_msg": "Parameter Invalid",
+  "code": "0",
+  "data": {
+    "success_sku": [
+      314525868
+    ],
+    "failed_sku": []
+  },
+  "success": "true",
+  "error_code": "E305",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,14 @@
+{
+  "result": {
+    "data": {
+      "handoverContentId": "20000001",
+      "handoverContentCode": "LP000000123",
+      "handoverOrderId": "10000001"
+    },
+    "success": "true",
+    "errorCode": "P-088-0000-00-99-001",
+    "errorMsg": "网络异常，请稍后重试"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

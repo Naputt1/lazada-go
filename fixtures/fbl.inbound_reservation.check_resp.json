@@ -1,0 +1,13 @@
+{
+  "error_message": "shipper error",
+  "code": "0",
+  "data": {
+    "slots": [
+      "2021-12-01T00:30:00Z",
+      "2021-12-01T01:00:00Z"
+    ]
+  },
+  "success": "true",
+  "error_code": "SHIPPER_ERROR",
+  "request_id": "0ba2887315178178017221014"
+}

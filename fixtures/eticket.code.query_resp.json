@@ -1,0 +1,25 @@
+{
+  "code": "0",
+  "data": {
+    "strart_time": "1640969999000",
+    "certificate_code": "abcd123sa",
+    "item_list": [
+      {
+        "item_img": "https://sg-live.slatic.net/p/test.jpg",
+        "item_id": "123",
+        "actual_fee": "1",
+        "actual_fee_currency": "SGD",
+        "unit_fee": "1",
+        "item_name": "Meal",
+        "unit_fee_currency": "SGD"
+      }
+    ],
+    "biz_type": "5107",
+    "end_time": "1640969999000",
+    "trade_order_id": "50011002200334",
+    "code_status": "1",
+    "outer_id": "F01312342312",
+    "serial_num": "3451c641-a7da-4264-92cb-78a1f79392c3"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

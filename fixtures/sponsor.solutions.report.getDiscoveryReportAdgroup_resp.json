@@ -1,0 +1,42 @@
+{
+  "result": {
+    "result": [
+      {
+        "dateRange": "2023-12-01",
+        "productUnitSold": "33",
+        "productCvr": "0.0497",
+        "productOrders": "33",
+        "adgroupId": "1995566028",
+        "adgroupName": "[Value Pack] Caltrate 600 Plus Calcium Dietary Supplement For Bone Health With Vitamin D & Minerals (2 x 100's)",
+        "cpc": "0.2",
+        "spend": "130.01",
+        "storeUnitSold": "83",
+        "productA2c": "105",
+        "productImageUrl": "null",
+        "ctr": "2.21",
+        "campaignId": "101100010112323",
+        "storeRevenue": "3842.65",
+        "storeCvr": "0.0587",
+        "storeA2c": "147",
+        "storeOrders": "39",
+        "impressions": "29985",
+        "bidPrice": "null",
+        "itemId": "2342883060",
+        "storeRoi": "29.56",
+        "maxBid": "18",
+        "clicks": "664",
+        "productRevenue": "3392.42",
+        "campaignName": "Caltrate SP (Manual)"
+      }
+    ],
+    "errorKey": "null",
+    "errorDTOList": [],
+    "success": "true",
+    "analyseTraceId": "null",
+    "errorCode": "null",
+    "totalCount": "436",
+    "errorMsg": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

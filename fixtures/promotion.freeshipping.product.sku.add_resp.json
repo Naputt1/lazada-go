@@ -1,0 +1,10 @@
+{
+  "error_msg": "error message",
+  "code": "0",
+  "data": {
+    "sku id": "error message"
+  },
+  "success": "true",
+  "error_code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,14 @@
+{
+  "result": {
+    "data": {
+      "itemId": "123456",
+      "isValid": "1",
+      "venture": "PH",
+      "skuId": "567890",
+      "priceRank": "2"
+    },
+    "retSuccess": "true"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

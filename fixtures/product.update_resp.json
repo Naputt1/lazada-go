@@ -1,0 +1,33 @@
+{
+  "code": "0",
+  "data": {
+    "item_status": "Active",
+    "variation": {
+      "Variation1": {
+        "has_image": "false",
+        "name": "color_family",
+        "options": [],
+        "customize": "true"
+      },
+      "Variation2": {
+        "has_image": "false",
+        "name": "color_family",
+        "options": [],
+        "customize": "true"
+      },
+      "Variation3": {
+        "has_image": "false",
+        "name": "color_family",
+        "options": [],
+        "customize": "false"
+      },
+      "Variation4": {
+        "has_image": "false",
+        "name": "color_family",
+        "options": [],
+        "customize": "false"
+      }
+    }
+  },
+  "request_id": "0ba2887315178178017221014"
+}

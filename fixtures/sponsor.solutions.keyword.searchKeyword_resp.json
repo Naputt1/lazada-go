@@ -1,0 +1,21 @@
+{
+  "result": [
+    {
+      "suggestedPrice": "2",
+      "reservePrice": "0.48",
+      "currency": "PHP",
+      "softLowerLimit": "1.02",
+      "keyword": "Nike",
+      "softUpperLimit": "2",
+      "relevance": "1",
+      "softUpperLimitType": "1",
+      "historicalPV": "1062"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "...",
+  "totalCount": "19",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "-"
+}

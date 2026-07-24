@@ -1,0 +1,37 @@
+{
+  "code": "0",
+  "additionalInfo": "{\"deviceId\": \"12345679237\"}",
+  "errorCode": "PARAM_ILLEGAL",
+  "payOptions": [
+    {
+      "disableReasonCode": "USER_BALANCE_NOT_ENOUGH",
+      "disableReasonDesc": "Insufficient funds",
+      "amountLimitMap": {},
+      "payOptionInfo": {},
+      "enabled": "false",
+      "supportedCurrencies": [],
+      "payCategory": "CHANNEL",
+      "payMethod": "WALLET",
+      "additionalInfo": "{}",
+      "payOption": "DANA_WALLET",
+      "rank": "101",
+      "payAssetDetails": [
+        {
+          "bankAccount": {},
+          "coupon": {},
+          "rebate": {},
+          "additionalInfo": "{}",
+          "externalAccount": {},
+          "discount": {},
+          "payAssetType": "card",
+          "storeValue": {},
+          "card": {}
+        }
+      ],
+      "preferred": "false"
+    }
+  ],
+  "responseMessage": "Request has been processed successfully",
+  "request_id": "0ba2887315178178017221014",
+  "responseCode": "20054000"
+}

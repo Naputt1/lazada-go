@@ -1,0 +1,41 @@
+{
+  "result": {
+    "result": [
+      {
+        "productImageUrl": "https://my-live.slatic.net/p/c4c943d4b80e153aa65867defe74f04d.jpg",
+        "ctr": "0.48",
+        "keywordId": "46295804448",
+        "campaignId": "101100009688305",
+        "storeRevenue": "17.5",
+        "storeCvr": "0.0161",
+        "storeA2c": "8",
+        "storeOrders": "1",
+        "productUnitSold": "1",
+        "impressions": "13045",
+        "productCvr": "0.0161",
+        "productOrders": "1",
+        "storeRoi": "0.23",
+        "adgroupId": "1994950098",
+        "adgroupName": "Scott's Multivitamin Gummies - Mango (15’s)",
+        "cpc": "1.25",
+        "spend": "77.79",
+        "maxBid": "1.14",
+        "storeUnitSold": "1",
+        "clicks": "62",
+        "productRevenue": "17.5",
+        "keyword": "vitamin c kanak kanak",
+        "campaignName": " Scotts Search (Manual)",
+        "productA2c": "2"
+      }
+    ],
+    "errorKey": "null",
+    "errorDTOList": [],
+    "success": "true",
+    "analyseTraceId": "null",
+    "errorCode": "null",
+    "totalCount": "1",
+    "errorMsg": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

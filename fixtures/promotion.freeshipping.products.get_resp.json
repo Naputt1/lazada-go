@@ -1,0 +1,18 @@
+{
+  "error_msg": "error msg",
+  "code": "0",
+  "data": {
+    "data_list": [
+      {
+        "sku_ids": [],
+        "product_id": "1902302002"
+      }
+    ],
+    "total": "6",
+    "current": "1",
+    "page_size": "10"
+  },
+  "success": "true",
+  "error_code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,16 @@
+{
+  "error_message": "seller error",
+  "code": "0",
+  "data": {
+    "reservation_order": "RSO1234",
+    "inbound_orders": [
+      "IO1234",
+      "IO5678"
+    ],
+    "slot": "\"2021-12-03T10:00:00.000Z\"",
+    "status": "pending_reserve/pending_approval/approval_rejected/pending_exchange_approval/exchange_approval_rejected/eserved/arrived/partially_received/completed_received"
+  },
+  "success": "true",
+  "error_code": "SELLER_ERROR",
+  "request_id": "0ba2887315178178017221014"
+}

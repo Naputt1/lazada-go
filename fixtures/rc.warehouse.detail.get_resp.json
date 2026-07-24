@@ -1,0 +1,24 @@
+{
+  "result": {
+    "not_success": "false",
+    "success": "true",
+    "module": {
+      "country": "Singapore",
+      "default_address": "true",
+      "province": "Singapore",
+      "city": "65  Hillview  Dairy  Farm  Bukit  Panjang  Choa  Chu  Kang",
+      "detail_address": "福田区2号",
+      "warehouse_code": "dropshipping",
+      "district": "650387",
+      "post_code": "61544",
+      "name": "james shop sg test153",
+      "status": "ACTIVE"
+    },
+    "error_code": "null",
+    "repeated": "false",
+    "class_name": "com.alibaba.ecommerce.module.Response",
+    "retry": "false"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

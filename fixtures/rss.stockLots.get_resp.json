@@ -1,0 +1,16 @@
+{
+  "result": {
+    "data": [
+      {
+        "quantityAvailableForSale": 8,
+        "quantityScheduledForPickup": 5,
+        "id": "12345",
+        "quantityAtPickupLocation": 13
+      }
+    ],
+    "success": "true",
+    "errorMessage": "error message"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

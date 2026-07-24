@@ -1,0 +1,32 @@
+{
+  "result": [
+    {
+      "ctr": "4",
+      "campaignDailyBudgetStatus": "1",
+      "endDate": "2023-05-01",
+      "storeRevenue": "199",
+      "campaignId": "101100024476086",
+      "storeOrders": "19",
+      "impressions": "200",
+      "storeUnitsSold": "9",
+      "campaignSwitchStatus": "1",
+      "adAccountBalanceStatus": "1",
+      "storeRoi": "-",
+      "dailyBudget": "25",
+      "cpc": "2",
+      "spend": "100",
+      "campaignScheduleStatus": "1",
+      "clicks": "400",
+      "campaignName": "myCampaign_20230301",
+      "haveActiveAdStatus": "1",
+      "startDate": "2023-03-01",
+      "status": "1"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "...",
+  "totalCount": "100",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "invalid param"
+}

@@ -1,0 +1,23 @@
+{
+  "code": "0",
+  "data": {
+    "summary": "hello test",
+    "unread_count": "2",
+    "last_message_id": "23hR7YH0BtkiN00001",
+    "head_url": "https://sg-live-02.slatic.net/p/0dc6fb4898f7e991bf44c45471dca9c9.jpg",
+    "self_position": "1623399917434",
+    "last_message_time": "1623399917434",
+    "site_id": "SG",
+    "session_id": "100094063_2_1011822749_1_103",
+    "title": "bruce liu",
+    "buyer_id": "1011822749",
+    "to_position": "1623399917434",
+    "tags": [
+      "official"
+    ]
+  },
+  "success": "true",
+  "err_code": "0",
+  "request_id": "0ba2887315178178017221014",
+  "err_message": "SUCCESS"
+}

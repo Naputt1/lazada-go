@@ -1,0 +1,30 @@
+{
+  "error_message": "platform name is null",
+  "per_page": "50",
+  "code": "0",
+  "data": [
+    {
+      "has_stock": "FALSE",
+      "fulfillment_sku_id": "222222",
+      "serial_num_flag": "FALSE",
+      "owner_id": "111111111",
+      "min_stock_alert": "FALSE",
+      "pic_urls": "[\"ssssssssssssssssssssss\"]",
+      "barcodes": "[\"LZD000006614844\"]",
+      "sale_price": "32.25",
+      "shelf_life_flag": "FALSE",
+      "seller_skus": "[\"Brown-350\"]",
+      "platform_name": "LAZADA_TH",
+      "currency": "MYR",
+      "fulfillment_sku_name": "Lenovo Thinkpad",
+      "platform_sku_status": "[\"active\"]",
+      "fulfillment_sku_code": "245906966_VNAMZ-315595775",
+      "seller_id": "6666"
+    }
+  ],
+  "total_count": "88888",
+  "success": "TRUE",
+  "error_code": "001",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014"
+}

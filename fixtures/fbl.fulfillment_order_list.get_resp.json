@@ -1,0 +1,24 @@
+{
+  "error_message": "Error message",
+  "per_page": "20",
+  "code": "0",
+  "data": [
+    {
+      "sales_order_number": "orderxxxx",
+      "platform_order_id": "OF02282036214681",
+      "create_time": "2019-12-04T18:18:32Z",
+      "items": [
+        {
+          "fulfillment_sku_id": "1234",
+          "platform_item_id": "OF04292067556371",
+          "status": "send_to_warehouse"
+        }
+      ]
+    }
+  ],
+  "success": "TRUE",
+  "total_count": "100",
+  "error_code": "Error code",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014"
+}

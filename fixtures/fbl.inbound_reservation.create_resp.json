@@ -1,0 +1,10 @@
+{
+  "error_message": "seller error ",
+  "code": "0",
+  "data": {
+    "reservation_order": "RSO1234"
+  },
+  "success": "true",
+  "error_code": "SELLER_ERROR",
+  "request_id": "0ba2887315178178017221014"
+}

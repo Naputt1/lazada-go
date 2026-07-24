@@ -1,0 +1,36 @@
+{
+  "code": "0",
+  "data": {
+    "result": {
+      "page_list": [
+        {
+          "decorate_page_url": "/site/decorate?pageId=136495008",
+          "wireless_page_preview_url": "/site/global/page/preview?pageId=138575311&pagePath=custom-1658828630680.htm&clientType=wireless",
+          "wireless_end_time": "Currently invalid",
+          "timed_publish_time": "Currently invalid",
+          "relate_page_id": "138575310",
+          "client_type": "wireless",
+          "pc_end_time": "Currently invalid",
+          "pc_page_preview_url": "/site/global/page/preview?pageId=138575310&pagePath=custom-1658828630680.htm&clientType=pc",
+          "page_id": "138575311",
+          "path": "custom-1655884010234.htm",
+          "wireless_page_view_url": "https://shop-global-staging.lazada.sg/shop/nwsyydsw12/custom-1646991044777.htm?wh_weex=true",
+          "page_view_url": "https://shop-global-staging.lazada.sg/shop/nwsyydsw12/custom-1646991044777.htm?wh_weex=true",
+          "last_edit_time": "2022-03-11 16:48:48",
+          "publish_time": "2022-03-11 14:45:22",
+          "qr_url": "https://shop-global-staging.lazada.sg/shop/nwsyydsw12/custom-1658828630680.htm?wh_weex=true",
+          "page_name": "Customized Page (1658828630680)",
+          "status_key": "editing"
+        }
+      ],
+      "page_info": {
+        "total_count": "46",
+        "current_page": "1"
+      }
+    },
+    "error_message": "message",
+    "success": "true",
+    "error": "error"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

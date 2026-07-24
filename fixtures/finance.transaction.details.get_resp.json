@@ -1,0 +1,31 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "order_no": "123445666666",
+      "transaction_date": "17 May 2016",
+      "amount": "-0.62",
+      "paid_status": "Not paid",
+      "shipping_provider": "LEX",
+      "WHT_included_in_amount": "Yes",
+      "payment_ref_id": "paymentRefId",
+      "lazada_sku": "Item test -123",
+      "fee_type": "13",
+      "transaction_type": "Payment Fee",
+      "orderItem_no": "1666666",
+      "orderItem_status": "orderItemStatus",
+      "reference": "1340",
+      "fee_name": "feeName",
+      "shipping_speed": "shippingSpeed",
+      "WHT_amount": "0.0112",
+      "transaction_number": "SG103EF-1P9VK1A",
+      "seller_sku": "sellerSKU",
+      "statement": "11 May 2016 - 17 May 2016",
+      "details": "details",
+      "comment": "comment",
+      "VAT_in_amount": "0.0672",
+      "shipment_type": "Dropshipping"
+    }
+  ],
+  "request_id": "0ba2887315178178017221014"
+}

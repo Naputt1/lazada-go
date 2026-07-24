@@ -1,0 +1,52 @@
+{
+  "retryable": "false",
+  "traceId": "0ba2887315172940728551014",
+  "code": "0",
+  "data": {
+    "routeCode": "X-ROUTE-123",
+    "logisticsOrderId": "logisticsOrderId",
+    "lastMileShippingProvider": {
+      "tplSlug": "lex",
+      "tplName": "lex",
+      "tplCode": "lex"
+    },
+    "aoiName": "X-ROUTE-123",
+    "origin": {
+      "details": "92 Nam Ky Khoi Nghia",
+      "id": "R12345"
+    },
+    "options": {
+      "promotionCode": "PROMOTION_CODE",
+      "vasPartialDeliveryOptionNotAvailable": "false"
+    },
+    "appliedVas": {
+      "vasExchangeOrderOption": "true",
+      "openBox": "true",
+      "vasFdCollectShippingFeeOption": "true",
+      "vasFdStorageOption": "true",
+      "vasFdCallOption": "true",
+      "vasPartialDeliveryOption": "true"
+    },
+    "destination": {
+      "details": "92 Nam Ky Khoi Nghia",
+      "id": "R12345"
+    },
+    "firstMileShippingProvider": {
+      "tplSlug": "lex",
+      "tplName": "lex",
+      "tplCode": "lex"
+    },
+    "portCode": "X-PORT-123",
+    "trackingNumber": "GHN00003984888VNA"
+  },
+  "success": "false",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.items.name",
+      "errorMessage": "name must not be blank"
+    }
+  ]
+}

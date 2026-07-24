@@ -1,0 +1,40 @@
+{
+  "result": {
+    "result": [
+      {
+        "productImageUrl": "null",
+        "ctr": "2.58",
+        "campaignId": "101100010112323",
+        "storeRevenue": "1448.37",
+        "storeCvr": "0.0654",
+        "storeA2c": "67",
+        "storeOrders": "17",
+        "productUnitSold": "13",
+        "impressions": "10067",
+        "productCvr": "0.05",
+        "productOrders": "13",
+        "audienceFakeId": "1995526319_5_18813978",
+        "storeRoi": "26.28",
+        "adgroupId": "1995526319",
+        "audienceGroup": "5",
+        "adgroupName": "Caltrate 600 Calcium Dietary Supplement For Bone Health Value Pack (60's x 4)",
+        "cpc": "0.21",
+        "spend": "55.12",
+        "clicks": "260",
+        "productRevenue": "1298.45",
+        "storeUnitSold": "32",
+        "campaignName": "Caltrate SP (Manual)",
+        "productA2c": "32"
+      }
+    ],
+    "errorKey": "null",
+    "errorDTOList": [],
+    "success": "true",
+    "analyseTraceId": "null",
+    "errorCode": "null",
+    "totalCount": "24",
+    "errorMsg": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

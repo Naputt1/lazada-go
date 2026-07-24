@@ -1,0 +1,30 @@
+{
+  "per_page": "20",
+  "code": "0",
+  "inventory_operate_log": [
+    {
+      "order_type_code": "TRADE_OUT,COORDINATE_OUT,FAILED_DELIVERY_IN,REFOUND_IN,SELLER_INBOUND,OTHER_INBOUND,IMBALANCE_LOCK,CHECK_OUT,CHECK_IN,INVENTORY_STATUS_ADJUST_OUT,INVENTORY_STATUS_ADJUST_IN,OUTBOUND",
+      "ref_order_code": [
+        {
+          "order_code": "IO022019102523712684546",
+          "type": "ioCode"
+        }
+      ],
+      "warehouse_name": "Suban",
+      "change_quantity": "5",
+      "fulfillment_sku_id": "322302784_SGAMZ-648014149",
+      "warehouse_code": "OMS-LAZADA-MY-W-1",
+      "customer_order": "1069296969377776",
+      "inventory_type": "GOOD",
+      "order_type": "Fulfillment Outbound,Stock Transfer Outbound,Stock Transfer Inbound,Failed Delivery Inbound,Fulfillment Reverse Inbound,Seller/Supplier Inbound,Customer Return Inbound,Warehouse lock,Cycle Count Loss,Cycle Count Gain,Good to Defective Inventory Change,Defective to Good Inventory Change,Seller/Supplier Outbound,Adjust out,Adjust in",
+      "result_quantity": "10",
+      "operate_time": "2019-08-24 10:10:10"
+    }
+  ],
+  "success": "true",
+  "errCode": "INVALID PARAM",
+  "total_count": "100",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014",
+  "errMessage": "invalid marketplace"
+}

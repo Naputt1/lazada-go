@@ -1,0 +1,10 @@
+{
+  "error_message": "seller error",
+  "code": "0",
+  "data": {
+    "url": "http://ascp-misc.oss-ap-southeast-1.aliyuncs.com/PrintOrder-RSO21112301269003.pdf?Expires=1638440526&OSSAccessKeyId=LTAIZijMnAjgMx5t&Signature=YCr5z1RaO0y9iavzMegFSp4eqf4%3D"
+  },
+  "success": "true",
+  "error_code": "SELLER_ERROR",
+  "request_id": "0ba2887315178178017221014"
+}

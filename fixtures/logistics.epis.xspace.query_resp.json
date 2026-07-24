@@ -1,0 +1,47 @@
+{
+  "retryable": "false",
+  "traceId": "traceId",
+  "code": "0",
+  "data": {
+    "page": {
+      "totalRecords": "15",
+      "pageNo": "1",
+      "pageSize": "10"
+    },
+    "content": [
+      {
+        "gmtModified": "1719289602000",
+        "attachments": "attachments",
+        "orderId": "orderId",
+        "subject": "subject",
+        "contactName": "contactName",
+        "buyerEmail": "buyerEmail@gmail.com",
+        "sellerName": "sellerName",
+        "description": "description",
+        "buyerName": "buyerName",
+        "gmtCreate": "1719289602000",
+        "sellerEmail": "sellerEmail@gmail.com",
+        "ratingStar": "4",
+        "gmtDeleted": "1719289602000",
+        "ratingRemark": "remark",
+        "merchantId": "merchantId",
+        "caseId": "caseId",
+        "caseTemplateId": "caseTemplateId",
+        "sellerPhoneNo": "+8412938213",
+        "attributes": "attributes",
+        "id": "id",
+        "trackingNumber": "LZD1231231",
+        "ratingReasons": [
+          "reason 1",
+          "reason 2"
+        ],
+        "categoryId": "categoryId",
+        "status": "PENDING"
+      }
+    ]
+  },
+  "success": "true",
+  "errorMessage": "errorMessage",
+  "errorCode": "errorCode",
+  "request_id": "0ba2887315178178017221014"
+}

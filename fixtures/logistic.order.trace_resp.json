@@ -1,0 +1,40 @@
+{
+  "result": {
+    "not_success": "false",
+    "success": "true",
+    "module": [
+      {
+        "warehouse_detail_info": "null",
+        "ofc_order_id": "null",
+        "package_detail_info_list": [
+          {
+            "order_line_info_list": "List<T>",
+            "ofc_package_id": "FP032211046428116",
+            "tracking_number": "NLXSG20300914",
+            "logistic_detail_info_list": [
+              {
+                "package_location_name": "null",
+                "status_code": "1200",
+                "proof_images": [],
+                "detail_type": "ready_to",
+                "event_date": "null",
+                "receive_time": "0",
+                "icon": "null",
+                "description": "Your parcel has been packed and ready to be handed over to our shipping provider.",
+                "title": "Packed by seller / warehouse",
+                "event_time": "1625987646597"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "error_code": {
+      "displayMessage": "null"
+    },
+    "repeated": "false",
+    "retry": "false"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,40 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "fulfilment_sku": "AP082ELAAXCXJVANID-75574360",
+      "store_stocks": [
+        {
+          "store_code": "OMS-LAZADA-ID-W-1",
+          "stocks": {
+            "damagedUnsellable": {
+              "reserved": "2",
+              "available": "10"
+            },
+            "transfer": {
+              "reserved": "2",
+              "available": "10"
+            },
+            "pending": {
+              "reserved": "2",
+              "available": "10"
+            },
+            "unsellable": {
+              "reserved": "2",
+              "available": "10"
+            },
+            "expiredUnsellable": {
+              "reserved": "2",
+              "available": "10"
+            },
+            "sellable": {
+              "reserved": "2",
+              "available": "10"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "request_id": "0ba2887315178178017221014"
+}

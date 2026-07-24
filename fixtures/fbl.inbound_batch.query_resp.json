@@ -1,0 +1,21 @@
+{
+  "result": {
+    "error_message": "WHC_MISSING_PARAMETER",
+    "data": {
+      "store_code": "OMS-LAZADA-VN-W-1",
+      "batch_list": [
+        {
+          "quantity": "10",
+          "fulfillment_sku_id": "672755555519",
+          "inventory_status": "1",
+          "product_batch": "510000000343003"
+        }
+      ],
+      "inbound_order": "IO0220220408200074460677"
+    },
+    "success": "false",
+    "error_code": "inboundOrder, storeCode and shipperId are required"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

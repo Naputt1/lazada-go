@@ -1,0 +1,22 @@
+{
+  "result": {
+    "total": "15",
+    "data": [
+      {
+        "country": "SG",
+        "city": "SG",
+        "postalCode": "12345",
+        "name": "test",
+        "addressLine1": "123 Main Street",
+        "addressLine2": "Apt 4B",
+        "id": "1"
+      }
+    ],
+    "success": "true",
+    "errorMessage": "error message",
+    "pageSize": "10",
+    "page": "1"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

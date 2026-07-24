@@ -1,0 +1,15 @@
+{
+  "retryable": "false",
+  "code": "0",
+  "success": "true",
+  "errorMessage": "traceId=0b190023897207ea244",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.name",
+      "errorMessage": "$.name is missing",
+      "errorCode": "INVALID_PARAMETER"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "category_id": 6588,
+      "children": [
+        {
+          "category_id": 7436,
+          "var": true,
+          "name": "Socks",
+          "leaf": true
+        },
+        {
+          "category_id": 7435,
+          "var": true,
+          "name": "Underwear",
+          "leaf": true
+        }
+      ],
+      "var": true,
+      "name": "Socks & Tights",
+      "leaf": false
+    }
+  ],
+  "request_id": "0ba2887315178178017221014"
+}

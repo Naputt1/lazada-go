@@ -1,0 +1,15 @@
+{
+  "result": {
+    "success": "true",
+    "module": {
+      "partnerUid": "test_partneruid",
+      "status": "ACTIVE"
+    },
+    "errorCode": {
+      "displayMessage": "partnerUserId is empty",
+      "key": "LZD_MEMBER_USER_1001"
+    }
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

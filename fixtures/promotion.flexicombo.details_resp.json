@@ -1,0 +1,45 @@
+{
+  "error_msg": "null",
+  "code": "0",
+  "data": {
+    "stackable": "false",
+    "gift_buy_limit_value": [
+      "1",
+      "2"
+    ],
+    "apply": "ENTIRE_SHOP",
+    "gift_skus": [
+      {
+        "tier": "1",
+        "product_id": "442156001",
+        "sku_id": "1174240001"
+      }
+    ],
+    "end_time": "1592063999000",
+    "sample_skus": [
+      {
+        "tier": "1",
+        "product_id": "442156001",
+        "sku_id": "1174240001"
+      }
+    ],
+    "discount_value": [],
+    "type": "Flexi-combo",
+    "discount_type": "money",
+    "order_used_numbers": "20",
+    "start_time": "1591977600000",
+    "name": "test_openapi",
+    "platform_channel": "null",
+    "id": "9694800953530",
+    "criteria_type": "AMOUNT",
+    "criteria_value": [
+      "100",
+      "200"
+    ],
+    "order_numbers": "39",
+    "status": "SUSPEND"
+  },
+  "success": "true",
+  "error_code": "null",
+  "request_id": "0ba2887315178178017221014"
+}

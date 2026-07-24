@@ -1,0 +1,14 @@
+{
+  "result": {
+    "biz_ext_map": {},
+    "headers": {},
+    "msg_code": "FAIL_BIZ_SELLERID_NULL",
+    "http_status_code": "xx",
+    "success": "true/false",
+    "msg_info": "sellerId can't be null",
+    "model": {},
+    "mapping_code": "xx"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

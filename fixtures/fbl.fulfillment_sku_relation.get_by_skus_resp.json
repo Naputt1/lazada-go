@@ -1,0 +1,22 @@
+{
+  "result": {
+    "error_msg": "null",
+    "data": [
+      {
+        "site": "MY",
+        "item_id": "3068365057",
+        "fulfillment_sku": "CB-720504627-1582768814",
+        "sc_item_user_id": "3944706226",
+        "sku_id": "15291207605",
+        "source": "Lazada",
+        "seller_id": "100131295",
+        "sc_item_id": "610346434581"
+      }
+    ],
+    "failure": "false",
+    "success": "true",
+    "error_code": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

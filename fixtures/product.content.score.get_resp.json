@@ -1,0 +1,46 @@
+{
+  "result": {
+    "data": {
+      "productTitle": "test product",
+      "score": "50",
+      "image": "https://my-live-01.slatic.net/p/9ae4f50591def4f9b91f3fa069d566f6.jpg",
+      "total": "110",
+      "productId": "2581192583",
+      "items": [
+        {
+          "score": "0",
+          "total": "13",
+          "itemTitle": "Image Quality",
+          "label": "Fill attributes in key product information",
+          "indicators": [
+            {
+              "critical": "false",
+              "text": "Suggest title length between 20 and 150.",
+              "key": "wordLength"
+            }
+          ],
+          "imageList": [
+            {
+              "score": "1",
+              "imageUrl": "https://my-live-01.slatic.net/p/9ae4f50591def4f9b91f3fa069d566f6.jpg",
+              "text": "Main Image",
+              "type": "low",
+              "indicators": [
+                {
+                  "text": "Pure text image detected. Please upload another image.",
+                  "key": "flagPuretxt"
+                }
+              ],
+              "imageType": "1"
+            }
+          ],
+          "key": "productIndicatorCatProperties",
+          "group": "completeness",
+          "latest": "true"
+        }
+      ]
+    }
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

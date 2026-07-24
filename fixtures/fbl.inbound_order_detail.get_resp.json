@@ -1,0 +1,53 @@
+{
+  "code": "0",
+  "data": {
+    "inbound_warehouse": "yavin test warehouse",
+    "skus": [
+      {
+        "shelf_life_flag": "false",
+        "comments": "comment",
+        "item_inbounded_damaged": "1",
+        "requested_quantity": "2",
+        "serial_number_flag": "false",
+        "fulfillment_sku": "309958152_SGAMZ-563816132",
+        "seller_sku": [
+          "test-chengxi-icp-yavin-051"
+        ],
+        "item_inbounded_expired": "1",
+        "item_inbounded_good": "1",
+        "sku_status": "Completed",
+        "fulfillment_sku_name": "Small Convertible Water Resistant Baby Diaper Bag Backpack Crossbody Bag",
+        "barcodes": [
+          "LZD155231458828610033"
+        ]
+      }
+    ],
+    "inbound_time": "2019-06-14T06:19:38Z",
+    "inbound_warehouse_code": "OMS-LAZADA-SG-W-1",
+    "created_at": "2019-06-14T06:11:05Z",
+    "seller_mobile": "87654321",
+    "seller_country": "R536780",
+    "fulfillment_order_number": "LBX22222",
+    "need_reservation": "true",
+    "seller_postcode": "999002",
+    "seller_warehouse_name": "my warehouse",
+    "updated_at": "2019-06-14T06:19:44Z",
+    "estimate_time": "2019-06-15T02:00:00Z",
+    "delivery_type": "Dropoff",
+    "seller_contact": "stresstest273-modified",
+    "io_status": "Completely",
+    "comments": "comment",
+    "marketplace": "LAZADA_SG",
+    "warehouse_address": "axa tower",
+    "reservation_order": "RSO00001",
+    "shop_name": "MyShop",
+    "reference_number": "asdasd123123213",
+    "seller_address": "beijing no.1",
+    "seller_city": "Beijing",
+    "reservation_status": "PENDING_RESERVATION_ORDER_CREATE",
+    "warehouse_name": "yavin test warehouse",
+    "io_type": "normal",
+    "io_number": "IO02201906142932643008"
+  },
+  "request_id": "0ba2887315178178017221014"
+}

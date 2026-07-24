@@ -1,0 +1,27 @@
+{
+  "error_message": "Param invalid",
+  "per_page": "20",
+  "code": "0",
+  "data": [
+    {
+      "country_code": "MY",
+      "town_code": "R80020020",
+      "warehouse_name": "Subang",
+      "multi_channel": "TRUE",
+      "warehouse_code": "OMS-LAZADA-MY-W-11",
+      "area_code": "R2932285",
+      "latitude": "111.1111",
+      "platform_name": "LAZADA_SG , LAZADA_MY",
+      "city_code": "R80017531",
+      "division_id": "R80020020",
+      "zip_code": "533864",
+      "longitude": "12.234"
+    }
+  ],
+  "success": "TRUE",
+  "total_count": "20",
+  "total_page": "10",
+  "error_code": "PARAM_INVALID",
+  "page": "1",
+  "request_id": "0ba2887315178178017221014"
+}

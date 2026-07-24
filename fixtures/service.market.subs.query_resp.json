@@ -1,0 +1,20 @@
+{
+  "result": {
+    "data": [
+      {
+        "nick": "cn12345",
+        "item_code": "FW_GOODS-1000000281-1",
+        "expire_notice": "false",
+        "end_time": "1669197617401",
+        "article_name": "test",
+        "item_name": "test-1",
+        "autosub": "false",
+        "article_code": "FW_GOODS-1000000281",
+        "status": "1"
+      }
+    ],
+    "success": "true"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

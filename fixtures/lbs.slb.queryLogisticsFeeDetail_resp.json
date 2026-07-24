@@ -1,0 +1,125 @@
+{
+  "code": "0",
+  "data": [
+    {
+      "tenant_id": "LAZADA_SG",
+      "amount": {},
+      "sku_info": {
+        "item_details": "仓发商品",
+        "seller_sku": "9cfa3cab-10f0-44eb-a5e3-302e81fd5ba7",
+        "lazada_sku": "2630611102_SGAMZ-16733748056"
+      },
+      "seller_short_code": "SG101BB",
+      "trade_order_id": "91293602900002",
+      "fee_creation_date": {
+        "offset": {
+          "total_seconds": "28800",
+          "rules": {
+            "fixed_offset": "true"
+          },
+          "id": "+08:00"
+        },
+        "year": "2023",
+        "day_of_year": "12",
+        "nano": "799000000",
+        "chronology": {
+          "calendar_type": "iso8601",
+          "id": "ISO"
+        },
+        "month_value": "1",
+        "day_of_month": "12",
+        "minute": "0",
+        "second": "14",
+        "month": "JANUARY",
+        "hour": "17",
+        "zone": {
+          "rules": {
+            "fixed_offset": "true"
+          },
+          "id": "GMT+08:00"
+        },
+        "day_of_week": "THURSDAY"
+      },
+      "trade_order_line_id": "91293603000002",
+      "statement_id": "SG101BB-2023-0112",
+      "order_info": {
+        "order_item_status": "CONFIRMED",
+        "order_creation_date": {
+          "offset": "null",
+          "year": "2023",
+          "day_of_year": "12",
+          "nano": "530000000",
+          "chronology": "null",
+          "month_value": "1",
+          "day_of_month": "12",
+          "minute": "26",
+          "second": "57",
+          "month": "JANUARY",
+          "hour": "16",
+          "zone": {
+            "rules": {
+              "fixed_offset": "true"
+            },
+            "id": "GMT+08:00"
+          },
+          "day_of_week": "THURSDAY"
+        }
+      },
+      "fee_name": "Shipping Fee  Paid by Seller",
+      "fee_code": "shippingFeeChargedByLazada",
+      "currency": "SGD",
+      "package_info": {
+        "delivery_date": {
+          "offset": "null",
+          "year": "2023",
+          "day_of_year": "12",
+          "nano": "191000000",
+          "chronology": "null",
+          "month_value": "1",
+          "day_of_month": "12",
+          "minute": "58",
+          "second": "16",
+          "month": "JANUARY",
+          "hour": "16",
+          "zone": {
+            "rules": {
+              "fixed_offset": "true"
+            },
+            "id": "GMT+08:00"
+          },
+          "day_of_week": "THURSDAY"
+        },
+        "destination_address": "singapore",
+        "origin_address": "singapore",
+        "tracking_number": "LK000",
+        "billing_date": {
+          "offset": "null",
+          "year": "2023",
+          "day_of_year": "12",
+          "nano": "211000000",
+          "chronology": "null",
+          "month_value": "1",
+          "day_of_month": "12",
+          "minute": "59",
+          "second": "35",
+          "month": "JANUARY",
+          "hour": "16",
+          "zone": {
+            "rules": {
+              "fixed_offset": "true"
+            },
+            "id": "GMT+08:00"
+          },
+          "day_of_week": "THURSDAY"
+        },
+        "package_chargeable_weight": "3.07"
+      },
+      "tax_in_amount": {},
+      "seller_id": "213",
+      "statement_period": "2023-01-12 - 2023-01-12"
+    }
+  ],
+  "success": "true",
+  "remark": "LEL",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,19 @@
+{
+  "result": {
+    "error_msg": "seller not found",
+    "data": {
+      "platform_default": "1",
+      "shipment_providers": [
+        {
+          "name": "Cainiao",
+          "provider_code": "asc_xxx_xxx"
+        }
+      ],
+      "shipping_allocate_type": "TFS"
+    },
+    "success": "true",
+    "error_code": "70011"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

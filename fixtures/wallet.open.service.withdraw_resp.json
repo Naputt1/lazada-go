@@ -1,0 +1,10 @@
+{
+  "withdraw_id": "openDT_WD_123456_test001_id",
+  "withdraw_amount": "0.01",
+  "code": "0",
+  "withdrawable": "true",
+  "partner_deposit": "8888.88",
+  "currency": "PHP",
+  "withdraw_request_id": "test001",
+  "request_id": "0ba2887315178178017221014"
+}

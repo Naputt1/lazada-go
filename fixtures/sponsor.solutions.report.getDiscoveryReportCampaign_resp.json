@@ -1,0 +1,38 @@
+{
+  "result": {
+    "result": [
+      {
+        "ctr": "6.86",
+        "campaignObjective": "null",
+        "campaignType": "1",
+        "campaignId": "101100021686346",
+        "storeRevenue": "451.48",
+        "storeCvr": "0.1028",
+        "storeA2c": "61",
+        "storeOrders": "11",
+        "productUnitSold": "18",
+        "impressions": "1560",
+        "productCvr": "0.0654",
+        "productOrders": "7",
+        "storeRoi": "6.77",
+        "cpc": "0.62",
+        "spend": "66.68",
+        "clicks": "107",
+        "productRevenue": "243.66",
+        "storeUnitSold": "32",
+        "campaignName": "Parodontax Search (Manual)",
+        "productType": "N",
+        "dayBudget": "10",
+        "productA2c": "35"
+      }
+    ],
+    "errorKey": "null",
+    "success": "true",
+    "analyseTraceId": "null",
+    "errorCode": "null",
+    "totalCount": "17",
+    "errorMsg": "null"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

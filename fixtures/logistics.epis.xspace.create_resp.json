@@ -1,0 +1,12 @@
+{
+  "retryable": "false",
+  "traceId": "traceId",
+  "code": "0",
+  "data": {
+    "caseId": "2500000127480474"
+  },
+  "success": "true",
+  "errorMessage": "errorMessage",
+  "errorCode": "errorCode",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,35 @@
+{
+  "result": {
+    "data": {
+      "totalItem": "2",
+      "articleBizOrders": [
+        {
+          "orderCycleStart": "1655222400000",
+          "refundFee": "null",
+          "articleItemName": "默认收费项目",
+          "bizType": "1",
+          "articleName": "类目测试1",
+          "totalPayFee": "0",
+          "orderId": "317230195180544",
+          "orderCycleEnd": "1656518400000",
+          "itemCode": "FW_GOODS-1001204320-1",
+          "fee": "3000",
+          "userId": "31325235325",
+          "nick": "aliqatest01",
+          "activityCode": "null",
+          "itemName": "null",
+          "orderCycle": "0个月",
+          "bizOrderId": "0",
+          "promFee": "3000",
+          "create": "1655292812000",
+          "articleCode": "FW_GOODS-1001204320"
+        }
+      ]
+    },
+    "success": "true",
+    "resultCode": "test",
+    "remark": "test"
+  },
+  "code": "0",
+  "request_id": "0ba2887315178178017221014"
+}

@@ -1,0 +1,40 @@
+{
+  "retryable": "false",
+  "traceId": "0ba2887315172940728551014",
+  "code": "0",
+  "data": {
+    "routeCode": "X-ROUT-123",
+    "maxEta": "1701104399000",
+    "lastMileShippingProvider": {},
+    "packageCode": "FU242008370000001917013936",
+    "options": {
+      "promotionCode": "PROMOTION_CODE",
+      "vasPartialDeliveryOptionNotAvailable": "false"
+    },
+    "appliedVas": {
+      "vasExchangeOrderOption": "true",
+      "openBox": "true",
+      "vasFdCollectShippingFeeOption": "true",
+      "vasFdStorageOption": "true",
+      "vasFdCallOption": "true",
+      "vasPartialDeliveryOption": "true"
+    },
+    "firstMileShippingProvider": {
+      "tplSlug": "lex",
+      "tplName": "lex",
+      "tplCode": "lex"
+    },
+    "minEta": "1701104399000",
+    "portCode": "X-PORT-123",
+    "trackingNumber": "GHN00003984888VNA"
+  },
+  "success": "false",
+  "errorMessage": "Bad request",
+  "errorCode": "BAD_REQUEST",
+  "request_id": "0ba2887315178178017221014",
+  "errors": [
+    {
+      "field": "$.items.name"
+    }
+  ]
+}

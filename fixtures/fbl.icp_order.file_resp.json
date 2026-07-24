@@ -1,0 +1,10 @@
+{
+  "error_message": "Cancel inbound failed!",
+  "code": "0",
+  "data": {
+    "url": "http://test.misc.oss-ap-southeast-1.aliyuncs.com/testFile"
+  },
+  "success": "true",
+  "error_code": "ERROR_SYSTEM",
+  "request_id": "0ba2887315178178017221014"
+}

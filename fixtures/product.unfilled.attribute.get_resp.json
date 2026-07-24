@@ -1,0 +1,31 @@
+{
+  "error_msg": "systemerror",
+  "code": "0",
+  "success": "true",
+  "total_products": "100",
+  "request_id": "0ba2887315178178017221014",
+  "products": [
+    {
+      "item_id": "123",
+      "primary_category": "123",
+      "attributes": [
+        {
+          "advanced": {
+            "is_key_prop": 1
+          },
+          "name": "Size",
+          "input_type": "singleSelect",
+          "options": [
+            {
+              "name": "Twin"
+            }
+          ],
+          "is_mandatory": "1",
+          "attribute_type": "normal",
+          "label": "mattress_size"
+        }
+      ],
+      "seller_sku_id": "Apple 6S Black"
+    }
+  ]
+}

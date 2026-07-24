@@ -1,0 +1,49 @@
+{
+  "code": "0",
+  "request_id": "0ba2887315178178017221014",
+  "api_result": {
+    "success": "true",
+    "resultCode": "error",
+    "tagDTOList": [
+      {
+        "owner": "lazada_content",
+        "gmtModified": 1716518646000,
+        "creator": "343236",
+        "tagCode": "Neo-Chinese_1716518645925",
+        "modifier": "343236",
+        "description": "Neo-Chinese",
+        "gmtCreate": 1716518646000,
+        "tagName": "Neo-Chinese",
+        "parentTagId": 7697,
+        "isDeleted": "0",
+        "tagPath": "7697-7703",
+        "id": 7703,
+        "isSetDeadline": "0",
+        "class": "com.lazada.tag.client.response.TagDTO",
+        "parentTagCode": "Fashion Style_1716518581934",
+        "tagCategoryCode": "content_property",
+        "entityAttrVersion": "1.0"
+      },
+      {
+        "owner": "lazada_content",
+        "gmtModified": 1716885895000,
+        "creator": "343236",
+        "tagCode": "Sexy Style_1716885895073",
+        "modifier": "343236",
+        "description": "Sexy Style",
+        "gmtCreate": 1716885895000,
+        "tagName": "Sexy Style",
+        "parentTagId": 7697,
+        "isDeleted": "0",
+        "tagPath": "7697-7709",
+        "id": 7709,
+        "isSetDeadline": "0",
+        "class": "com.lazada.tag.client.response.TagDTO",
+        "parentTagCode": "Fashion Style_1716518581934",
+        "tagCategoryCode": "content_property",
+        "entityAttrVersion": "1.0"
+      }
+    ],
+    "resultMessage": "10001"
+  }
+}
