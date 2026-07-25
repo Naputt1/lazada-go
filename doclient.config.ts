@@ -36,6 +36,6 @@ export default defineConfig({
       status: "string",
     },
     ignoreAPIs: [],
-    staticModules: ["product"],
+    staticModules: [],
   },
 });

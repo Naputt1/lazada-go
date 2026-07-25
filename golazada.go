@@ -81,6 +81,7 @@ type Client[T any] struct {
 	MediaCenter                MediaCenterService
 	Membership                 MembershipService
 	Order                      OrderService
+	Product                    ProductService
 	ProductReview              ProductReviewService
 	RedMart                    RedMartService
 	ReturnAndRefund            ReturnAndRefundService
@@ -126,6 +127,7 @@ func NewClient[T any](app App, opts ...Option[T]) *Client[T] {
 	c.MediaCenter = &MediaCenterServiceOp[T]{client: c}
 	c.Membership = &MembershipServiceOp[T]{client: c}
 	c.Order = &OrderServiceOp[T]{client: c}
+	c.Product = &ProductServiceOp[T]{client: c}
 	c.ProductReview = &ProductReviewServiceOp[T]{client: c}
 	c.RedMart = &RedMartServiceOp[T]{client: c}
 	c.ReturnAndRefund = &ReturnAndRefundServiceOp[T]{client: c}
