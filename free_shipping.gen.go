@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type FreeShippingService interface {
@@ -71,6 +73,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingAddSelectedProductSKU(ctx context
 		return nil, err
 	}
 	resp := new(FreeShippingAddSelectedProductSKUResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -88,6 +95,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingCreate(ctx context.Context) (*Fre
 		return nil, err
 	}
 	resp := new(FreeShippingCreateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -139,6 +151,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingDeliveryOptionsQuery(ctx context.
 		return nil, err
 	}
 	resp := new(FreeShippingDeliveryOptionsQueryResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -156,6 +173,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingGet(ctx context.Context) (*FreeSh
 		return nil, err
 	}
 	resp := new(FreeShippingGetResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -173,6 +195,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingList(ctx context.Context) (*FreeS
 		return nil, err
 	}
 	resp := new(FreeShippingListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -190,6 +217,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingRegionsQuery(ctx context.Context)
 		return nil, err
 	}
 	resp := new(FreeShippingRegionsQueryResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -207,6 +239,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingSelectedProductList(ctx context.C
 		return nil, err
 	}
 	resp := new(FreeShippingSelectedProductListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -224,6 +261,11 @@ func (s *FreeShippingServiceOp[T]) FreeShippingUpdate(ctx context.Context) (*Fre
 		return nil, err
 	}
 	resp := new(FreeShippingUpdateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

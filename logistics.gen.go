@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type LogisticsService interface {
@@ -85,6 +87,11 @@ func (s *LogisticsServiceOp[T]) CreateConsolidationService(ctx context.Context) 
 		return nil, err
 	}
 	resp := new(CreateConsolidationServiceResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -136,6 +143,11 @@ func (s *LogisticsServiceOp[T]) StationDopScan(ctx context.Context) (*StationDop
 		return nil, err
 	}
 	resp := new(StationDopScanResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -171,6 +183,11 @@ func (s *LogisticsServiceOp[T]) UpdateLastMile(ctx context.Context) (*UpdateLast
 		return nil, err
 	}
 	resp := new(UpdateLastMileResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

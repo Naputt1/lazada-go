@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type LazPayService interface {
@@ -93,6 +95,11 @@ func (s *LazPayServiceOp[T]) CollectBenefit(ctx context.Context) (*CollectBenefi
 		return nil, err
 	}
 	resp := new(CollectBenefitResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -297,6 +304,11 @@ func (s *LazPayServiceOp[T]) InsuranceGetPromotions(ctx context.Context) (*Insur
 		return nil, err
 	}
 	resp := new(InsuranceGetPromotionsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -331,6 +343,11 @@ func (s *LazPayServiceOp[T]) InsuranceRealTimeCDP(ctx context.Context) (*Insuran
 		return nil, err
 	}
 	resp := new(InsuranceRealTimeCDPResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -433,6 +450,11 @@ func (s *LazPayServiceOp[T]) QueryAddonOrder(ctx context.Context) (*QueryAddonOr
 		return nil, err
 	}
 	resp := new(QueryAddonOrderResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -450,6 +472,11 @@ func (s *LazPayServiceOp[T]) QueryBenefit(ctx context.Context) (*QueryBenefitRes
 		return nil, err
 	}
 	resp := new(QueryBenefitResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

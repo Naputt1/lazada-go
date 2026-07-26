@@ -120,6 +120,11 @@ func (s *LazadaLogisticsServiceOp[T]) CreateOrUpdateCustomerWarehouse(ctx contex
 		return nil, err
 	}
 	resp := new(CreateOrUpdateCustomerWarehouseResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -137,6 +142,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisGetDeliveryOptions(ctx context.Context
 		return nil, err
 	}
 	resp := new(EpisGetDeliveryOptionsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -188,6 +198,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackageConsignment(ctx context.Context
 		return nil, err
 	}
 	resp := new(EpisPackageConsignmentResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -205,6 +220,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackageConsignmentV2(ctx context.Conte
 		return nil, err
 	}
 	resp := new(EpisPackageConsignmentV2Response)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -222,6 +242,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackageCreation(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(EpisPackageCreationResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -239,6 +264,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackageInfoUpdate(ctx context.Context)
 		return nil, err
 	}
 	resp := new(EpisPackageInfoUpdateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -256,6 +286,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackagePrintAwb(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(EpisPackagePrintAwbResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -273,6 +308,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisPackageReadyToBeShipped(ctx context.Co
 		return nil, err
 	}
 	resp := new(EpisPackageReadyToBeShippedResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -335,6 +375,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisXspaceCreate(ctx context.Context) (*Ep
 		return nil, err
 	}
 	resp := new(EpisXspaceCreateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -352,6 +397,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisXspaceGetDetail(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(EpisXspaceGetDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -369,6 +419,11 @@ func (s *LazadaLogisticsServiceOp[T]) EpisXspaceQuery(ctx context.Context) (*Epi
 		return nil, err
 	}
 	resp := new(EpisXspaceQueryResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -403,6 +458,11 @@ func (s *LazadaLogisticsServiceOp[T]) EstimateShippingFee(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(EstimateShippingFeeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -420,6 +480,11 @@ func (s *LazadaLogisticsServiceOp[T]) GetShippingFee(ctx context.Context) (*GetS
 		return nil, err
 	}
 	resp := new(GetShippingFeeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

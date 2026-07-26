@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type ChoiceCustomizedService interface {
@@ -74,6 +76,11 @@ func (s *ChoiceCustomizedServiceOp[T]) EditChoiceSkuStock(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(EditChoiceSkuStockResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -91,6 +98,11 @@ func (s *ChoiceCustomizedServiceOp[T]) GetChoiceProductItem(ctx context.Context)
 		return nil, err
 	}
 	resp := new(GetChoiceProductItemResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -108,6 +120,11 @@ func (s *ChoiceCustomizedServiceOp[T]) GetChoiceProducts(ctx context.Context) (*
 		return nil, err
 	}
 	resp := new(GetChoiceProductsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -125,6 +142,11 @@ func (s *ChoiceCustomizedServiceOp[T]) GetChoiceSeller(ctx context.Context) (*Ge
 		return nil, err
 	}
 	resp := new(GetChoiceSellerResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -142,6 +164,11 @@ func (s *ChoiceCustomizedServiceOp[T]) GetChoiceSkuItemRelationBySku(ctx context
 		return nil, err
 	}
 	resp := new(GetChoiceSkuItemRelationBySkuResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

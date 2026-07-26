@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type SellerVoucherService interface {
@@ -82,6 +84,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherAddSelectedProductSKU(ctx conte
 		return nil, err
 	}
 	resp := new(SellerVoucherAddSelectedProductSKUResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -99,6 +106,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherCreate(ctx context.Context) (*S
 		return nil, err
 	}
 	resp := new(SellerVoucherCreateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -133,6 +145,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherDetailQuery(ctx context.Context
 		return nil, err
 	}
 	resp := new(SellerVoucherDetailQueryResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -150,6 +167,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherList(ctx context.Context) (*Sel
 		return nil, err
 	}
 	resp := new(SellerVoucherListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -167,6 +189,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherSelectedProductList(ctx context
 		return nil, err
 	}
 	resp := new(SellerVoucherSelectedProductListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -184,6 +211,11 @@ func (s *SellerVoucherServiceOp[T]) SellerVoucherUpdate(ctx context.Context) (*S
 		return nil, err
 	}
 	resp := new(SellerVoucherUpdateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

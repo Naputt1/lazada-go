@@ -264,6 +264,11 @@ func (s *FBLServiceOp[T]) CancelVasOrder4FBL(ctx context.Context) (*CancelVasOrd
 		return nil, err
 	}
 	resp := new(CancelVasOrder4FBLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -281,6 +286,11 @@ func (s *FBLServiceOp[T]) CheckInboundReservationSlot(ctx context.Context) (*Che
 		return nil, err
 	}
 	resp := new(CheckInboundReservationSlotResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -332,6 +342,11 @@ func (s *FBLServiceOp[T]) CreateFulfillmentSkuDecouple(ctx context.Context) (*Cr
 		return nil, err
 	}
 	resp := new(CreateFulfillmentSkuDecoupleResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -349,6 +364,11 @@ func (s *FBLServiceOp[T]) CreateFulfillmentSkuForFBL(ctx context.Context) (*Crea
 		return nil, err
 	}
 	resp := new(CreateFulfillmentSkuForFBLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -383,6 +403,11 @@ func (s *FBLServiceOp[T]) CreateInboundReservation(ctx context.Context) (*Create
 		return nil, err
 	}
 	resp := new(CreateInboundReservationResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -434,6 +459,11 @@ func (s *FBLServiceOp[T]) CreateVasOrder4FBL(ctx context.Context) (*CreateVasOrd
 		return nil, err
 	}
 	resp := new(CreateVasOrder4FBLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -451,6 +481,11 @@ func (s *FBLServiceOp[T]) GetChannelStocksForMCL(ctx context.Context) (*GetChann
 		return nil, err
 	}
 	resp := new(GetChannelStocksForMCLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -468,6 +503,11 @@ func (s *FBLServiceOp[T]) GetFulfillmentProductDetail(ctx context.Context) (*Get
 		return nil, err
 	}
 	resp := new(GetFulfillmentProductDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -485,6 +525,11 @@ func (s *FBLServiceOp[T]) GetFulfillmentSkuListForMCL(ctx context.Context) (*Get
 		return nil, err
 	}
 	resp := new(GetFulfillmentSkuListForMCLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -570,6 +615,11 @@ func (s *FBLServiceOp[T]) GetIcpOrderFile(ctx context.Context) (*GetIcpOrderFile
 		return nil, err
 	}
 	resp := new(GetIcpOrderFileResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -587,6 +637,11 @@ func (s *FBLServiceOp[T]) GetInboundOrderDetail(ctx context.Context) (*GetInboun
 		return nil, err
 	}
 	resp := new(GetInboundOrderDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -621,6 +676,11 @@ func (s *FBLServiceOp[T]) GetInboundReservationFile(ctx context.Context) (*GetIn
 		return nil, err
 	}
 	resp := new(GetInboundReservationFileResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -689,6 +749,11 @@ func (s *FBLServiceOp[T]) GetOutboundOrderDetail(ctx context.Context) (*GetOutbo
 		return nil, err
 	}
 	resp := new(GetOutboundOrderDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -723,6 +788,11 @@ func (s *FBLServiceOp[T]) GetPlatformProductsV2(ctx context.Context) (*GetPlatfo
 		return nil, err
 	}
 	resp := new(GetPlatformProductsV2Response)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -757,6 +827,11 @@ func (s *FBLServiceOp[T]) GetShipperInfo(ctx context.Context) (*GetShipperInfoRe
 		return nil, err
 	}
 	resp := new(GetShipperInfoResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -774,6 +849,11 @@ func (s *FBLServiceOp[T]) GetStockRule(ctx context.Context) (*GetStockRuleRespon
 		return nil, err
 	}
 	resp := new(GetStockRuleResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -791,6 +871,11 @@ func (s *FBLServiceOp[T]) GetVasOrderByNo4FBL(ctx context.Context) (*GetVasOrder
 		return nil, err
 	}
 	resp := new(GetVasOrderByNo4FBLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -808,6 +893,11 @@ func (s *FBLServiceOp[T]) GetWarehouseListForMCL(ctx context.Context) (*GetWareh
 		return nil, err
 	}
 	resp := new(GetWarehouseListForMCLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -825,6 +915,11 @@ func (s *FBLServiceOp[T]) GetWarehouseStock(ctx context.Context) (*GetWarehouseS
 		return nil, err
 	}
 	resp := new(GetWarehouseStockResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -842,6 +937,11 @@ func (s *FBLServiceOp[T]) GetWarehouseStockV3(ctx context.Context) (*GetWarehous
 		return nil, err
 	}
 	resp := new(GetWarehouseStockV3Response)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -859,6 +959,11 @@ func (s *FBLServiceOp[T]) ListIcpWarehouse(ctx context.Context) (*ListIcpWarehou
 		return nil, err
 	}
 	resp := new(ListIcpWarehouseResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -876,6 +981,11 @@ func (s *FBLServiceOp[T]) QueryFulfillmentOrderForMCL(ctx context.Context) (*Que
 		return nil, err
 	}
 	resp := new(QueryFulfillmentOrderForMCLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -910,6 +1020,11 @@ func (s *FBLServiceOp[T]) QueryInboundReservationOrder(ctx context.Context) (*Qu
 		return nil, err
 	}
 	resp := new(QueryInboundReservationOrderResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -927,6 +1042,11 @@ func (s *FBLServiceOp[T]) QueryReverseOrderForMCL(ctx context.Context) (*QueryRe
 		return nil, err
 	}
 	resp := new(QueryReverseOrderForMCLResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -978,6 +1098,11 @@ func (s *FBLServiceOp[T]) ReturnOrderCreation(ctx context.Context) (*ReturnOrder
 		return nil, err
 	}
 	resp := new(ReturnOrderCreationResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -1012,6 +1137,11 @@ func (s *FBLServiceOp[T]) UpdateFulfillmentSkuDecouple(ctx context.Context) (*Up
 		return nil, err
 	}
 	resp := new(UpdateFulfillmentSkuDecoupleResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

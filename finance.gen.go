@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type FinanceService interface {
@@ -33,6 +35,11 @@ func (s *FinanceServiceOp[T]) GetPayoutStatus(ctx context.Context) (*GetPayoutSt
 		return nil, err
 	}
 	resp := new(GetPayoutStatusResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -50,6 +57,11 @@ func (s *FinanceServiceOp[T]) QueryAccountTransactions(ctx context.Context) (*Qu
 		return nil, err
 	}
 	resp := new(QueryAccountTransactionsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -67,6 +79,11 @@ func (s *FinanceServiceOp[T]) QueryLogisticsFeeDetail(ctx context.Context) (*Que
 		return nil, err
 	}
 	resp := new(QueryLogisticsFeeDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -84,6 +101,11 @@ func (s *FinanceServiceOp[T]) QueryTransactionDetails(ctx context.Context) (*Que
 		return nil, err
 	}
 	resp := new(QueryTransactionDetailsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

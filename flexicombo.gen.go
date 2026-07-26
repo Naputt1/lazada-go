@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type FlexicomboService interface {
@@ -65,6 +67,11 @@ func (s *FlexicomboServiceOp[T]) AddFlexiComboProducts(ctx context.Context) (*Ad
 		return nil, err
 	}
 	resp := new(AddFlexiComboProductsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -82,6 +89,11 @@ func (s *FlexicomboServiceOp[T]) CreateFlexiCombo(ctx context.Context) (*CreateF
 		return nil, err
 	}
 	resp := new(CreateFlexiComboResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -133,6 +145,11 @@ func (s *FlexicomboServiceOp[T]) GetFlexiComboDetails(ctx context.Context) (*Get
 		return nil, err
 	}
 	resp := new(GetFlexiComboDetailsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -150,6 +167,11 @@ func (s *FlexicomboServiceOp[T]) ListFlexiCombo(ctx context.Context) (*ListFlexi
 		return nil, err
 	}
 	resp := new(ListFlexiComboResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -167,6 +189,11 @@ func (s *FlexicomboServiceOp[T]) ListFlexiComboProducts(ctx context.Context) (*L
 		return nil, err
 	}
 	resp := new(ListFlexiComboProductsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

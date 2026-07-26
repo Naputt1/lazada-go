@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type OrderService interface {
@@ -45,6 +47,11 @@ func (s *OrderServiceOp[T]) GetDocument(ctx context.Context) (*GetDocumentRespon
 		return nil, err
 	}
 	resp := new(GetDocumentResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -62,6 +69,11 @@ func (s *OrderServiceOp[T]) GetMultipleOrderItems(ctx context.Context) (*GetMult
 		return nil, err
 	}
 	resp := new(GetMultipleOrderItemsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -79,6 +91,11 @@ func (s *OrderServiceOp[T]) GetOrder(ctx context.Context) (*GetOrderResponse, er
 		return nil, err
 	}
 	resp := new(GetOrderResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -96,6 +113,11 @@ func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context) (*GetOrderItemsRe
 		return nil, err
 	}
 	resp := new(GetOrderItemsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -113,6 +135,11 @@ func (s *OrderServiceOp[T]) GetOrders(ctx context.Context) (*GetOrdersResponse, 
 		return nil, err
 	}
 	resp := new(GetOrdersResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -147,6 +174,11 @@ func (s *OrderServiceOp[T]) OrderCancelValidate(ctx context.Context) (*OrderCanc
 		return nil, err
 	}
 	resp := new(OrderCancelValidateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -164,6 +196,11 @@ func (s *OrderServiceOp[T]) SetInvoiceNumber(ctx context.Context) (*SetInvoiceNu
 		return nil, err
 	}
 	resp := new(SetInvoiceNumberResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type ETicketsService interface {
@@ -45,6 +47,11 @@ func (s *ETicketsServiceOp[T]) GetOrderItemsFromBarCode(ctx context.Context) (*G
 		return nil, err
 	}
 	resp := new(GetOrderItemsFromBarCodeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -164,6 +171,11 @@ func (s *ETicketsServiceOp[T]) RedeemOrderItems(ctx context.Context) (*RedeemOrd
 		return nil, err
 	}
 	resp := new(RedeemOrderItemsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

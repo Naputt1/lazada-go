@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type CrossBoarderProductService interface {
@@ -54,6 +56,11 @@ func (s *CrossBoarderProductServiceOp[T]) CreateGlobalProduct(ctx context.Contex
 		return nil, err
 	}
 	resp := new(CreateGlobalProductResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -71,6 +78,11 @@ func (s *CrossBoarderProductServiceOp[T]) DeleteMerchantProduct(ctx context.Cont
 		return nil, err
 	}
 	resp := new(DeleteMerchantProductResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -88,6 +100,11 @@ func (s *CrossBoarderProductServiceOp[T]) GetGlobalProductExtension(ctx context.
 		return nil, err
 	}
 	resp := new(GetGlobalProductExtensionResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -105,6 +122,11 @@ func (s *CrossBoarderProductServiceOp[T]) GetGlobalProductStatus(ctx context.Con
 		return nil, err
 	}
 	resp := new(GetGlobalProductStatusResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -122,6 +144,11 @@ func (s *CrossBoarderProductServiceOp[T]) GetRecommendPrice(ctx context.Context)
 		return nil, err
 	}
 	resp := new(GetRecommendPriceResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -139,6 +166,11 @@ func (s *CrossBoarderProductServiceOp[T]) GetUnfilledAttribute(ctx context.Conte
 		return nil, err
 	}
 	resp := new(GetUnfilledAttributeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -156,6 +188,11 @@ func (s *CrossBoarderProductServiceOp[T]) GetUpgradableGlobalPlusProductList(ctx
 		return nil, err
 	}
 	resp := new(GetUpgradableGlobalPlusProductListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -173,6 +210,11 @@ func (s *CrossBoarderProductServiceOp[T]) SemiProductUpdate(ctx context.Context)
 		return nil, err
 	}
 	resp := new(SemiProductUpdateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -190,6 +232,11 @@ func (s *CrossBoarderProductServiceOp[T]) SemiProductUpgrade(ctx context.Context
 		return nil, err
 	}
 	resp := new(SemiProductUpgradeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -224,6 +271,11 @@ func (s *CrossBoarderProductServiceOp[T]) UpdateProductStatus(ctx context.Contex
 		return nil, err
 	}
 	resp := new(UpdateProductStatusResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

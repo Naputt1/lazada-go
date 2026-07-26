@@ -1,26 +1,349 @@
 package golazada
 
+type Document struct {
+	File         string `json:"file"`          // [Required]
+	MimeType     string `json:"mime_type"`     // [Required]
+	DocumentType string `json:"document_type"` // [Required]
+}
 type GetDocumentResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                         // Common response fields
+	Response     GetDocumentResponseData `json:"data"` // Response data
+}
+type GetDocumentResponseData struct {
+	Document *Document `json:"document"` // [Required]
 }
 type GetMultipleOrderItemsResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                                   // Common response fields
+	Response     GetMultipleOrderItemsResponseData `json:"data"` // Response data
+}
+type GetMultipleOrderItemsResponseData struct {
+	OrderNumber string       `json:"order_number"` // [Required]
+	OrderId     int64        `json:"order_id"`     // [Required]
+	OrderItems  []OrderItems `json:"order_items"`  // [Required]
 }
 type GetOrderItemsResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                           // Common response fields
+	Response     GetOrderItemsResponseData `json:"data"` // Response data
+}
+type GetOrderItemsResponseData struct {
+	PickUpStoreInfo               *PickUpStoreInfo `json:"pick_up_store_info"`               // [Required]
+	TaxAmount                     string           `json:"tax_amount"`                       // [Required]
+	Reason                        string           `json:"reason"`                           // [Required]
+	SlaTimeStamp                  string           `json:"sla_time_stamp"`                   // [Required]
+	ShowGiftwrappingTag           string           `json:"show_giftwrapping_tag"`            // [Required]
+	VoucherSeller                 string           `json:"voucher_seller"`                   // [Required]
+	PurchaseOrderId               string           `json:"purchase_order_id"`                // [Required]
+	PaymentTime                   string           `json:"payment_time"`                     // [Required]
+	VoucherCodeSeller             string           `json:"voucher_code_seller"`              // [Required]
+	VoucherCode                   string           `json:"voucher_code"`                     // [Required]
+	PackageId                     string           `json:"package_id"`                       // [Required]
+	BuyerId                       string           `json:"buyer_id"`                         // [Required]
+	Variation                     string           `json:"variation"`                        // [Required]
+	IsCancelPending               string           `json:"is_cancel_pending"`                // [Required]
+	BizGroup                      string           `json:"biz_group"`                        // [Required]
+	ProductId                     int64            `json:"product_id"`                       // [Required]
+	VoucherCodePlatform           string           `json:"voucher_code_platform"`            // [Required]
+	PurchaseOrderNumber           string           `json:"purchase_order_number"`            // [Required]
+	Sku                           string           `json:"sku"`                              // [Required]
+	GiftWrapping                  string           `json:"gift_wrapping"`                    // [Required]
+	ScheduleDeliveryStartTimeslot string           `json:"schedule_delivery_start_timeslot"` // [Required]
+	OrderType                     string           `json:"order_type"`                       // [Required]
+	InvoiceNumber                 string           `json:"invoice_number"`                   // [Required]
+	ShowPersonalizationTag        string           `json:"show_personalization_tag"`         // [Required]
+	CanEscalatePickup             string           `json:"can_escalate_pickup"`              // [Required]
+	CancelTriggerTime             string           `json:"cancel_trigger_time"`              // [Required]
+	CancelReturnInitiator         string           `json:"cancel_return_initiator"`          // [Required]
+	ShopSku                       string           `json:"shop_sku"`                         // [Required]
+	IsReroute                     string           `json:"is_reroute"`                       // [Required]
+	StagePayStatus                string           `json:"stage_pay_status"`                 // [Required]
+	SkuId                         int64            `json:"sku_id"`                           // [Required]
+	TrackingCodePre               string           `json:"tracking_code_pre"`                // [Required]
+	OrderItemId                   int64            `json:"order_item_id"`                    // [Required]
+	ShopId                        int64            `json:"shop_id"`                          // [Required]
+	OrderFlag                     string           `json:"order_flag"`                       // [Required]
+	IsFbl                         string           `json:"is_fbl"`                           // [Required]
+	Name                          string           `json:"name"`                             // [Required]
+	DeliveryOptionSof             string           `json:"delivery_option_sof"`              // [Required]
+	OrderId                       int64            `json:"order_id"`                         // [Required]
+	FulfillmentSla                string           `json:"fulfillment_sla"`                  // [Required]
+	NeedCancelConfirm             string           `json:"need_cancel_confirm"`              // [Required]
+	Status                        string           `json:"status"`                           // [Required]
+	ProductMainImage              string           `json:"product_main_image"`               // [Required]
+	VoucherPlatform               string           `json:"voucher_platform"`                 // [Required]
+	PaidPrice                     string           `json:"paid_price"`                       // [Required]
+	ProductDetailUrl              string           `json:"product_detail_url"`               // [Required]
+	WarehouseCode                 string           `json:"warehouse_code"`                   // [Required]
+	PromisedShippingTime          string           `json:"promised_shipping_time"`           // [Required]
+	ShippingType                  string           `json:"shipping_type"`                    // [Required]
+	CreatedAt                     string           `json:"created_at"`                       // [Required]
+	SupplyPrice                   string           `json:"supply_price"`                     // [Required]
+	Mp3Order                      string           `json:"mp3_order"`                        // [Required]
+	VoucherSellerLpi              string           `json:"voucher_seller_lpi"`               // [Required]
+	ShippingFeeDiscountPlatform   string           `json:"shipping_fee_discount_platform"`   // [Required]
+	Personalization               string           `json:"personalization"`                  // [Required]
+	WalletCredits                 string           `json:"wallet_credits"`                   // [Required]
+	ReverseOrderId                string           `json:"reverse_order_id"`                 // [Required]
+	UpdatedAt                     string           `json:"updated_at"`                       // [Required]
+	Currency                      string           `json:"currency"`                         // [Required]
+	ShippingProviderType          string           `json:"shipping_provider_type"`           // [Required]
+	VoucherPlatformLpi            string           `json:"voucher_platform_lpi"`             // [Required]
+	ShippingFeeOriginal           string           `json:"shipping_fee_original"`            // [Required]
+	ScheduleDeliveryEndTimeslot   string           `json:"schedule_delivery_end_timeslot"`   // [Required]
+	ItemPrice                     string           `json:"item_price"`                       // [Required]
+	IsDigital                     string           `json:"is_digital"`                       // [Required]
+	ShippingServiceCost           string           `json:"shipping_service_cost"`            // [Required]
+	TrackingCode                  string           `json:"tracking_code"`                    // [Required]
+	ShippingFeeDiscountSeller     string           `json:"shipping_fee_discount_seller"`     // [Required]
+	ShippingAmount                string           `json:"shipping_amount"`                  // [Required]
+	ReasonDetail                  string           `json:"reason_detail"`                    // [Required]
+	ReturnStatus                  string           `json:"return_status"`                    // [Required]
+	SemiManaged                   string           `json:"semi_managed"`                     // [Required]
+	ShipmentProvider              string           `json:"shipment_provider"`                // [Required]
+	PriorityFulfillmentTag        string           `json:"priority_fulfillment_tag"`         // [Required]
+	VoucherAmount                 string           `json:"voucher_amount"`                   // [Required]
+	SupplyPriceCurrency           string           `json:"supply_price_currency"`            // [Required]
+	DigitalDeliveryInfo           string           `json:"digital_delivery_info"`            // [Required]
+	ExtraAttributes               string           `json:"extra_attributes"`                 // [Required]
 }
 type GetOrderResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                      // Common response fields
+	Response     GetOrderResponseData `json:"data"` // Response data
+}
+type GetOrderResponseData struct {
+	Voucher                     string                      `json:"voucher"`                        // [Required]
+	WarehouseCode               string                      `json:"warehouse_code"`                 // [Required]
+	OrderNumber                 string                      `json:"order_number"`                   // [Required]
+	CreatedAt                   string                      `json:"created_at"`                     // [Required]
+	VoucherCode                 string                      `json:"voucher_code"`                   // [Required]
+	GiftOption                  string                      `json:"gift_option"`                    // [Required]
+	IsCancelPending             string                      `json:"is_cancel_pending"`              // [Required]
+	ShippingFeeDiscountPlatform string                      `json:"shipping_fee_discount_platform"` // [Required]
+	CustomerLastName            string                      `json:"customer_last_name"`             // [Required]
+	UpdatedAt                   string                      `json:"updated_at"`                     // [Required]
+	PromisedShippingTimes       string                      `json:"promised_shipping_times"`        // [Required]
+	Price                       string                      `json:"price"`                          // [Required]
+	NationalRegistrationNumber  string                      `json:"national_registration_number"`   // [Required]
+	ShippingFeeOriginal         string                      `json:"shipping_fee_original"`          // [Required]
+	PaymentMethod               string                      `json:"payment_method"`                 // [Required]
+	RecipientInfo               *RecipientInfo              `json:"recipient_info"`                 // [Required]
+	BuyerNote                   string                      `json:"buyer_note"`                     // [Required]
+	CustomerFirstName           string                      `json:"customer_first_name"`            // [Required]
+	ShippingFeeDiscountSeller   string                      `json:"shipping_fee_discount_seller"`   // [Required]
+	ShippingFee                 string                      `json:"shipping_fee"`                   // [Required]
+	BranchNumber                string                      `json:"branch_number"`                  // [Required]
+	TaxCode                     string                      `json:"tax_code"`                       // [Required]
+	ItemsCount                  string                      `json:"items_count"`                    // [Required]
+	DeliveryInfo                string                      `json:"delivery_info"`                  // [Required]
+	Statuses                    []interface{}               `json:"statuses"`                       // [Required]
+	AddressBilling              *ResponseDataAddressBilling `json:"address_billing"`                // [Required]
+	ExtraAttributes             string                      `json:"extra_attributes"`               // [Required]
+	OrderId                     int64                       `json:"order_id"`                       // [Required]
+	NeedCancelConfirm           string                      `json:"need_cancel_confirm"`            // [Required]
+	GiftMessage                 string                      `json:"gift_message"`                   // [Required]
+	Remarks                     string                      `json:"remarks"`                        // [Required]
+	AddressShipping             *ResponseDataAddressBilling `json:"address_shipping"`               // [Required]
 }
 type GetOrdersResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                       // Common response fields
+	Response     GetOrdersResponseData `json:"data"` // Response data
+}
+type GetOrdersResponseData struct {
+	Count      string               `json:"count"`      // [Required]
+	CountTotal string               `json:"countTotal"` // [Required]
+	Orders     []ResponseDataOrders `json:"orders"`     // [Required]
 }
 type GetOVOOrdersResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                                 // Common response fields
+	Result       *GetOVOOrdersResponseDataResult `json:"result,omitempty"` //
+}
+type GetOVOOrdersResponseDataResult struct {
+	Success     bool          `json:"success"`     // [Required]
+	ErrorCode   string        `json:"errorCode"`   // [Required]
+	TradeOrders []TradeOrders `json:"tradeOrders"` // [Required]
 }
 type OrderCancelValidateResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                                 // Common response fields
+	Response     OrderCancelValidateResponseData `json:"data"` // Response data
+}
+type OrderCancelValidateResponseData struct {
+	TipContent    string          `json:"tip_content"`    // [Required]
+	ReasonOptions []ReasonOptions `json:"reason_options"` // [Required]
+	TipType       string          `json:"tip_type"`       // [Required]
+}
+type OrderItems struct {
+	TaxAmount                     string           `json:"tax_amount"`                       // [Required]
+	PickUpStoreInfo               *PickUpStoreInfo `json:"pick_up_store_info"`               // [Required]
+	Reason                        string           `json:"reason"`                           // [Required]
+	SlaTimeStamp                  string           `json:"sla_time_stamp"`                   // [Required]
+	PurchaseOrderId               string           `json:"purchase_order_id"`                // [Required]
+	VoucherSeller                 string           `json:"voucher_seller"`                   // [Required]
+	PaymentTime                   string           `json:"payment_time"`                     // [Required]
+	VoucherCodeSeller             string           `json:"voucher_code_seller"`              // [Required]
+	VoucherCode                   string           `json:"voucher_code"`                     // [Required]
+	PackageId                     string           `json:"package_id"`                       // [Required]
+	BuyerId                       string           `json:"buyer_id"`                         // [Required]
+	Variation                     string           `json:"variation"`                        // [Required]
+	IsCancelPending               string           `json:"is_cancel_pending"`                // [Required]
+	BizGroup                      string           `json:"biz_group"`                        // [Required]
+	VoucherCodePlatform           string           `json:"voucher_code_platform"`            // [Required]
+	PurchaseOrderNumber           string           `json:"purchase_order_number"`            // [Required]
+	ShowGiftWrappingTag           string           `json:"show_gift_wrapping_tag"`           // [Required]
+	Sku                           string           `json:"sku"`                              // [Required]
+	GiftWrapping                  string           `json:"gift_wrapping"`                    // [Required]
+	ScheduleDeliveryStartTimeslot string           `json:"schedule_delivery_start_timeslot"` // [Required]
+	InvoiceNumber                 string           `json:"invoice_number"`                   // [Required]
+	OrderType                     string           `json:"order_type"`                       // [Required]
+	ShowPersonalizationTag        string           `json:"show_personalization_tag"`         // [Required]
+	CanEscalatePickup             string           `json:"can_escalate_pickup"`              // [Required]
+	CancelTriggerTime             string           `json:"cancel_trigger_time"`              // [Required]
+	CancelReturnInitiator         string           `json:"cancel_return_initiator"`          // [Required]
+	ShopSku                       string           `json:"shop_sku"`                         // [Required]
+	IsReroute                     string           `json:"is_reroute"`                       // [Required]
+	StagePayStatus                string           `json:"stage_pay_status"`                 // [Required]
+	SkuId                         int64            `json:"sku_id"`                           // [Required]
+	TrackingCodePre               string           `json:"tracking_code_pre"`                // [Required]
+	OrderItemId                   int64            `json:"order_item_id"`                    // [Required]
+	ShopId                        int64            `json:"shop_id"`                          // [Required]
+	OrderFlag                     string           `json:"order_flag"`                       // [Required]
+	IsFbl                         string           `json:"is_fbl"`                           // [Required]
+	Name                          string           `json:"name"`                             // [Required]
+	DeliveryOptionSof             string           `json:"delivery_option_sof"`              // [Required]
+	OrderId                       int64            `json:"order_id"`                         // [Required]
+	FulfillmentSla                string           `json:"fulfillment_sla"`                  // [Required]
+	NeedCancelConfirm             string           `json:"need_cancel_confirm"`              // [Required]
+	Status                        string           `json:"status"`                           // [Required]
+	PaidPrice                     string           `json:"paid_price"`                       // [Required]
+	ProductMainImage              string           `json:"product_main_image"`               // [Required]
+	VoucherPlatform               string           `json:"voucher_platform"`                 // [Required]
+	ProductDetailUrl              string           `json:"product_detail_url"`               // [Required]
+	PromisedShippingTime          string           `json:"promised_shipping_time"`           // [Required]
+	WarehouseCode                 string           `json:"warehouse_code"`                   // [Required]
+	ShippingType                  string           `json:"shipping_type"`                    // [Required]
+	CreatedAt                     string           `json:"created_at"`                       // [Required]
+	SupplyPrice                   string           `json:"supply_price"`                     // [Required]
+	Mp3Order                      string           `json:"mp3_order"`                        // [Required]
+	VoucherSellerLpi              string           `json:"voucher_seller_lpi"`               // [Required]
+	ShippingFeeDiscountPlatform   string           `json:"shipping_fee_discount_platform"`   // [Required]
+	Personalization               string           `json:"personalization"`                  // [Required]
+	WalletCredits                 string           `json:"wallet_credits"`                   // [Required]
+	ReverseOrderId                string           `json:"reverse_order_id"`                 // [Required]
+	UpdatedAt                     string           `json:"updated_at"`                       // [Required]
+	Currency                      string           `json:"currency"`                         // [Required]
+	ShippingProviderType          string           `json:"shipping_provider_type"`           // [Required]
+	ShippingFeeOriginal           string           `json:"shipping_fee_original"`            // [Required]
+	VoucherPlatformLpi            string           `json:"voucher_platform_lpi"`             // [Required]
+	ScheduleDeliveryEndTimeslot   string           `json:"schedule_delivery_end_timeslot"`   // [Required]
+	IsDigital                     string           `json:"is_digital"`                       // [Required]
+	ItemPrice                     string           `json:"item_price"`                       // [Required]
+	ShippingServiceCost           string           `json:"shipping_service_cost"`            // [Required]
+	TrackingCode                  string           `json:"tracking_code"`                    // [Required]
+	ShippingFeeDiscountSeller     string           `json:"shipping_fee_discount_seller"`     // [Required]
+	ShippingAmount                string           `json:"shipping_amount"`                  // [Required]
+	ReasonDetail                  string           `json:"reason_detail"`                    // [Required]
+	ReturnStatus                  string           `json:"return_status"`                    // [Required]
+	SemiManaged                   string           `json:"semi_managed"`                     // [Required]
+	ShipmentProvider              string           `json:"shipment_provider"`                // [Required]
+	PriorityFulfillmentTag        string           `json:"priority_fulfillment_tag"`         // [Required]
+	VoucherAmount                 string           `json:"voucher_amount"`                   // [Required]
+	SupplyPriceCurrency           string           `json:"supply_price_currency"`            // [Required]
+	DigitalDeliveryInfo           string           `json:"digital_delivery_info"`            // [Required]
+	ExtraAttributes               string           `json:"extra_attributes"`                 // [Required]
+}
+type OrdersAddressBilling struct {
+	Country         string `json:"country"`         // [Required]
+	Address3        string `json:"address3"`        // [Required]
+	Address2        string `json:"address2"`        // [Required]
+	City            string `json:"city"`            // [Required]
+	Address1        string `json:"address1"`        // [Required]
+	Phone2          string `json:"phone2"`          // [Required]
+	LastName        string `json:"last_name"`       // [Required]
+	AddressDsitrict string `json:"addressDsitrict"` // [Required]
+	Phone           string `json:"phone"`           // [Required]
+	PostCode        string `json:"post_code"`       // [Required]
+	Address5        string `json:"address5"`        // [Required]
+	Address4        string `json:"address4"`        // [Required]
+	FirstName       string `json:"first_name"`      // [Required]
+}
+type PickUpStoreInfo struct {
+	PickUpStoreAddress  string   `json:"pick_up_store_address"`   // [Required]
+	PickUpStoreName     string   `json:"pick_up_store_name"`      // [Required]
+	PickUpStoreOpenHour []string `json:"pick_up_store_open_hour"` // [Required]
+	PickUpStoreCode     string   `json:"pick_up_store_code"`      // [Required]
+}
+type RecipientInfo struct {
+	IdentifyNo    string `json:"identify_no"`    // [Required]
+	DetailAddress string `json:"detail_address"` // [Required]
+	PassportNo    string `json:"passport_no"`    // [Required]
+}
+type ResponseDataAddressBilling struct {
+	Country         string `json:"country"`         // [Required]
+	Address3        string `json:"address3"`        // [Required]
+	Address2        string `json:"address2"`        // [Required]
+	City            string `json:"city"`            // [Required]
+	Address1        string `json:"address1"`        // [Required]
+	Phone2          string `json:"phone2"`          // [Required]
+	LastName        string `json:"last_name"`       // [Required]
+	Phone           string `json:"phone"`           // [Required]
+	PostCode        string `json:"post_code"`       // [Required]
+	Address5        string `json:"address5"`        // [Required]
+	Address4        string `json:"address4"`        // [Required]
+	AddressDistrict string `json:"addressDistrict"` // [Required]
+	FirstName       string `json:"first_name"`      // [Required]
+}
+type ResponseDataOrders struct {
+	VoucherPlatform             string                `json:"voucher_platform"`               // [Required]
+	Voucher                     string                `json:"voucher"`                        // [Required]
+	WarehouseCode               string                `json:"warehouse_code"`                 // [Required]
+	OrderNumber                 string                `json:"order_number"`                   // [Required]
+	VoucherSeller               string                `json:"voucher_seller"`                 // [Required]
+	CreatedAt                   string                `json:"created_at"`                     // [Required]
+	VoucherCode                 string                `json:"voucher_code"`                   // [Required]
+	GiftOption                  string                `json:"gift_option"`                    // [Required]
+	IsCancelPending             string                `json:"is_cancel_pending"`              // [Required]
+	ShippingFeeDiscountPlatform string                `json:"shipping_fee_discount_platform"` // [Required]
+	CustomerLastName            string                `json:"customer_last_name"`             // [Required]
+	PromisedShippingTimes       string                `json:"promised_shipping_times"`        // [Required]
+	UpdatedAt                   string                `json:"updated_at"`                     // [Required]
+	Price                       string                `json:"price"`                          // [Required]
+	NationalRegistrationNumber  string                `json:"national_registration_number"`   // [Required]
+	ShippingFeeOriginal         string                `json:"shipping_fee_original"`          // [Required]
+	PaymentMethod               string                `json:"payment_method"`                 // [Required]
+	AddressUpdatedAt            string                `json:"address_updated_at"`             // [Required]
+	RecipientInfo               *RecipientInfo        `json:"recipient_info"`                 // [Required]
+	BuyerNote                   string                `json:"buyer_note"`                     // [Required]
+	CustomerFirstName           string                `json:"customer_first_name"`            // [Required]
+	ShippingFeeDiscountSeller   string                `json:"shipping_fee_discount_seller"`   // [Required]
+	ShippingFee                 string                `json:"shipping_fee"`                   // [Required]
+	BranchNumber                string                `json:"branch_number"`                  // [Required]
+	TaxCode                     string                `json:"tax_code"`                       // [Required]
+	ItemsCount                  string                `json:"items_count"`                    // [Required]
+	DeliveryInfo                string                `json:"delivery_info"`                  // [Required]
+	Statuses                    []interface{}         `json:"statuses"`                       // [Required]
+	AddressBilling              *OrdersAddressBilling `json:"address_billing"`                // [Required]
+	ExtraAttributes             string                `json:"extra_attributes"`               // [Required]
+	OrderId                     int64                 `json:"order_id"`                       // [Required]
+	NeedCancelConfirm           string                `json:"need_cancel_confirm"`            // [Required]
+	Remarks                     string                `json:"remarks"`                        // [Required]
+	GiftMessage                 string                `json:"gift_message"`                   // [Required]
+	AddressShipping             *OrdersAddressBilling `json:"address_shipping"`               // [Required]
 }
 type SetInvoiceNumberResponse struct {
-	BaseResponse // Common response fields
+	BaseResponse                              // Common response fields
+	Response     SetInvoiceNumberResponseData `json:"data"` // Response data
+}
+type SetInvoiceNumberResponseData struct {
+	OrderItemId   int64  `json:"order_item_id"`  // [Required]
+	InvoiceNumber string `json:"invoice_number"` // [Required]
+}
+type TradeOrderLines struct {
+	DeliveredTime    string `json:"deliveredTime"`    // [Required]
+	TradeOrderLineId string `json:"tradeOrderLineId"` // [Required]
+	DeliveryStatus   string `json:"deliveryStatus"`   // [Required]
+	ReverseStatus    string `json:"reverseStatus"`    // [Required]
+}
+type TradeOrders struct {
+	TradeOrderId    string            `json:"tradeOrderId"`    // [Required]
+	PaymentMethod   string            `json:"paymentMethod"`   // [Required]
+	PaidTime        string            `json:"paidTime"`        // [Required]
+	TradeOrderLines []TradeOrderLines `json:"tradeOrderLines"` // [Required]
 }

@@ -26,10 +26,10 @@ type ProductService interface {
 	DeactivateProduct(ctx context.Context) (*DeactivateProductResponse, error)
 	// GetBrandByPages Use this API to retrieve all product brands by page index in the system.
 	// Path: /category/brands/query
-	GetBrandByPages(ctx context.Context) (*GetBrandByPagesResponse, error)
+	GetBrandByPages(ctx context.Context, opt GetBrandByPagesRequest) (*GetBrandByPagesResponse, error)
 	// GetCategoryAttributes Use this API to get a list of attributes for a specified product category.
 	// Path: /category/attributes/get
-	GetCategoryAttributes(ctx context.Context) (*GetCategoryAttributesResponse, error)
+	GetCategoryAttributes(ctx context.Context, opt GetCategoryAttributesRequest) (*GetCategoryAttributesResponse, error)
 	// GetCategorySuggestion Get product's category suggestion by product title
 	// Path: /product/category/suggestion/get
 	GetCategorySuggestion(ctx context.Context) (*GetCategorySuggestionResponse, error)
@@ -47,10 +47,10 @@ type ProductService interface {
 	GetProductContentScore(ctx context.Context) (*GetProductContentScoreResponse, error)
 	// GetProductItem Get single product by ItemId or SellerSku.
 	// Path: /product/item/get
-	GetProductItem(ctx context.Context, opt GetProductItemRequest) (*GetProductItemResponse, error)
+	GetProductItem(ctx context.Context) (*GetProductItemResponse, error)
 	// GetProducts Use this API to get detailed information of the specified products.
 	// Path: /products/get
-	GetProducts(ctx context.Context, opt GetProductsRequest) (*GetProductsResponse, error)
+	GetProducts(ctx context.Context) (*GetProductsResponse, error)
 	// GetQCAlertProducts Getting seller's products that have been alerted by quality control.
 	// Path: /product/qc/alert/list
 	GetQCAlertProducts(ctx context.Context) (*GetQCAlertProductsResponse, error)
@@ -180,14 +180,19 @@ func (s *ProductServiceOp[T]) DeactivateProduct(ctx context.Context) (*Deactivat
 
 // GetBrandByPages Use this API to retrieve all product brands by page index in the system.
 // Path: /category/brands/query
-func (s *ProductServiceOp[T]) GetBrandByPages(ctx context.Context) (*GetBrandByPagesResponse, error) {
+func (s *ProductServiceOp[T]) GetBrandByPages(ctx context.Context, opt GetBrandByPagesRequest) (*GetBrandByPagesResponse, error) {
 	path := "/category/brands/query"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(GetBrandByPagesResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -197,14 +202,19 @@ func (s *ProductServiceOp[T]) GetBrandByPages(ctx context.Context) (*GetBrandByP
 
 // GetCategoryAttributes Use this API to get a list of attributes for a specified product category.
 // Path: /category/attributes/get
-func (s *ProductServiceOp[T]) GetCategoryAttributes(ctx context.Context) (*GetCategoryAttributesResponse, error) {
+func (s *ProductServiceOp[T]) GetCategoryAttributes(ctx context.Context, opt GetCategoryAttributesRequest) (*GetCategoryAttributesResponse, error) {
 	path := "/category/attributes/get"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(GetCategoryAttributesResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -222,6 +232,11 @@ func (s *ProductServiceOp[T]) GetCategorySuggestion(ctx context.Context) (*GetCa
 		return nil, err
 	}
 	resp := new(GetCategorySuggestionResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -239,6 +254,11 @@ func (s *ProductServiceOp[T]) GetCategoryTree(ctx context.Context) (*GetCategory
 		return nil, err
 	}
 	resp := new(GetCategoryTreeResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -256,6 +276,11 @@ func (s *ProductServiceOp[T]) GetNextCascadeProp(ctx context.Context) (*GetNextC
 		return nil, err
 	}
 	resp := new(GetNextCascadePropResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -299,9 +324,9 @@ func (s *ProductServiceOp[T]) GetProductContentScore(ctx context.Context) (*GetP
 
 // GetProductItem Get single product by ItemId or SellerSku.
 // Path: /product/item/get
-func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context, opt GetProductItemRequest) (*GetProductItemResponse, error) {
+func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context) (*GetProductItemResponse, error) {
 	path := "/product/item/get"
-	params := paramsFromStruct(opt)
+	var params map[string]string
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -321,9 +346,9 @@ func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context, opt GetProduct
 
 // GetProducts Use this API to get detailed information of the specified products.
 // Path: /products/get
-func (s *ProductServiceOp[T]) GetProducts(ctx context.Context, opt GetProductsRequest) (*GetProductsResponse, error) {
+func (s *ProductServiceOp[T]) GetProducts(ctx context.Context) (*GetProductsResponse, error) {
 	path := "/products/get"
-	params := paramsFromStruct(opt)
+	var params map[string]string
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -351,6 +376,11 @@ func (s *ProductServiceOp[T]) GetQCAlertProducts(ctx context.Context) (*GetQCAle
 		return nil, err
 	}
 	resp := new(GetQCAlertProductsResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -396,6 +426,11 @@ func (s *ProductServiceOp[T]) GetSellerItemLimit(ctx context.Context) (*GetSelle
 		return nil, err
 	}
 	resp := new(GetSellerItemLimitResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -413,6 +448,11 @@ func (s *ProductServiceOp[T]) GetSizeChartTemplate(ctx context.Context) (*GetSiz
 		return nil, err
 	}
 	resp := new(GetSizeChartTemplateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

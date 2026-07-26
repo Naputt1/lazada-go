@@ -120,6 +120,55 @@ function mapParam(p: Param, typeOverrides?: Record<string, string>): IRParam {
   };
 }
 
+const SKIP_FIXTURE_FIELDS = new Set(['code', 'type', 'message', 'request_id', 'success', 'error_msg', 'error_code']);
+
+function inferParamsFromFixture(fixture: any, typeOverrides?: Record<string, string>): IRParam[] {
+  if (typeof fixture !== 'object' || fixture === null) return [];
+  return Object.entries(fixture)
+    .filter(([k]) => !SKIP_FIXTURE_FIELDS.has(k))
+    .map(([k, v]) => paramFromValue(k, v, typeOverrides));
+}
+
+function paramFromValue(name: string, value: any, typeOverrides?: Record<string, string>): IRParam {
+  const override = typeOverrides?.[name];
+  if (override) {
+    return { name, type: override, shopeeType: override, description: '', required: true, children: [] };
+  }
+  if (Array.isArray(value)) {
+    if (value.length > 0 && typeof value[0] === 'object' && value[0] !== null) {
+      return {
+        name,
+        type: 'object[]',
+        shopeeType: 'object[]',
+        description: '',
+        required: true,
+        children: Object.entries(value[0]).map(([k, v]) => paramFromValue(k, v, typeOverrides)),
+      };
+    }
+    if (value.length > 0) {
+      return { name, type: 'string[]', shopeeType: 'string[]', description: '', required: true, children: [] };
+    }
+    return { name, type: 'object[]', shopeeType: 'object[]', description: '', required: true, children: [] };
+  }
+  if (typeof value === 'object' && value !== null) {
+    return {
+      name,
+      type: 'object',
+      shopeeType: 'object',
+      description: '',
+      required: true,
+      children: Object.entries(value).map(([k, v]) => paramFromValue(k, v, typeOverrides)),
+    };
+  }
+  if (typeof value === 'number') {
+    return { name, type: 'int64', shopeeType: 'int64', description: '', required: true, children: [] };
+  }
+  if (typeof value === 'boolean') {
+    return { name, type: 'boolean', shopeeType: 'boolean', description: '', required: true, children: [] };
+  }
+  return { name, type: 'string', shopeeType: 'string', description: '', required: true, children: [] };
+}
+
 function determineMethod(methodType: string, title: string): 'GET' | 'POST' {
   switch (methodType) {
     case 'GET':
@@ -229,8 +278,8 @@ export const lazadaSource: SourceAdapter = {
           .filter((p) => !isCommonParam(p.name))
           .map((p) => mapParam(p, typeOverrides));
 
-        const rawOutput = detail.outputParameters?.data ?? [];
-        const responseParams = rawOutput.map((p) => mapParam(p, typeOverrides));
+		const rawOutput = detail.outputParameters?.data ?? [];
+		let responseParams = rawOutput.map((p) => mapParam(p, typeOverrides));
 
         const method = determineMethod(api.methodType, api.title);
 
@@ -265,6 +314,18 @@ export const lazadaSource: SourceAdapter = {
         if (fixtureContent) {
           fixtures.push({ filename: fixtureName, content: fixtureContent });
         }
+
+		if (responseParams.length === 0 && fixtureContent) {
+			try {
+				const parsed = JSON.parse(fixtureContent);
+				const inferred = inferParamsFromFixture(parsed, typeOverrides);
+				if (inferred.length > 0) {
+					responseParams = inferred;
+				}
+			} catch {
+				// fixture not parseable as JSON, keep empty responseParams
+			}
+		}
 
         const irEp: IREndpoint = {
           name: uniqueName,

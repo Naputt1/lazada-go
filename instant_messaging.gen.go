@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type InstantMessagingService interface {
@@ -42,6 +44,11 @@ func (s *InstantMessagingServiceOp[T]) GetMessages(ctx context.Context) (*GetMes
 		return nil, err
 	}
 	resp := new(GetMessagesResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -59,6 +66,11 @@ func (s *InstantMessagingServiceOp[T]) GetSessionDetail(ctx context.Context) (*G
 		return nil, err
 	}
 	resp := new(GetSessionDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -76,6 +88,11 @@ func (s *InstantMessagingServiceOp[T]) GetSessionList(ctx context.Context) (*Get
 		return nil, err
 	}
 	resp := new(GetSessionListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -144,6 +161,11 @@ func (s *InstantMessagingServiceOp[T]) SendMessage(ctx context.Context) (*SendMe
 		return nil, err
 	}
 	resp := new(SendMessageResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

@@ -179,8 +179,9 @@ func Test_Product_GetBrandByPages(t *testing.T) {
 		},
 	)
 
+	var req GetBrandByPagesRequest
 	ctx := context.Background()
-	res, err := client.Product.GetBrandByPages(ctx)
+	res, err := client.Product.GetBrandByPages(ctx, req)
 	if err != nil {
 		t.Logf("Product.GetBrandByPages returned error (possibly expected with mock data): %s", err)
 	}
@@ -214,8 +215,9 @@ func Test_Product_GetCategoryAttributes(t *testing.T) {
 		},
 	)
 
+	var req GetCategoryAttributesRequest
 	ctx := context.Background()
-	res, err := client.Product.GetCategoryAttributes(ctx)
+	res, err := client.Product.GetCategoryAttributes(ctx, req)
 	if err != nil {
 		t.Logf("Product.GetCategoryAttributes returned error (possibly expected with mock data): %s", err)
 	}
@@ -424,9 +426,8 @@ func Test_Product_GetProductItem(t *testing.T) {
 		},
 	)
 
-	var req GetProductItemRequest
 	ctx := context.Background()
-	res, err := client.Product.GetProductItem(ctx, req)
+	res, err := client.Product.GetProductItem(ctx)
 	if err != nil {
 		t.Logf("Product.GetProductItem returned error (possibly expected with mock data): %s", err)
 	}
@@ -460,9 +461,8 @@ func Test_Product_GetProducts(t *testing.T) {
 		},
 	)
 
-	var req GetProductsRequest
 	ctx := context.Background()
-	res, err := client.Product.GetProducts(ctx, req)
+	res, err := client.Product.GetProducts(ctx)
 	if err != nil {
 		t.Logf("Product.GetProducts returned error (possibly expected with mock data): %s", err)
 	}

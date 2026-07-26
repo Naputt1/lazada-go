@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type SellerService interface {
@@ -90,6 +92,11 @@ func (s *SellerServiceOp[T]) GetCountryInfo(ctx context.Context) (*GetCountryInf
 		return nil, err
 	}
 	resp := new(GetCountryInfoResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -124,6 +131,11 @@ func (s *SellerServiceOp[T]) GetSeller(ctx context.Context) (*GetSellerResponse,
 		return nil, err
 	}
 	resp := new(GetSellerResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -141,6 +153,11 @@ func (s *SellerServiceOp[T]) GetSellerMetricsById(ctx context.Context) (*GetSell
 		return nil, err
 	}
 	resp := new(GetSellerMetricsByIdResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -158,6 +175,11 @@ func (s *SellerServiceOp[T]) GetSellerPerformance(ctx context.Context) (*GetSell
 		return nil, err
 	}
 	resp := new(GetSellerPerformanceResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -175,6 +197,11 @@ func (s *SellerServiceOp[T]) GetSellerRegisterInfo(ctx context.Context) (*GetSel
 		return nil, err
 	}
 	resp := new(GetSellerRegisterInfoResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -192,6 +219,11 @@ func (s *SellerServiceOp[T]) GetSubAddress(ctx context.Context) (*GetSubAddressR
 		return nil, err
 	}
 	resp := new(GetSubAddressResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -226,6 +258,11 @@ func (s *SellerServiceOp[T]) PaymentBinding(ctx context.Context) (*PaymentBindin
 		return nil, err
 	}
 	resp := new(PaymentBindingResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -312,6 +349,11 @@ func (s *SellerServiceOp[T]) SellerFieldVerify(ctx context.Context) (*SellerFiel
 		return nil, err
 	}
 	resp := new(SellerFieldVerifyResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -329,6 +371,11 @@ func (s *SellerServiceOp[T]) SellerPolicyFetch(ctx context.Context) (*SellerPoli
 		return nil, err
 	}
 	resp := new(SellerPolicyFetchResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

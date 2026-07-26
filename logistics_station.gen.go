@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type LogisticsStationService interface {
@@ -75,6 +77,11 @@ func (s *LogisticsStationServiceOp[T]) CageValidation(ctx context.Context) (*Cag
 		return nil, err
 	}
 	resp := new(CageValidationResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -92,6 +99,11 @@ func (s *LogisticsStationServiceOp[T]) ConfirmInbound(ctx context.Context) (*Con
 		return nil, err
 	}
 	resp := new(ConfirmInboundResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -109,6 +121,11 @@ func (s *LogisticsStationServiceOp[T]) ConfirmParcelCollection(ctx context.Conte
 		return nil, err
 	}
 	resp := new(ConfirmParcelCollectionResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -126,6 +143,11 @@ func (s *LogisticsStationServiceOp[T]) CreateScannedParcel(ctx context.Context) 
 		return nil, err
 	}
 	resp := new(CreateScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -143,6 +165,11 @@ func (s *LogisticsStationServiceOp[T]) DeleteScannedParcel(ctx context.Context) 
 		return nil, err
 	}
 	resp := new(DeleteScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -160,6 +187,11 @@ func (s *LogisticsStationServiceOp[T]) DopConfirmInbound(ctx context.Context) (*
 		return nil, err
 	}
 	resp := new(DopConfirmInboundResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -177,6 +209,11 @@ func (s *LogisticsStationServiceOp[T]) DopCreateScannedParcel(ctx context.Contex
 		return nil, err
 	}
 	resp := new(DopCreateScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -194,6 +231,11 @@ func (s *LogisticsStationServiceOp[T]) DopDeleteScannedParcel(ctx context.Contex
 		return nil, err
 	}
 	resp := new(DopDeleteScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -211,6 +253,11 @@ func (s *LogisticsStationServiceOp[T]) DopGetInboundedParcel(ctx context.Context
 		return nil, err
 	}
 	resp := new(DopGetInboundedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -228,6 +275,11 @@ func (s *LogisticsStationServiceOp[T]) DopGetScannedParcel(ctx context.Context) 
 		return nil, err
 	}
 	resp := new(DopGetScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -245,6 +297,11 @@ func (s *LogisticsStationServiceOp[T]) GetCpScheduledPuParcel(ctx context.Contex
 		return nil, err
 	}
 	resp := new(GetCpScheduledPuParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -262,6 +319,11 @@ func (s *LogisticsStationServiceOp[T]) GetInboundedParcel(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(GetInboundedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -279,6 +341,11 @@ func (s *LogisticsStationServiceOp[T]) GetListAccessStation(ctx context.Context)
 		return nil, err
 	}
 	resp := new(GetListAccessStationResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -296,6 +363,11 @@ func (s *LogisticsStationServiceOp[T]) GetMetaData(ctx context.Context) (*GetMet
 		return nil, err
 	}
 	resp := new(GetMetaDataResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -313,6 +385,11 @@ func (s *LogisticsStationServiceOp[T]) GetScannedParcel(ctx context.Context) (*G
 		return nil, err
 	}
 	resp := new(GetScannedParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -330,6 +407,11 @@ func (s *LogisticsStationServiceOp[T]) SearchCustomerReturnParcel(ctx context.Co
 		return nil, err
 	}
 	resp := new(SearchCustomerReturnParcelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -347,6 +429,11 @@ func (s *LogisticsStationServiceOp[T]) ValidateCage(ctx context.Context) (*Valid
 		return nil, err
 	}
 	resp := new(ValidateCageResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -364,6 +451,11 @@ func (s *LogisticsStationServiceOp[T]) ValidateOTP(ctx context.Context) (*Valida
 		return nil, err
 	}
 	resp := new(ValidateOTPResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

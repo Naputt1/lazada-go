@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type ReturnAndRefundService interface {
@@ -45,6 +47,11 @@ func (s *ReturnAndRefundServiceOp[T]) GetReverseOrderDetail(ctx context.Context)
 		return nil, err
 	}
 	resp := new(GetReverseOrderDetailResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -62,6 +69,11 @@ func (s *ReturnAndRefundServiceOp[T]) GetReverseOrderHistoryList(ctx context.Con
 		return nil, err
 	}
 	resp := new(GetReverseOrderHistoryListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -79,6 +91,11 @@ func (s *ReturnAndRefundServiceOp[T]) GetReverseOrderReasonList(ctx context.Cont
 		return nil, err
 	}
 	resp := new(GetReverseOrderReasonListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -113,6 +130,11 @@ func (s *ReturnAndRefundServiceOp[T]) InitReverseOrderCancel(ctx context.Context
 		return nil, err
 	}
 	resp := new(InitReverseOrderCancelResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -164,6 +186,11 @@ func (s *ReturnAndRefundServiceOp[T]) ReverseOrderReturnUpdate(ctx context.Conte
 		return nil, err
 	}
 	resp := new(ReverseOrderReturnUpdateResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type ProductReviewService interface {
@@ -30,6 +32,11 @@ func (s *ProductReviewServiceOp[T]) GetHistoryReviewIdList(ctx context.Context) 
 		return nil, err
 	}
 	resp := new(GetHistoryReviewIdListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -47,6 +54,11 @@ func (s *ProductReviewServiceOp[T]) GetReviewListByIdList(ctx context.Context) (
 		return nil, err
 	}
 	resp := new(GetReviewListByIdListResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -64,6 +76,11 @@ func (s *ProductReviewServiceOp[T]) SubmitSellerReply(ctx context.Context) (*Sub
 		return nil, err
 	}
 	resp := new(SubmitSellerReplyResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
