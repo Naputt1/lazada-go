@@ -97,6 +97,8 @@ type ProductService interface {
 	// UploadImage Use this API to upload a single image file to Lazada site. Allowed image formats are JPG and PNG. The maximum size of an image file is 1MB.
 	// Path: /image/upload
 	UploadImage(ctx context.Context, filename string, reader io.Reader) (*UploadImageResponse, error)
+	// UploadImageBytes is like UploadImage but takes []byte instead of io.Reader
+	UploadImageBytes(ctx context.Context, filename string, data []byte) (*UploadImageResponse, error)
 }
 
 type ProductServiceOp[T any] struct {
