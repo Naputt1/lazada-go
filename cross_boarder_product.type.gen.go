@@ -1,14 +1,14 @@
 package golazada
 
 type CountryInfo struct {
-	Market       string `json:"market"`        // [Required]
-	Quantity     string `json:"quantity"`      // [Required]
-	Abs          string `json:"abs"`           // [Required]
-	SpecialPrice string `json:"special_price"` // [Required]
-	ItemId       int64  `json:"item_id"`       // [Required]
-	Price        string `json:"price"`         // [Required]
-	Currency     string `json:"currency"`      // [Required]
-	SkuId        int64  `json:"sku_id"`        // [Required]
+	Market       string  `json:"market"`        // [Required]
+	Quantity     string  `json:"quantity"`      // [Required]
+	Abs          string  `json:"abs"`           // [Required]
+	SpecialPrice string  `json:"special_price"` // [Required]
+	ItemId       int64   `json:"item_id"`       // [Required]
+	Price        float64 `json:"price"`         // [Required]
+	Currency     string  `json:"currency"`      // [Required]
+	SkuId        int64   `json:"sku_id"`        // [Required]
 }
 type CountryPrice struct {
 	Market         string `json:"market"`           // [Required]
@@ -103,7 +103,7 @@ type ProductsAttributes struct {
 }
 type ProductsSkus struct {
 	SpecialPrice *SpecialPrice `json:"special_price"`  // [Required]
-	Price        *SpecialPrice `json:"price"`          // [Required]
+	Price        float64       `json:"price"`          // [Required]
 	SellerSku    string        `json:"seller_sku"`     // [Required]
 	NoPostageFee *SpecialPrice `json:"no_postage_fee"` // [Required]
 	SkuId        int64         `json:"sku_id"`         // [Required]

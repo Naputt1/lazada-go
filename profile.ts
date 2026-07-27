@@ -73,6 +73,20 @@ export const lazadaProfile = defineProfile({
         ep.responseParams = overrides.response;
       }
     }
+
+    // Post-process response params to fix known API doc vs reality mismatches
+    const fixType = (params: IRParam[]) => {
+      for (const p of params) {
+        if (p.name === 'marketImages' || p.name === 'MarketImages' || p.name === 'ImageSequence' || p.name === 'imageSequence') {
+          p.type = '[]string';
+        }
+        if (p.type === 'object[]' || p.type === 'object') {
+          fixType(p.children);
+        }
+      }
+    };
+    fixType(ep.responseParams);
+
     defaultBuildEndpointStructs(profileConfig as any)(structGen, moduleName, ep);
   },
 

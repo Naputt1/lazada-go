@@ -146,7 +146,7 @@ type GetProductItemResponse struct {
 type GetProductItemResponseData struct {
 	CreatedTime     string                           `json:"created_time"`     // [Required]
 	UpdatedTime     string                           `json:"updated_time"`     // [Required]
-	Images          []string                           `json:"images"`           // [Required]
+	Images          []string                         `json:"images"`           // [Required]
 	Skus            []GetProductItemResponseDataSkus `json:"skus"`             // [Required]
 	ImageSequence   *ImageSequence                   `json:"imageSequence"`    // [Required]
 	ItemId          int64                            `json:"item_id"`          // [Required]
@@ -155,10 +155,10 @@ type GetProductItemResponseData struct {
 	SuspendedSkus   []interface{}                    `json:"suspendedSkus"`    // [Required]
 	SubStatus       string                           `json:"subStatus"`        // [Required]
 	Variation       *Variation                       `json:"variation"`        // [Required]
-	TrialProduct    string                           `json:"trialProduct"`     // [Required]
+	TrialProduct    bool                             `json:"trialProduct"`     // [Required]
 	RejectReason    []RejectReason                   `json:"rejectReason"`     // [Required]
 	PrimaryCategory int64                            `json:"primary_category"` // [Required]
-	MarketImages    string                           `json:"marketImages"`     // [Required]
+	MarketImages    []string                         `json:"marketImages"`     // [Required]
 	Attributes      *ResponseDataAttributes          `json:"attributes"`       // [Required]
 	HiddenReason    string                           `json:"hiddenReason"`     // [Required]
 	Status          string                           `json:"status"`           // [Required]
@@ -178,7 +178,7 @@ type GetProductItemResponseDataSkus struct {
 	SpecialFromTime string         `json:"special_from_time"` // [Required]
 	PackageHeight   string         `json:"package_height"`    // [Required]
 	SpecialPrice    int64          `json:"special_price"`     // [Required]
-	Price           float64          `json:"price"`             // [Required]
+	Price           float64        `json:"price"`             // [Required]
 	PackageLength   string         `json:"package_length"`    // [Required]
 	PackageWeight   string         `json:"package_weight"`    // [Required]
 	Available       int64          `json:"Available"`         // [Required]
@@ -203,16 +203,16 @@ type GetProductsResponseData struct {
 type GetProductsResponseDataProducts struct {
 	CreatedTime     string                                `json:"created_time"`     // [Required]
 	UpdatedTime     string                                `json:"updated_time"`     // [Required]
-	Images          []string                           `json:"images"`           // [Required]
+	Images          []string                              `json:"images"`           // [Required]
 	Skus            []GetProductsResponseDataProductsSkus `json:"skus"`             // [Required]
 	ItemId          int64                                 `json:"item_id"`          // [Required]
 	HiddenStatus    string                                `json:"hiddenStatus"`     // [Required]
 	SuspendedSkus   []interface{}                         `json:"suspendedSkus"`    // [Required]
 	SubStatus       string                                `json:"subStatus"`        // [Required]
-	TrialProduct    string                                `json:"trialProduct"`     // [Required]
+	TrialProduct    bool                                  `json:"trialProduct"`     // [Required]
 	RejectReason    []RejectReason                        `json:"rejectReason"`     // [Required]
 	PrimaryCategory int64                                 `json:"primary_category"` // [Required]
-	MarketImages    string                                `json:"marketImages"`     // [Required]
+	MarketImages    []string                              `json:"marketImages"`     // [Required]
 	Attributes      *ResponseDataAttributes               `json:"attributes"`       // [Required]
 	HiddenReason    string                                `json:"hiddenReason"`     // [Required]
 	Status          string                                `json:"status"`           // [Required]
@@ -230,7 +230,7 @@ type GetProductsResponseDataProductsSkus struct {
 	SpecialFromTime string   `json:"special_from_time"` // [Required]
 	PackageHeight   string   `json:"package_height"`    // [Required]
 	SpecialPrice    int64    `json:"special_price"`     // [Required]
-	Price           float64    `json:"price"`             // [Required]
+	Price           float64  `json:"price"`             // [Required]
 	PackageLength   string   `json:"package_length"`    // [Required]
 	PackageWeight   string   `json:"package_weight"`    // [Required]
 	Available       int64    `json:"Available"`         // [Required]
@@ -252,7 +252,7 @@ type GetResponseResponse struct {
 	Response     GetResponseResponseData `json:"data"` // Response data
 }
 type GetResponseResponseData struct {
-	Images []Images                        `json:"images"` // [Required]
+	Images []string                        `json:"images"` // [Required]
 	Errors []GetResponseResponseDataErrors `json:"errors"` // [Required]
 }
 type GetResponseResponseDataErrors struct {
@@ -306,10 +306,6 @@ type ImageIndicators struct {
 	Text string `json:"text"` // [Required]
 	Key  string `json:"key"`  // [Required]
 }
-type Images struct {
-	HashCode string `json:"hash_code"` // [Required]
-	Url      string `json:"url"`       // [Required]
-}
 type ImageSequence struct {
 	Score       string   `json:"score"`       // [Required]
 	NeedSuggest bool     `json:"needSuggest"` // [Required]
@@ -326,7 +322,7 @@ type MigrateImageResponse struct {
 	Response     MigrateImageResponseData `json:"data"` // Response data
 }
 type MigrateImageResponseData struct {
-	Image *Images `json:"image"` // [Required]
+	Image *ResponseDataImage `json:"image"` // [Required]
 }
 type MigrateImagesResponse struct {
 	BaseResponse        // Common response fields
@@ -368,6 +364,10 @@ type ResponseDataAttributes struct {
 }
 type ResponseDataBizSupplement struct {
 	GlobalPlusProductStatus int64 `json:"globalPlusProductStatus"` // [Required]
+}
+type ResponseDataImage struct {
+	HashCode string `json:"hash_code"` // [Required]
+	Url      string `json:"url"`       // [Required]
 }
 type ResponseDataModule struct {
 	Name             string `json:"name"`              // [Required]
@@ -426,7 +426,7 @@ type UploadImageResponse struct {
 	Response     UploadImageResponseData `json:"data"` // Response data
 }
 type UploadImageResponseData struct {
-	Image *Images `json:"image"` // [Required]
+	Image *ResponseDataImage `json:"image"` // [Required]
 }
 type Values struct {
 	ItemLimit         string        `json:"item_limit"`          // [Required]

@@ -121,7 +121,7 @@ type Model struct {
 	CustomerLastName            string           `json:"customer_last_name"`             // [Required]
 	UpdatedAt                   string           `json:"updated_at"`                     // [Required]
 	PromisedShippingTimes       string           `json:"promised_shipping_times"`        // [Required]
-	Price                       string           `json:"price"`                          // [Required]
+	Price                       float64          `json:"price"`                          // [Required]
 	NationalRegistrationNumber  string           `json:"national_registration_number"`   // [Required]
 	ShippingFeeOriginal         string           `json:"shipping_fee_original"`          // [Required]
 	PaymentMethod               string           `json:"payment_method"`                 // [Required]
