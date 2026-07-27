@@ -426,8 +426,9 @@ func Test_Product_GetProductItem(t *testing.T) {
 		},
 	)
 
+	var req GetProductItemRequest
 	ctx := context.Background()
-	res, err := client.Product.GetProductItem(ctx)
+	res, err := client.Product.GetProductItem(ctx, req)
 	if err != nil {
 		t.Logf("Product.GetProductItem returned error (possibly expected with mock data): %s", err)
 	}
@@ -461,8 +462,9 @@ func Test_Product_GetProducts(t *testing.T) {
 		},
 	)
 
+	var req GetProductsRequest
 	ctx := context.Background()
-	res, err := client.Product.GetProducts(ctx)
+	res, err := client.Product.GetProducts(ctx, req)
 	if err != nil {
 		t.Logf("Product.GetProducts returned error (possibly expected with mock data): %s", err)
 	}

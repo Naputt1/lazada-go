@@ -15,7 +15,7 @@ type AccessTokenResponse struct {
 
 	AccessToken  string   `json:"access_token"`
 	RefreshToken string   `json:"refresh_token"`
-	ExpireIn     int      `json:"expire_in"`
+	ExpireIn     int      `json:"expires_in"`
 	Account      string   `json:"account"`
 	AccountID    string   `json:"account_id"`
 	Country      string   `json:"country"`
@@ -27,7 +27,7 @@ type RefreshAccessTokenResponse struct {
 
 	AccessToken  string `json:"access_token"`
 	RefreshToken string `json:"refresh_token"`
-	ExpireIn     int    `json:"expire_in"`
+	ExpireIn     int    `json:"expires_in"`
 }
 
 type AuthServiceOp[T any] struct {
@@ -55,6 +55,9 @@ func (s *AuthServiceOp[T]) RefreshAccessToken(ctx context.Context, refreshToken 
 	params := map[string]string{
 		"refresh_token": refreshToken,
 	}
+	savedToken := s.client.Token
+	s.client.Token = ""
+	defer func() { s.client.Token = savedToken }()
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err

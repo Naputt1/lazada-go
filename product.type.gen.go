@@ -24,24 +24,7 @@ type Children struct {
 	Leaf       bool   `json:"leaf"`        // [Required]
 }
 type CreateProductRequest struct {
-	PrimaryCategoryId int64   `json:"primary_category_id"`         // [Required]
-	Attributes        string  `json:"attributes"`                  // [Required]
-	Skus              string  `json:"skus"`                        // [Required]
-	Name              string  `json:"name"`                        // [Required]
-	Description       string  `json:"description"`                 // [Required]
-	ShortDescription  *string `json:"short_description,omitempty"` // [Optional]
-	Images            *string `json:"images,omitempty"`            // [Optional]
-	Brand             *int64  `json:"brand,omitempty"`             // [Optional]
-	Warranty          *string `json:"warranty,omitempty"`          // [Optional]
-	WarrantyType      *string `json:"warranty_type,omitempty"`     // [Optional]
-	SizeGuide         *string `json:"size_guide,omitempty"`        // [Optional]
-	Source            *string `json:"source,omitempty"`            // [Optional]
-	SaleStartDate     *string `json:"sale_start_date,omitempty"`   // [Optional]
-	SaleEndDate       *string `json:"sale_end_date,omitempty"`     // [Optional]
-	PackageWeight     *string `json:"package_weight,omitempty"`    // [Optional]
-	PackageLength     *string `json:"package_length,omitempty"`    // [Optional]
-	PackageWidth      *string `json:"package_width,omitempty"`     // [Optional]
-	PackageHeight     *string `json:"package_height,omitempty"`    // [Optional]
+	Payload string `json:"payload"` // [Required]
 }
 type CreateProductResponse struct {
 	BaseResponse                           // Common response fields
@@ -153,6 +136,9 @@ type GetProductContentScoreResponseDataResultData struct {
 	ProductId    string      `json:"productId"`    // [Required]
 	Items        []DataItems `json:"items"`        // [Required]
 }
+type GetProductItemRequest struct {
+	ItemId int64 `json:"item_id" url:"item_id"` // [Required]
+}
 type GetProductItemResponse struct {
 	BaseResponse                            // Common response fields
 	Response     GetProductItemResponseData `json:"data"` // Response data
@@ -160,7 +146,7 @@ type GetProductItemResponse struct {
 type GetProductItemResponseData struct {
 	CreatedTime     string                           `json:"created_time"`     // [Required]
 	UpdatedTime     string                           `json:"updated_time"`     // [Required]
-	Images          string                           `json:"images"`           // [Required]
+	Images          []string                           `json:"images"`           // [Required]
 	Skus            []GetProductItemResponseDataSkus `json:"skus"`             // [Required]
 	ImageSequence   *ImageSequence                   `json:"imageSequence"`    // [Required]
 	ItemId          int64                            `json:"item_id"`          // [Required]
@@ -192,12 +178,19 @@ type GetProductItemResponseDataSkus struct {
 	SpecialFromTime string         `json:"special_from_time"` // [Required]
 	PackageHeight   string         `json:"package_height"`    // [Required]
 	SpecialPrice    int64          `json:"special_price"`     // [Required]
-	Price           int64          `json:"price"`             // [Required]
+	Price           float64          `json:"price"`             // [Required]
 	PackageLength   string         `json:"package_length"`    // [Required]
 	PackageWeight   string         `json:"package_weight"`    // [Required]
 	Available       int64          `json:"Available"`         // [Required]
 	SkuId           int64          `json:"SkuId"`             // [Required]
 	SpecialToDate   string         `json:"special_to_date"`   // [Required]
+}
+type GetProductsRequest struct {
+	Filter        *string `json:"filter,omitempty" url:"filter,omitempty"`                 // [Optional]
+	CreatedAfter  *string `json:"created_after,omitempty" url:"created_after,omitempty"`   // [Optional]
+	CreatedBefore *string `json:"created_before,omitempty" url:"created_before,omitempty"` // [Optional]
+	Offset        *int64  `json:"offset,omitempty" url:"offset,omitempty"`                 // [Optional]
+	Limit         *int64  `json:"limit,omitempty" url:"limit,omitempty"`                   // [Optional]
 }
 type GetProductsResponse struct {
 	BaseResponse                         // Common response fields
@@ -210,7 +203,7 @@ type GetProductsResponseData struct {
 type GetProductsResponseDataProducts struct {
 	CreatedTime     string                                `json:"created_time"`     // [Required]
 	UpdatedTime     string                                `json:"updated_time"`     // [Required]
-	Images          string                                `json:"images"`           // [Required]
+	Images          []string                           `json:"images"`           // [Required]
 	Skus            []GetProductsResponseDataProductsSkus `json:"skus"`             // [Required]
 	ItemId          int64                                 `json:"item_id"`          // [Required]
 	HiddenStatus    string                                `json:"hiddenStatus"`     // [Required]
@@ -237,7 +230,7 @@ type GetProductsResponseDataProductsSkus struct {
 	SpecialFromTime string   `json:"special_from_time"` // [Required]
 	PackageHeight   string   `json:"package_height"`    // [Required]
 	SpecialPrice    int64    `json:"special_price"`     // [Required]
-	Price           int64    `json:"price"`             // [Required]
+	Price           float64    `json:"price"`             // [Required]
 	PackageLength   string   `json:"package_length"`    // [Required]
 	PackageWeight   string   `json:"package_weight"`    // [Required]
 	Available       int64    `json:"Available"`         // [Required]
@@ -415,11 +408,7 @@ type UpdatePriceQuantityResponse struct {
 	BaseResponse // Common response fields
 }
 type UpdateProductRequest struct {
-	ItemId           int64   `json:"item_id"`                     // [Required]
-	Attributes       *string `json:"attributes,omitempty"`        // [Optional]
-	Name             *string `json:"name,omitempty"`              // [Optional]
-	Description      *string `json:"description,omitempty"`       // [Optional]
-	ShortDescription *string `json:"short_description,omitempty"` // [Optional]
+	Payload string `json:"payload"` // [Required]
 }
 type UpdateProductResponse struct {
 	BaseResponse                           // Common response fields

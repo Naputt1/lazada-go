@@ -124,6 +124,7 @@ type responseWrapper struct {
 	Message   string          `json:"message"`
 	RequestID string          `json:"request_id"`
 	Data      json.RawMessage `json:"data"`
+	Detail    json.RawMessage `json:"detail"`
 }
 
 type ResponseError struct {
@@ -132,9 +133,13 @@ type ResponseError struct {
 	Type      string
 	Message   string
 	RequestID string
+	Detail    string
 }
 
 func (e ResponseError) Error() string {
+	if e.Detail != "" {
+		return fmt.Sprintf("lazada error %s: %s (detail: %s) (request_id: %s)", e.Code, e.Message, e.Detail, e.RequestID)
+	}
 	return fmt.Sprintf("lazada error %s: %s (request_id: %s)", e.Code, e.Message, e.RequestID)
 }
 
@@ -167,9 +172,9 @@ func (c *Client[T]) execute(ctx context.Context, method, path string, apiParams 
 	var err error
 
 	if method == "POST" {
-		body := &bytes.Buffer{}
-		writer := multipart.NewWriter(body)
 		if len(fileParams) > 0 {
+			body := &bytes.Buffer{}
+			writer := multipart.NewWriter(body)
 			for key, data := range fileParams {
 				part, err := writer.CreateFormFile("image", key)
 				if err != nil {
@@ -179,20 +184,42 @@ func (c *Client[T]) execute(ctx context.Context, method, path string, apiParams 
 					return nil, err
 				}
 			}
-		}
-		for k, v := range apiParams {
-			if err := writer.WriteField(k, v); err != nil {
+			for k, v := range apiParams {
+				if err := writer.WriteField(k, v); err != nil {
+					return nil, err
+				}
+			}
+			if err := writer.Close(); err != nil {
 				return nil, err
 			}
+			req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
+			if err != nil {
+				return nil, err
+			}
+			req.Header.Set("Content-Type", writer.FormDataContentType())
+		} else {
+			body := &bytes.Buffer{}
+			writer := multipart.NewWriter(body)
+			for k, v := range apiParams {
+				if err := writer.WriteField(k, v); err != nil {
+					return nil, err
+				}
+			}
+			if err := writer.Close(); err != nil {
+				return nil, err
+			}
+			sysValues := url.Values{}
+			for k, v := range sysParams {
+				sysValues.Set(k, v)
+			}
+			sysValues.Set("sign", sign)
+			fullURL := fmt.Sprintf("%s%s?%s", serverURL, path, sysValues.Encode())
+			req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
+			if err != nil {
+				return nil, err
+			}
+			req.Header.Set("Content-Type", writer.FormDataContentType())
 		}
-		if err := writer.Close(); err != nil {
-			return nil, err
-		}
-		req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
-		if err != nil {
-			return nil, err
-		}
-		req.Header.Set("Content-Type", writer.FormDataContentType())
 	} else {
 		req, err = http.NewRequestWithContext(ctx, method, fullURL, nil)
 		if err != nil {
@@ -221,6 +248,14 @@ func (c *Client[T]) execute(ctx context.Context, method, path string, apiParams 
 		return nil, fmt.Errorf("failed to decode response: %w", err)
 	}
 
+	if wrapper.Code == "" && wrapper.Data == nil {
+		wrapper.Code = "0"
+		wrapper.Data = json.RawMessage(bodyBytes)
+	}
+	if wrapper.Code == "0" && (wrapper.Data == nil || string(wrapper.Data) == "null") {
+		wrapper.Data = json.RawMessage(bodyBytes)
+	}
+
 	if wrapper.Code != "0" && wrapper.Code != "" {
 		return wrapper, ResponseError{
 			Status:    resp.StatusCode,
@@ -228,6 +263,7 @@ func (c *Client[T]) execute(ctx context.Context, method, path string, apiParams 
 			Type:      wrapper.Type,
 			Message:   wrapper.Message,
 			RequestID: wrapper.RequestID,
+			Detail:    string(wrapper.Detail),
 		}
 	}
 

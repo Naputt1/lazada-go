@@ -47,10 +47,10 @@ type ProductService interface {
 	GetProductContentScore(ctx context.Context) (*GetProductContentScoreResponse, error)
 	// GetProductItem Get single product by ItemId or SellerSku.
 	// Path: /product/item/get
-	GetProductItem(ctx context.Context) (*GetProductItemResponse, error)
+	GetProductItem(ctx context.Context, opt GetProductItemRequest) (*GetProductItemResponse, error)
 	// GetProducts Use this API to get detailed information of the specified products.
 	// Path: /products/get
-	GetProducts(ctx context.Context) (*GetProductsResponse, error)
+	GetProducts(ctx context.Context, opt GetProductsRequest) (*GetProductsResponse, error)
 	// GetQCAlertProducts Getting seller's products that have been alerted by quality control.
 	// Path: /product/qc/alert/list
 	GetQCAlertProducts(ctx context.Context) (*GetQCAlertProductsResponse, error)
@@ -324,9 +324,9 @@ func (s *ProductServiceOp[T]) GetProductContentScore(ctx context.Context) (*GetP
 
 // GetProductItem Get single product by ItemId or SellerSku.
 // Path: /product/item/get
-func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context) (*GetProductItemResponse, error) {
+func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context, opt GetProductItemRequest) (*GetProductItemResponse, error) {
 	path := "/product/item/get"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -346,9 +346,9 @@ func (s *ProductServiceOp[T]) GetProductItem(ctx context.Context) (*GetProductIt
 
 // GetProducts Use this API to get detailed information of the specified products.
 // Path: /products/get
-func (s *ProductServiceOp[T]) GetProducts(ctx context.Context) (*GetProductsResponse, error) {
+func (s *ProductServiceOp[T]) GetProducts(ctx context.Context, opt GetProductsRequest) (*GetProductsResponse, error) {
 	path := "/products/get"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
