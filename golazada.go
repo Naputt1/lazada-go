@@ -152,6 +152,9 @@ func (c *Client[T]) getServerURL() string {
 	if u, ok := regionURLs[c.Region]; ok {
 		return u
 	}
+	if u, ok := regionURLs[strings.ToUpper(c.Region)]; ok {
+		return u
+	}
 	return regionURLs["SG"]
 }
 
