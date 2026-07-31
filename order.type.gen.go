@@ -69,7 +69,7 @@ type GetOrderItemsResponseData struct {
 	NeedCancelConfirm             string           `json:"need_cancel_confirm"`              // [Required]
 	Status                        string           `json:"status"`                           // [Required]
 	ProductMainImage              string           `json:"product_main_image"`               // [Required]
-	VoucherPlatform               string           `json:"voucher_platform"`                 // [Required]
+	VoucherPlatform               FlexString       `json:"voucher_platform"`                 // [Required]
 	PaidPrice                     string           `json:"paid_price"`                       // [Required]
 	ProductDetailUrl              string           `json:"product_detail_url"`               // [Required]
 	WarehouseCode                 string           `json:"warehouse_code"`                   // [Required]
@@ -86,7 +86,7 @@ type GetOrderItemsResponseData struct {
 	UpdatedAt                     string           `json:"updated_at"`                       // [Required]
 	Currency                      string           `json:"currency"`                         // [Required]
 	ShippingProviderType          string           `json:"shipping_provider_type"`           // [Required]
-	VoucherPlatformLpi            string           `json:"voucher_platform_lpi"`             // [Required]
+	VoucherPlatformLpi            FlexString       `json:"voucher_platform_lpi"`             // [Required]
 	ShippingFeeOriginal           string           `json:"shipping_fee_original"`            // [Required]
 	ScheduleDeliveryEndTimeslot   string           `json:"schedule_delivery_end_timeslot"`   // [Required]
 	ItemPrice                     string           `json:"item_price"`                       // [Required]
@@ -148,8 +148,8 @@ type GetOrdersResponse struct {
 	Response     GetOrdersResponseData `json:"data"` // Response data
 }
 type GetOrdersResponseData struct {
-	Count      string               `json:"count"`      // [Required]
-	CountTotal string               `json:"countTotal"` // [Required]
+	Count      int                  `json:"count"`      // [Required]
+	CountTotal int                  `json:"countTotal"` // [Required]
 	Orders     []ResponseDataOrders `json:"orders"`     // [Required]
 }
 type GetOVOOrdersResponse struct {
@@ -214,7 +214,7 @@ type OrderItems struct {
 	Status                        string           `json:"status"`                           // [Required]
 	PaidPrice                     string           `json:"paid_price"`                       // [Required]
 	ProductMainImage              string           `json:"product_main_image"`               // [Required]
-	VoucherPlatform               string           `json:"voucher_platform"`                 // [Required]
+	VoucherPlatform               FlexString       `json:"voucher_platform"`                 // [Required]
 	ProductDetailUrl              string           `json:"product_detail_url"`               // [Required]
 	PromisedShippingTime          string           `json:"promised_shipping_time"`           // [Required]
 	WarehouseCode                 string           `json:"warehouse_code"`                   // [Required]
@@ -231,7 +231,7 @@ type OrderItems struct {
 	Currency                      string           `json:"currency"`                         // [Required]
 	ShippingProviderType          string           `json:"shipping_provider_type"`           // [Required]
 	ShippingFeeOriginal           string           `json:"shipping_fee_original"`            // [Required]
-	VoucherPlatformLpi            string           `json:"voucher_platform_lpi"`             // [Required]
+	VoucherPlatformLpi            FlexString       `json:"voucher_platform_lpi"`             // [Required]
 	ScheduleDeliveryEndTimeslot   string           `json:"schedule_delivery_end_timeslot"`   // [Required]
 	IsDigital                     string           `json:"is_digital"`                       // [Required]
 	ItemPrice                     string           `json:"item_price"`                       // [Required]
@@ -291,7 +291,7 @@ type ResponseDataAddressBilling struct {
 	FirstName       string `json:"first_name"`      // [Required]
 }
 type ResponseDataOrders struct {
-	VoucherPlatform             string                `json:"voucher_platform"`               // [Required]
+	VoucherPlatform             FlexString            `json:"voucher_platform"`               // [Required]
 	Voucher                     string                `json:"voucher"`                        // [Required]
 	WarehouseCode               string                `json:"warehouse_code"`                 // [Required]
 	OrderNumber                 string                `json:"order_number"`                   // [Required]

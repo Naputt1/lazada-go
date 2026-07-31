@@ -219,120 +219,144 @@ func (c *Client[T]) execute(ctx context.Context, method, path string, apiParams 
 		sysParams["access_token"] = c.Token
 	}
 
-	sign := c.sign(path, sysParams, apiParams)
+	var refreshAttempted bool
+	for attempt := 0; attempt < 2; attempt++ {
+		sign := c.sign(path, sysParams, apiParams)
 
-	values := url.Values{}
-	for k, v := range sysParams {
-		values.Set(k, v)
-	}
-	for k, v := range apiParams {
-		values.Set(k, v)
-	}
-	values.Set("sign", sign)
+		values := url.Values{}
+		for k, v := range sysParams {
+			values.Set(k, v)
+		}
+		for k, v := range apiParams {
+			values.Set(k, v)
+		}
+		values.Set("sign", sign)
 
-	serverURL := c.getServerURL()
-	fullURL := fmt.Sprintf("%s%s?%s", serverURL, path, values.Encode())
+		serverURL := c.getServerURL()
+		if strings.HasPrefix(path, "/auth/") {
+			serverURL = regionURLs["AUTH"]
+		}
+		fullURL := fmt.Sprintf("%s%s?%s", serverURL, path, values.Encode())
 
-	var req *http.Request
-	var err error
+		var req *http.Request
+		var err error
 
-	if method == "POST" {
-		if len(fileParams) > 0 {
-			body := &bytes.Buffer{}
-			writer := multipart.NewWriter(body)
-			for key, data := range fileParams {
-				part, err := writer.CreateFormFile("image", key)
+		if method == "POST" {
+			if len(fileParams) > 0 {
+				body := &bytes.Buffer{}
+				writer := multipart.NewWriter(body)
+				for key, data := range fileParams {
+					part, err := writer.CreateFormFile("image", key)
+					if err != nil {
+						return nil, err
+					}
+					if _, err := part.Write(data); err != nil {
+						return nil, err
+					}
+				}
+				for k, v := range apiParams {
+					if err := writer.WriteField(k, v); err != nil {
+						return nil, err
+					}
+				}
+				if err := writer.Close(); err != nil {
+					return nil, err
+				}
+				req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
 				if err != nil {
 					return nil, err
 				}
-				if _, err := part.Write(data); err != nil {
+				req.Header.Set("Content-Type", writer.FormDataContentType())
+			} else {
+				body := &bytes.Buffer{}
+				writer := multipart.NewWriter(body)
+				for k, v := range apiParams {
+					if err := writer.WriteField(k, v); err != nil {
+						return nil, err
+					}
+				}
+				if err := writer.Close(); err != nil {
 					return nil, err
 				}
-			}
-			for k, v := range apiParams {
-				if err := writer.WriteField(k, v); err != nil {
+				sysValues := url.Values{}
+				for k, v := range sysParams {
+					sysValues.Set(k, v)
+				}
+				sysValues.Set("sign", sign)
+				fullURL := fmt.Sprintf("%s%s?%s", serverURL, path, sysValues.Encode())
+				req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
+				if err != nil {
 					return nil, err
 				}
+				req.Header.Set("Content-Type", writer.FormDataContentType())
 			}
-			if err := writer.Close(); err != nil {
-				return nil, err
-			}
-			req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
-			if err != nil {
-				return nil, err
-			}
-			req.Header.Set("Content-Type", writer.FormDataContentType())
 		} else {
-			body := &bytes.Buffer{}
-			writer := multipart.NewWriter(body)
-			for k, v := range apiParams {
-				if err := writer.WriteField(k, v); err != nil {
-					return nil, err
-				}
-			}
-			if err := writer.Close(); err != nil {
-				return nil, err
-			}
-			sysValues := url.Values{}
-			for k, v := range sysParams {
-				sysValues.Set(k, v)
-			}
-			sysValues.Set("sign", sign)
-			fullURL := fmt.Sprintf("%s%s?%s", serverURL, path, sysValues.Encode())
-			req, err = http.NewRequestWithContext(ctx, method, fullURL, body)
+			req, err = http.NewRequestWithContext(ctx, method, fullURL, nil)
 			if err != nil {
 				return nil, err
 			}
-			req.Header.Set("Content-Type", writer.FormDataContentType())
 		}
-	} else {
-		req, err = http.NewRequestWithContext(ctx, method, fullURL, nil)
+
+		req.Header.Set("Accept", "application/json")
+		req.Header.Set("User-Agent", UserAgent)
+
+		c.log.Debugf("%s %s", method, fullURL)
+
+		resp, err := c.Client.Do(req)
 		if err != nil {
 			return nil, err
 		}
-	}
 
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", UserAgent)
-
-	c.log.Debugf("%s %s", method, fullURL)
-
-	resp, err := c.Client.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	bodyBytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	wrapper := &responseWrapper{}
-	if err := json.Unmarshal(bodyBytes, wrapper); err != nil {
-		return nil, fmt.Errorf("failed to decode response: %w", err)
-	}
-
-	if wrapper.Code == "" && wrapper.Data == nil {
-		wrapper.Code = "0"
-		wrapper.Data = json.RawMessage(bodyBytes)
-	}
-	if wrapper.Code == "0" && (wrapper.Data == nil || string(wrapper.Data) == "null") {
-		wrapper.Data = json.RawMessage(bodyBytes)
-	}
-
-	if wrapper.Code != "0" && wrapper.Code != "" {
-		return wrapper, ResponseError{
-			Status:    resp.StatusCode,
-			Code:      wrapper.Code,
-			Type:      wrapper.Type,
-			Message:   wrapper.Message,
-			RequestID: wrapper.RequestID,
-			Detail:    string(wrapper.Detail),
+		bodyBytes, err := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			return nil, err
 		}
+
+		wrapper := &responseWrapper{}
+		if err := json.Unmarshal(bodyBytes, wrapper); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+
+		if wrapper.Code == "" && wrapper.Data == nil {
+			wrapper.Code = "0"
+			wrapper.Data = json.RawMessage(bodyBytes)
+		}
+		if wrapper.Code == "0" && (wrapper.Data == nil || string(wrapper.Data) == "null") {
+			wrapper.Data = json.RawMessage(bodyBytes)
+		}
+
+		if wrapper.Code != "0" && wrapper.Code != "" {
+			if !refreshAttempted && wrapper.Code == "IllegalAccessToken" && c.RefreshToken != "" && !strings.Contains(path, "/auth/token/refresh") {
+				refreshAttempted = true
+				refreshRes, refreshErr := c.Auth.RefreshAccessToken(ctx, c.RefreshToken)
+				if refreshErr == nil {
+					c.mu.Lock()
+					c.Token = refreshRes.AccessToken
+					c.RefreshToken = refreshRes.RefreshToken
+					if c.OnTokenRefresh != nil {
+						c.OnTokenRefresh(refreshRes, c.Meta)
+					}
+					c.mu.Unlock()
+					sysParams["access_token"] = c.Token
+					continue
+				}
+				return nil, fmt.Errorf("lazada request failed with %s (%s); also failed to refresh access token: %w", wrapper.Code, wrapper.Message, refreshErr)
+			}
+			return wrapper, ResponseError{
+				Status:    resp.StatusCode,
+				Code:      wrapper.Code,
+				Type:      wrapper.Type,
+				Message:   wrapper.Message,
+				RequestID: wrapper.RequestID,
+				Detail:    string(wrapper.Detail),
+			}
+		}
+
+		return wrapper, nil
 	}
 
-	return wrapper, nil
+	return nil, fmt.Errorf("request failed after all retries")
 }
 
 func (c *Client[T]) Get(ctx context.Context, path string, params map[string]string) (*responseWrapper, error) {

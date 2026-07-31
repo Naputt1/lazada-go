@@ -49,6 +49,8 @@ export default defineConfig({
       price: "float64",
       trialProduct: "bool",
       marketImages: "[]string",
+      voucher_platform: "FlexString",
+      voucher_platform_lpi: "FlexString",
     },
     ignoreAPIs: [],
     staticModules: [],

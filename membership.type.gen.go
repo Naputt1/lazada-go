@@ -79,7 +79,7 @@ type MemberSubOrder struct {
 	OrderId                     int64            `json:"order_id"`                       // [Required]
 	Status                      string           `json:"status"`                         // [Required]
 	ProductMainImage            string           `json:"product_main_image"`             // [Required]
-	VoucherPlatform             string           `json:"voucher_platform"`               // [Required]
+	VoucherPlatform             FlexString       `json:"voucher_platform"`               // [Required]
 	PaidPrice                   string           `json:"paid_price"`                     // [Required]
 	ProductDetailUrl            string           `json:"product_detail_url"`             // [Required]
 	WarehouseCode               string           `json:"warehouse_code"`                 // [Required]
@@ -92,7 +92,7 @@ type MemberSubOrder struct {
 	UpdatedAt                   string           `json:"updated_at"`                     // [Required]
 	Currency                    string           `json:"currency"`                       // [Required]
 	ShippingProviderType        string           `json:"shipping_provider_type"`         // [Required]
-	VoucherPlatformLpi          string           `json:"voucher_platform_lpi"`           // [Required]
+	VoucherPlatformLpi          FlexString       `json:"voucher_platform_lpi"`           // [Required]
 	ShippingFeeOriginal         string           `json:"shipping_fee_original"`          // [Required]
 	ItemPrice                   string           `json:"item_price"`                     // [Required]
 	IsDigital                   string           `json:"is_digital"`                     // [Required]
@@ -109,7 +109,7 @@ type MemberSubOrder struct {
 	ExtraAttributes             string           `json:"extra_attributes"`               // [Required]
 }
 type Model struct {
-	VoucherPlatform             string           `json:"voucher_platform"`               // [Required]
+	VoucherPlatform             FlexString       `json:"voucher_platform"`               // [Required]
 	Voucher                     string           `json:"voucher"`                        // [Required]
 	WarehouseCode               string           `json:"warehouse_code"`                 // [Required]
 	OrderNumber                 string           `json:"order_number"`                   // [Required]

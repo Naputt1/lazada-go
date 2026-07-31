@@ -21,7 +21,7 @@ type OrderService interface {
 	GetOrderItems(ctx context.Context) (*GetOrderItemsResponse, error)
 	// GetOrders Use this API to get the list of items for a range of orders1..
 	// Path: /orders/get
-	GetOrders(ctx context.Context) (*GetOrdersResponse, error)
+	GetOrders(ctx context.Context, params map[string]string) (*GetOrdersResponse, error)
 	// GetOVOOrders This interface is only applicable to the merchant side of the business and is used to set the maximum number of SKUs that certain merchants can sell per day
 	// Path: /orders/ovo/get
 	GetOVOOrders(ctx context.Context) (*GetOVOOrdersResponse, error)
@@ -127,9 +127,8 @@ func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context) (*GetOrderItemsRe
 
 // GetOrders Use this API to get the list of items for a range of orders1..
 // Path: /orders/get
-func (s *OrderServiceOp[T]) GetOrders(ctx context.Context) (*GetOrdersResponse, error) {
+func (s *OrderServiceOp[T]) GetOrders(ctx context.Context, params map[string]string) (*GetOrdersResponse, error) {
 	path := "/orders/get"
-	var params map[string]string
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
