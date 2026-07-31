@@ -6,6 +6,10 @@ package __PACKAGE_NAME__
 
 type BaseResponse struct{}
 
+type FlexInt int64
+
+func (i *FlexInt) UnmarshalJSON(data []byte) error { return nil }
+
 type LeveledLogger struct{}
 
 func (l *LeveledLogger) Debugf(format string, v ...interface{}) {}

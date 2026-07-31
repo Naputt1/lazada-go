@@ -15,7 +15,7 @@ type AccessTokenResponse struct {
 
 	AccessToken  string   `json:"access_token"`
 	RefreshToken string   `json:"refresh_token"`
-	ExpireIn     int      `json:"expires_in"`
+	ExpireIn     FlexInt  `json:"expires_in"`
 	Account      string   `json:"account"`
 	AccountID    string   `json:"account_id"`
 	Country      string   `json:"country"`
@@ -25,9 +25,9 @@ type AccessTokenResponse struct {
 type RefreshAccessTokenResponse struct {
 	BaseResponse
 
-	AccessToken  string `json:"access_token"`
-	RefreshToken string `json:"refresh_token"`
-	ExpireIn     int    `json:"expires_in"`
+	AccessToken  string  `json:"access_token"`
+	RefreshToken string  `json:"refresh_token"`
+	ExpireIn     FlexInt `json:"expires_in"`
 }
 
 type AuthServiceOp[T any] struct {

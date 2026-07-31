@@ -19,7 +19,7 @@ func TestAuthGetAccessToken(t *testing.T) {
 
 	res, err := client.Auth.GetAccessToken(context.Background(), "test_code")
 	if err != nil {
-		t.Errorf("Auth.GetAccessToken error: %s", err)
+		t.Fatalf("Auth.GetAccessToken error: %s", err)
 	}
 
 	if res.AccessToken == "" {
@@ -39,7 +39,7 @@ func TestAuthRefreshAccessToken(t *testing.T) {
 
 	res, err := client.Auth.RefreshAccessToken(context.Background(), "test_refresh_token")
 	if err != nil {
-		t.Errorf("Auth.RefreshAccessToken error: %s", err)
+		t.Fatalf("Auth.RefreshAccessToken error: %s", err)
 	}
 
 	if res.AccessToken == "" {

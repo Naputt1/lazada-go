@@ -178,7 +178,7 @@ func Test_Order_GetOrders(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Order.GetOrders(ctx)
+	res, err := client.Order.GetOrders(ctx, map[string]string{})
 	if err != nil {
 		t.Logf("Order.GetOrders returned error (possibly expected with mock data): %s", err)
 	}
