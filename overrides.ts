@@ -130,6 +130,15 @@ export const structTypeOverrides: Record<string, Record<string, string>> = {
         tip_content: "FlexString",
         tip_type: "FlexString",
       },
+      // The global typeOverrides forces order_id to int64, but the cancel
+      // endpoints accept the string form the backend already sends. Keep the
+      // request fields as strings.
+      OrderCancelValidateRequest: {
+        order_id: "string",
+      },
+      InitReverseOrderCancelRequest: {
+        order_id: "string",
+      },
       OrderItems: {
         tax_amount: "FlexString",
         reason: "FlexString",

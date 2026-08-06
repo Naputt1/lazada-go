@@ -15,7 +15,7 @@ type ProductService interface {
 	AdjustSellableQuantity(ctx context.Context) (*AdjustSellableQuantityResponse, error)
 	// BatchUpdateSizeChart 批量更新尺码表
 	// Path: /size/chart/batch/update
-	BatchUpdateSizeChart(ctx context.Context, opt BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error)
+	BatchUpdateSizeChart(ctx context.Context, req BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error)
 	// CreateProduct Use this API to create a single new product.
 	//
 	// Find more details below: https://open.lazada.com/apps/doc/doc?nodeId=30720&docId=120949
@@ -77,7 +77,7 @@ type ProductService interface {
 	ProductCheck(ctx context.Context) (*ProductCheckResponse, error)
 	// RemoveProduct Use this API to remove an existing product, some SKUs in one product, or all SKUs in one product. System supports a maximum number of 50 SellerSkus in one request.
 	// Path: /product/remove
-	RemoveProduct(ctx context.Context, opt RemoveProductRequest) (*RemoveProductResponse, error)
+	RemoveProduct(ctx context.Context, req RemoveProductRequest) (*RemoveProductResponse, error)
 	// RemoveSku Use this API to delete SKUs and sales attributes of corresponding products.
 	// Path: /product/sku/remove
 	RemoveSku(ctx context.Context) (*RemoveSkuResponse, error)
@@ -97,8 +97,6 @@ type ProductService interface {
 	// UploadImage Use this API to upload a single image file to Lazada site. Allowed image formats are JPG and PNG. The maximum size of an image file is 1MB.
 	// Path: /image/upload
 	UploadImage(ctx context.Context, filename string, reader io.Reader) (*UploadImageResponse, error)
-	// UploadImageBytes is like UploadImage but takes []byte instead of io.Reader
-	UploadImageBytes(ctx context.Context, filename string, data []byte) (*UploadImageResponse, error)
 }
 
 type ProductServiceOp[T any] struct {
@@ -124,9 +122,9 @@ func (s *ProductServiceOp[T]) AdjustSellableQuantity(ctx context.Context) (*Adju
 
 // BatchUpdateSizeChart 批量更新尺码表
 // Path: /size/chart/batch/update
-func (s *ProductServiceOp[T]) BatchUpdateSizeChart(ctx context.Context, opt BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error) {
+func (s *ProductServiceOp[T]) BatchUpdateSizeChart(ctx context.Context, req BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error) {
 	path := "/size/chart/batch/update"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
@@ -554,9 +552,9 @@ func (s *ProductServiceOp[T]) ProductCheck(ctx context.Context) (*ProductCheckRe
 
 // RemoveProduct Use this API to remove an existing product, some SKUs in one product, or all SKUs in one product. System supports a maximum number of 50 SellerSkus in one request.
 // Path: /product/remove
-func (s *ProductServiceOp[T]) RemoveProduct(ctx context.Context, opt RemoveProductRequest) (*RemoveProductResponse, error) {
+func (s *ProductServiceOp[T]) RemoveProduct(ctx context.Context, req RemoveProductRequest) (*RemoveProductResponse, error) {
 	path := "/product/remove"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err

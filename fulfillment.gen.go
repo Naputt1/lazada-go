@@ -23,8 +23,8 @@ type FulfillmentService interface {
 	// Path: /order/shipment/providers/get
 	GetShipmentProvider(ctx context.Context) (*GetShipmentProviderResponse, error)
 	// Pack Use this API to mark an order item as being packed.
-	// Path: /order/fulfill/pack
-	Pack(ctx context.Context, opt PackRequest) (*PackResponse, error)
+	// Path: /order/pack
+	Pack(ctx context.Context, req PackRequest) (*PackResponse, error)
 	// PackageStatusUpdateForDBS DBS package status update.
 	// This interface is only open to some stores
 	// Path: /order/package/sof/status/update
@@ -34,7 +34,7 @@ type FulfillmentService interface {
 	PrintAWB(ctx context.Context, req PrintAWBRequest) (*PrintAWBResponse, error)
 	// ReadyToShip Use this API to mark an order item as being ready to ship.
 	// Path: /order/rts
-	ReadyToShip(ctx context.Context, opt ReadyToShipRequest) (*ReadyToShipResponse, error)
+	ReadyToShip(ctx context.Context, req ReadyToShipRequest) (*ReadyToShipResponse, error)
 	// RecreatePackage Use this API to mark a package item as being repack.
 	// Path: /order/package/repack
 	RecreatePackage(ctx context.Context) (*RecreatePackageResponse, error)
@@ -131,9 +131,9 @@ func (s *FulfillmentServiceOp[T]) GetShipmentProvider(ctx context.Context) (*Get
 
 // Pack Use this API to mark an order item as being packed.
 // Path: /order/pack
-func (s *FulfillmentServiceOp[T]) Pack(ctx context.Context, opt PackRequest) (*PackResponse, error) {
+func (s *FulfillmentServiceOp[T]) Pack(ctx context.Context, req PackRequest) (*PackResponse, error) {
 	path := "/order/pack"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
@@ -193,9 +193,9 @@ func (s *FulfillmentServiceOp[T]) PrintAWB(ctx context.Context, req PrintAWBRequ
 
 // ReadyToShip Use this API to mark an order item as being ready to ship.
 // Path: /order/rts
-func (s *FulfillmentServiceOp[T]) ReadyToShip(ctx context.Context, opt ReadyToShipRequest) (*ReadyToShipResponse, error) {
+func (s *FulfillmentServiceOp[T]) ReadyToShip(ctx context.Context, req ReadyToShipRequest) (*ReadyToShipResponse, error) {
 	path := "/order/rts"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err

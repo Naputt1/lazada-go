@@ -73,8 +73,9 @@ func Test_Product_BatchUpdateSizeChart(t *testing.T) {
 		},
 	)
 
+	var req BatchUpdateSizeChartRequest
 	ctx := context.Background()
-	res, err := client.Product.BatchUpdateSizeChart(ctx, BatchUpdateSizeChartRequest{})
+	res, err := client.Product.BatchUpdateSizeChart(ctx, req)
 	if err != nil {
 		t.Logf("Product.BatchUpdateSizeChart returned error (possibly expected with mock data): %s", err)
 	}
@@ -603,8 +604,9 @@ func Test_Product_GetSizeChartTemplate(t *testing.T) {
 		},
 	)
 
+	var req GetSizeChartTemplateRequest
 	ctx := context.Background()
-	res, err := client.Product.GetSizeChartTemplate(ctx, GetSizeChartTemplateRequest{})
+	res, err := client.Product.GetSizeChartTemplate(ctx, req)
 	if err != nil {
 		t.Logf("Product.GetSizeChartTemplate returned error (possibly expected with mock data): %s", err)
 	}
@@ -778,8 +780,9 @@ func Test_Product_RemoveProduct(t *testing.T) {
 		},
 	)
 
+	var req RemoveProductRequest
 	ctx := context.Background()
-	res, err := client.Product.RemoveProduct(ctx, RemoveProductRequest{})
+	res, err := client.Product.RemoveProduct(ctx, req)
 	if err != nil {
 		t.Logf("Product.RemoveProduct returned error (possibly expected with mock data): %s", err)
 	}

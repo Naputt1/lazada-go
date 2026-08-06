@@ -93,6 +93,50 @@ const getReverseOrdersForSellerReq: IRParam[] = [
   param('QC_Decision', 'string', 'string', [], false),
 ];
 
+// Lazada's doc omits the request parameters for the pack/rts/cancel/return
+// endpoints (they generated parameterless stubs that could not send the
+// identifiers the API requires). Declare them here so the generator emits
+// typed request structs, mirroring the GetOrders/GetOrderItems workaround.
+const packReq: IRParam[] = [
+  param('order_item_ids', 'string', 'string', [], true),
+];
+
+const readyToShipReq: IRParam[] = [
+  param('order_item_ids', 'string', 'string', [], true),
+];
+
+const orderCancelValidateReq: IRParam[] = [
+  param('order_id', 'string', 'string', [], true),
+];
+
+const initReverseOrderCancelReq: IRParam[] = [
+  param('order_id', 'string', 'string', [], true),
+  param('reason_detail', 'string', 'string', [], true),
+];
+
+const reverseOrderOnlyRefundDecideReq: IRParam[] = [
+  param('reverse_order_id', 'string', 'string', [], true),
+  param('action', 'string', 'string', [], true),
+];
+
+const reverseOrderReturnUpdateReq: IRParam[] = [
+  param('reverse_order_id', 'string', 'string', [], true),
+  param('action', 'string', 'string', [], true),
+];
+
+const removeProductReq: IRParam[] = [
+  param('seller_skus', 'string[]', 'string[]', [], true),
+];
+
+const batchUpdateSizeChartReq: IRParam[] = [
+  param('payload', 'string', 'string', [], true),
+];
+
+const getSizeChartTemplateReq: IRParam[] = [
+  param('page_no', 'int64', 'int64', [], true),
+  param('page_size', 'int64', 'int64', [], true),
+];
+
 const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRParam[] }> = {
   GetBrandByPages: { request: getBrandByPagesReq, response: [] },
   GetCategoryAttributes: { request: getCategoryAttributesReq, response: [] },
@@ -105,6 +149,15 @@ const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRPara
   GetMultipleOrderItems: { request: getMultipleOrderItemsReq, response: [] },
   PrintAWB: { request: printAWBReq, response: [] },
   GetReverseOrdersForSeller: { request: getReverseOrdersForSellerReq, response: [] },
+  Pack: { request: packReq, response: [] },
+  ReadyToShip: { request: readyToShipReq, response: [] },
+  OrderCancelValidate: { request: orderCancelValidateReq, response: [] },
+  InitReverseOrderCancel: { request: initReverseOrderCancelReq, response: [] },
+  ReverseOrderOnlyRefundDecide: { request: reverseOrderOnlyRefundDecideReq, response: [] },
+  ReverseOrderReturnUpdate: { request: reverseOrderReturnUpdateReq, response: [] },
+  RemoveProduct: { request: removeProductReq, response: [] },
+  BatchUpdateSizeChart: { request: batchUpdateSizeChartReq, response: [] },
+  GetSizeChartTemplate: { request: getSizeChartTemplateReq, response: [] },
 };
 
 const clientTpl = loadTemplate('./templates/client.go');
@@ -270,10 +323,162 @@ function applyOrderTuning(structGen: StructGenerator): void {
   repoint('ResponseDataOrders', 'AddressShipping', 'OrdersAddressBilling', 'OrdersAddressShipping');
 }
 
+// A handful of Lazada doc entries disagree with the real API: three reverse
+// order endpoints are POST (the doc lists GET) and the pack/rts paths differ
+// from what the API actually serves. Correct them before the structs and the
+// service methods are generated so the emitted verb/path is the working one.
+const METHOD_OVERRIDES: Record<string, string> = {
+  '/order/reverse/cancel/create': 'POST',
+  '/order/reverse/onlyrefund/seller/decide': 'POST',
+  '/order/reverse/return/update': 'POST',
+};
+
+const PATH_OVERRIDES: Record<string, string> = {
+  '/order/fulfill/pack': '/order/pack',
+  '/order/package/rts': '/order/rts',
+};
+
+function applyEndpointOverrides(ep: IREndpoint): void {
+  if (METHOD_OVERRIDES[ep.path]) ep.method = METHOD_OVERRIDES[ep.path];
+  const newPath = PATH_OVERRIDES[ep.path];
+  if (newPath) {
+    ep.path = newPath;
+    ep.fullPath = newPath;
+  }
+}
+
+// The category endpoints return "data" as an array, but the doc models it as a
+// single object. Make the wrapper field a slice, like GetMultipleOrderItems.
+function applyCategoryArrayResponses(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'GetCategoryAttributes' && ep.name !== 'GetCategoryTree') return;
+  const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');
+  const resp = structGen.allStructs.get(respName);
+  const dataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  if (!resp || !structGen.allStructs.has(dataName)) return;
+  const field = resp.fields.find((f) => f.name === 'Response');
+  if (field) field.type = '[]' + dataName;
+}
+
+// /category/tree/get nests categories recursively; the doc flattens children
+// into a one-level type. Reuse the response data struct for children so the
+// tree stays arbitrarily deep.
+function applyCategoryTreeRecursive(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'GetCategoryTree') return;
+  const dataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  const s = structGen.allStructs.get(dataName);
+  if (!s) return;
+  const f = s.fields.find((x) => x.name === 'Children');
+  if (f) f.type = '[]' + dataName;
+}
+
+// /size/chart/template/get returns paging fields as strings or numbers
+// depending on the payload, and the template list as objects. The doc leaves
+// the list untyped; type it and relax the paging fields.
+function applySizeChartResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'GetSizeChartTemplate') return;
+  const dataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  const s = structGen.allStructs.get(dataName);
+  if (!s) return;
+  for (const f of s.fields) {
+    if (f.name === 'Total' || f.name === 'PageNo' || f.name === 'TotalPage' || f.name === 'PageSize') {
+      f.type = 'interface{}';
+    }
+  }
+  const list = s.fields.find((x) => x.name === 'SizeChartResponses');
+  if (list) list.type = '[]SizeChartTemplate';
+  if (!structGen.allStructs.has('SizeChartTemplate')) {
+    structGen.allStructs.set('SizeChartTemplate', {
+      name: 'SizeChartTemplate',
+      fields: [
+        { name: 'SizeChartId', type: 'int64', jsonTag: 'sizeChartId', urlTag: '', comment: '[Required]' },
+        { name: 'SizeChartName', type: 'string', jsonTag: 'sizeChartName', urlTag: '', comment: '[Required]' },
+      ],
+      fileName: s.fileName,
+    });
+  }
+}
+
+// /order/rts returns tip_content under "data", but the doc models the response
+// around a "result" object. Repoint ReadyToShipResponse at a data-shaped
+// struct carrying the tip fields (same pattern as applyPrintAWBResponse).
+function applyReadyToShipResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'ReadyToShip') return;
+  const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');
+  const resp = structGen.allStructs.get(respName);
+  if (!resp) return;
+  const field = resp.fields.find((f) => f.name === 'Result' || f.name === 'Response');
+  if (!field) return;
+  const wrapperName = respName + 'Data';
+  structGen.allStructs.set(wrapperName, {
+    name: wrapperName,
+    fields: [
+      { name: 'TipContent', type: 'string', jsonTag: 'tip_content', urlTag: '', comment: 'Response data' },
+      { name: 'TipType', type: 'string', jsonTag: 'tip_type', urlTag: '', comment: 'Response data' },
+    ],
+    fileName: resp.fileName,
+  });
+  field.name = 'Response';
+  field.type = wrapperName;
+  field.jsonTag = 'data';
+}
+
+// /order/pack returns pack_order_list under "data"; the doc models it around a
+// "result" object. Repoint PackResponse at a data-shaped struct reusing the
+// generated PackOrder type.
+function applyPackResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'Pack') return;
+  const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');
+  const resp = structGen.allStructs.get(respName);
+  if (!resp) return;
+  const field = resp.fields.find((f) => f.name === 'Result' || f.name === 'Response');
+  if (!field) return;
+  const wrapperName = respName + 'Data';
+  structGen.allStructs.set(wrapperName, {
+    name: wrapperName,
+    fields: [
+      { name: 'PackOrderList', type: '[]PackOrder', jsonTag: 'pack_order_list', urlTag: '', comment: 'Response data' },
+    ],
+    fileName: resp.fileName,
+  });
+  field.name = 'Response';
+  field.type = wrapperName;
+  field.jsonTag = 'data';
+}
+
+// The doc for /order/reverse/return/update omits tip_content, which the API
+// returns (surfaced to the buyer as the return notice). Add the tip fields to
+// the response data struct.
+function applyReturnUpdateResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'ReverseOrderReturnUpdate') return;
+  const dataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  const s = structGen.allStructs.get(dataName);
+  if (!s) return;
+  const add = (name: string, jsonTag: string) => {
+    if (!s.fields.some((f) => f.name === name)) {
+      s.fields.push({ name, type: 'string', jsonTag, urlTag: '', comment: '[Required]' });
+    }
+  };
+  add('TipContent', 'tip_content');
+  add('TipType', 'tip_type');
+}
+
+// Lazada encodes unit bounds as numeric_min/numeric_max, but the doc uses
+// camelCase, so the generated json tags never match the real payload.
+function applyUnitJSONTags(structGen: StructGenerator): void {
+  const unit = structGen.allStructs.get('Unit');
+  if (!unit) return;
+  for (const f of unit.fields) {
+    if (f.name === 'NumericMin') f.jsonTag = 'numeric_min';
+    if (f.name === 'NumericMax') f.jsonTag = 'numeric_max';
+  }
+}
+
 export const lazadaProfile = defineProfile({
   ...profileConfig,
 
   buildEndpointStructs: (structGen, moduleName, ep) => {
+    applyEndpointOverrides(ep);
+
     const overrides = manualEndpointTypes[ep.name];
     if (overrides) {
       if (overrides.request && overrides.request.length > 0) {
@@ -310,6 +515,13 @@ export const lazadaProfile = defineProfile({
     applyOrderItemsArrayResponse(structGen, moduleName, ep);
     applyPrintAWBResponse(structGen, moduleName, ep);
     applyOrderTuning(structGen);
+    applyCategoryArrayResponses(structGen, moduleName, ep);
+    applyCategoryTreeRecursive(structGen, moduleName, ep);
+    applySizeChartResponse(structGen, moduleName, ep);
+    applyReadyToShipResponse(structGen, moduleName, ep);
+    applyPackResponse(structGen, moduleName, ep);
+    applyReturnUpdateResponse(structGen, moduleName, ep);
+    applyUnitJSONTags(structGen);
   },
 
   renderClientFile: (pkg, services, init) =>

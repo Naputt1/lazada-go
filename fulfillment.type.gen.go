@@ -95,14 +95,14 @@ type PackOrderOrderItem struct {
 	Retry            string `json:"retry"`             // [Required]
 }
 type PackRequest struct {
-	OrderItemIds string `json:"order_item_ids" url:"order_item_ids"` // [Required]
+	OrderItemIds string `json:"order_item_ids"` // [Required]
 }
 type PackResponse struct {
-	BaseResponse                         // Common response fields
-	Response     PackResponseData        `json:"data"` // Response data
+	BaseResponse                  // Common response fields
+	Response     PackResponseData `json:"data"` //
 }
 type PackResponseData struct {
-	PackOrderList []PackOrder `json:"pack_order_list"` // [Required]
+	PackOrderList []PackOrder `json:"pack_order_list"` // Response data
 }
 type PackResponseDataResult struct {
 	ErrorMsg  string                      `json:"error_msg"`  // [Required]
@@ -135,15 +135,15 @@ type PrintAWBResponseDataResultData struct {
 	DocType string `json:"doc_type"` // [Required]
 }
 type ReadyToShipRequest struct {
-	OrderItemIds string `json:"order_item_ids" url:"order_item_ids"` // [Required]
+	OrderItemIds string `json:"order_item_ids"` // [Required]
 }
 type ReadyToShipResponse struct {
-	BaseResponse                                         // Common response fields
-	Response     ReadyToShipResponseData `json:"data"` // Response data
+	BaseResponse                         // Common response fields
+	Response     ReadyToShipResponseData `json:"data"` //
 }
 type ReadyToShipResponseData struct {
-	TipContent string `json:"tip_content"` // [Required]
-	TipType    string `json:"tip_type"`    // [Required]
+	TipContent string `json:"tip_content"` // Response data
+	TipType    string `json:"tip_type"`    // Response data
 }
 type RecreatePackageResponse struct {
 	BaseResponse                                         // Common response fields

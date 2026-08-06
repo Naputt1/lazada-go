@@ -21,16 +21,16 @@ type ReturnAndRefundService interface {
 	GetReverseOrdersForSeller(ctx context.Context, opt GetReverseOrdersForSellerRequest) (*GetReverseOrdersForSellerResponse, error)
 	// InitReverseOrderCancel Seller initiates a cancelation
 	// Path: /order/reverse/cancel/create
-	InitReverseOrderCancel(ctx context.Context, opt InitReverseOrderCancelRequest) (*InitReverseOrderCancelResponse, error)
+	InitReverseOrderCancel(ctx context.Context, req InitReverseOrderCancelRequest) (*InitReverseOrderCancelResponse, error)
 	// InitReverseOrderCancelDecide Seller initiates a cancelation
 	// Path: /order/reverse/cancel/seller/decide
 	InitReverseOrderCancelDecide(ctx context.Context) (*InitReverseOrderCancelDecideResponse, error)
 	// ReverseOrderOnlyRefundDecide Seller can use this API to operate only refund requests
 	// Path: /order/reverse/onlyrefund/seller/decide
-	ReverseOrderOnlyRefundDecide(ctx context.Context, opt ReverseOrderOnlyRefundDecideRequest) (*ReverseOrderOnlyRefundDecideResponse, error)
+	ReverseOrderOnlyRefundDecide(ctx context.Context, req ReverseOrderOnlyRefundDecideRequest) (*ReverseOrderOnlyRefundDecideResponse, error)
 	// ReverseOrderReturnUpdate Seller can use this API to action on return and refund related.
 	// Path: /order/reverse/return/update
-	ReverseOrderReturnUpdate(ctx context.Context, opt ReverseOrderReturnUpdateRequest) (*ReverseOrderReturnUpdateResponse, error)
+	ReverseOrderReturnUpdate(ctx context.Context, req ReverseOrderReturnUpdateRequest) (*ReverseOrderReturnUpdateResponse, error)
 }
 
 type ReturnAndRefundServiceOp[T any] struct {
@@ -127,9 +127,9 @@ func (s *ReturnAndRefundServiceOp[T]) GetReverseOrdersForSeller(ctx context.Cont
 
 // InitReverseOrderCancel Seller initiates a cancelation
 // Path: /order/reverse/cancel/create
-func (s *ReturnAndRefundServiceOp[T]) InitReverseOrderCancel(ctx context.Context, opt InitReverseOrderCancelRequest) (*InitReverseOrderCancelResponse, error) {
+func (s *ReturnAndRefundServiceOp[T]) InitReverseOrderCancel(ctx context.Context, req InitReverseOrderCancelRequest) (*InitReverseOrderCancelResponse, error) {
 	path := "/order/reverse/cancel/create"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
@@ -166,9 +166,9 @@ func (s *ReturnAndRefundServiceOp[T]) InitReverseOrderCancelDecide(ctx context.C
 
 // ReverseOrderOnlyRefundDecide Seller can use this API to operate only refund requests
 // Path: /order/reverse/onlyrefund/seller/decide
-func (s *ReturnAndRefundServiceOp[T]) ReverseOrderOnlyRefundDecide(ctx context.Context, opt ReverseOrderOnlyRefundDecideRequest) (*ReverseOrderOnlyRefundDecideResponse, error) {
+func (s *ReturnAndRefundServiceOp[T]) ReverseOrderOnlyRefundDecide(ctx context.Context, req ReverseOrderOnlyRefundDecideRequest) (*ReverseOrderOnlyRefundDecideResponse, error) {
 	path := "/order/reverse/onlyrefund/seller/decide"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
@@ -183,9 +183,9 @@ func (s *ReturnAndRefundServiceOp[T]) ReverseOrderOnlyRefundDecide(ctx context.C
 
 // ReverseOrderReturnUpdate Seller can use this API to action on return and refund related.
 // Path: /order/reverse/return/update
-func (s *ReturnAndRefundServiceOp[T]) ReverseOrderReturnUpdate(ctx context.Context, opt ReverseOrderReturnUpdateRequest) (*ReverseOrderReturnUpdateResponse, error) {
+func (s *ReturnAndRefundServiceOp[T]) ReverseOrderReturnUpdate(ctx context.Context, req ReverseOrderReturnUpdateRequest) (*ReverseOrderReturnUpdateResponse, error) {
 	path := "/order/reverse/return/update"
-	params := paramsFromStruct(opt)
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err

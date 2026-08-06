@@ -14,6 +14,20 @@ type AddressBilling struct {
 	Address4  FlexString `json:"address4"`   // [Required]
 	FirstName FlexString `json:"first_name"` // [Required]
 }
+type AddressShipping struct {
+	Country   string `json:"country"`    // [Required]
+	Address3  string `json:"address3"`   // [Required]
+	Phone     string `json:"phone"`      // [Required]
+	Address2  string `json:"address2"`   // [Required]
+	City      string `json:"city"`       // [Required]
+	Address1  string `json:"address1"`   // [Required]
+	PostCode  string `json:"post_code"`  // [Required]
+	Phone2    string `json:"phone2"`     // [Required]
+	LastName  string `json:"last_name"`  // [Required]
+	Address5  string `json:"address5"`   // [Required]
+	Address4  string `json:"address4"`   // [Required]
+	FirstName string `json:"first_name"` // [Required]
+}
 type GetLinkMember1Response struct {
 	BaseResponse                                  // Common response fields
 	Result       *GetLinkMemberResponseDataResult `json:"result,omitempty"` //
@@ -140,7 +154,7 @@ type Model struct {
 	OrderId                     FlexInt          `json:"order_id"`                       // [Required]
 	GiftMessage                 FlexString       `json:"gift_message"`                   // [Required]
 	Remarks                     FlexString       `json:"remarks"`                        // [Required]
-	AddressShipping             *AddressBilling  `json:"address_shipping"`               // [Required]
+	AddressShipping             *AddressShipping `json:"address_shipping"`               // [Required]
 }
 type PartnerLinkResponse struct {
 	BaseResponse                                // Common response fields
@@ -152,7 +166,7 @@ type PartnerLinkResponseDataResult struct {
 	ErrorCode *ResponseDataResultErrorCode         `json:"errorCode"` // [Required]
 }
 type PartnerLinkResponseDataResultModule struct {
-	PartnerUid FlexString `json:"partnerUid"` // [Required]
+	PartnerUid string     `json:"partnerUid"` // [Required]
 	Status     FlexString `json:"status"`     // [Required]
 }
 type PartnerTransactionResponse struct {
@@ -174,7 +188,7 @@ type PartnerUpdateResponse struct {
 	Result       *LinkMembershipResponseDataResult `json:"result,omitempty"` //
 }
 type ResponseDataResultErrorCode struct {
-	DisplayMessage FlexString `json:"displayMessage"` // [Required]
+	DisplayMessage string     `json:"displayMessage"` // [Required]
 	Key            FlexString `json:"key"`            // [Required]
 }
 type ResponseDataResultModule struct {
