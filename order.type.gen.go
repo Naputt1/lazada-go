@@ -13,8 +13,8 @@ type GetDocumentResponseData struct {
 	Document *Document `json:"document"` // [Required]
 }
 type GetMultipleOrderItemsResponse struct {
-	BaseResponse                                   // Common response fields
-	Response     GetMultipleOrderItemsResponseData `json:"data"` // Response data
+	BaseResponse                                     // Common response fields
+	Response     []GetMultipleOrderItemsResponseData `json:"data"` // Response data
 }
 type GetMultipleOrderItemsResponseData struct {
 	OrderNumber FlexString   `json:"order_number"` // [Required]
@@ -41,7 +41,7 @@ type GetOrderItemsResponseData struct {
 	Variation                     FlexString       `json:"variation"`                        // [Required]
 	IsCancelPending               FlexString       `json:"is_cancel_pending"`                // [Required]
 	BizGroup                      FlexString       `json:"biz_group"`                        // [Required]
-	ProductId                     int64            `json:"product_id"`                       // [Required]
+	ProductId                     FlexInt          `json:"product_id"`                       // [Required]
 	VoucherCodePlatform           FlexString       `json:"voucher_code_platform"`            // [Required]
 	PurchaseOrderNumber           FlexString       `json:"purchase_order_number"`            // [Required]
 	Sku                           FlexString       `json:"sku"`                              // [Required]
@@ -56,10 +56,11 @@ type GetOrderItemsResponseData struct {
 	ShopSku                       FlexString       `json:"shop_sku"`                         // [Required]
 	IsReroute                     FlexString       `json:"is_reroute"`                       // [Required]
 	StagePayStatus                FlexString       `json:"stage_pay_status"`                 // [Required]
-	SkuId                         int64            `json:"sku_id"`                           // [Required]
+	SkuId                         FlexInt          `json:"sku_id"`                           // [Required]
 	TrackingCodePre               FlexString       `json:"tracking_code_pre"`                // [Required]
-	OrderItemId                   int64            `json:"order_item_id"`                    // [Required]
-	ShopId                        int64            `json:"shop_id"`                          // [Required]
+	OrderItemId                   FlexInt          `json:"order_item_id"`                    // [Required]
+	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
+	ShopId                        FlexString       `json:"shop_id"`                          // [Required]
 	OrderFlag                     FlexString       `json:"order_flag"`                       // [Required]
 	IsFbl                         FlexString       `json:"is_fbl"`                           // [Required]
 	Name                          FlexString       `json:"name"`                             // [Required]
@@ -200,10 +201,11 @@ type OrderItems struct {
 	ShopSku                       FlexString       `json:"shop_sku"`                         // [Required]
 	IsReroute                     FlexString       `json:"is_reroute"`                       // [Required]
 	StagePayStatus                FlexString       `json:"stage_pay_status"`                 // [Required]
-	SkuId                         int64            `json:"sku_id"`                           // [Required]
+	SkuId                         FlexInt          `json:"sku_id"`                           // [Required]
 	TrackingCodePre               FlexString       `json:"tracking_code_pre"`                // [Required]
-	OrderItemId                   int64            `json:"order_item_id"`                    // [Required]
-	ShopId                        int64            `json:"shop_id"`                          // [Required]
+	OrderItemId                   FlexInt          `json:"order_item_id"`                    // [Required]
+	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
+	ShopId                        FlexString       `json:"shop_id"`                          // [Required]
 	OrderFlag                     FlexString       `json:"order_flag"`                       // [Required]
 	IsFbl                         FlexString       `json:"is_fbl"`                           // [Required]
 	Name                          FlexString       `json:"name"`                             // [Required]

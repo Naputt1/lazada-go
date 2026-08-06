@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"regexp"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -50,22 +51,26 @@ func Test_Order_GetMultipleOrderItems(t *testing.T) {
 	defer teardown()
 
 	serverURL := client.getServerURL()
-	fixture := "_orders_items_get_resp.json"
-	data, err := loadFixtureSafe(fixture)
+	fixture, err := loadFixtureSafe("orders.items.get_resp.json")
 	if err != nil {
 		t.Skipf("Skipping GetMultipleOrderItems due to missing fixture: %v", err)
+	}
+	if resp, ok := fixture.(map[string]interface{}); ok {
+		fixture = resp["data"]
 	}
 
 	mockResp := map[string]interface{}{
 		"code": "0",
-		"data": data,
+		"data": fixture,
 	}
 	mockData, _ := json.Marshal(mockResp)
 
-	httpmock.RegisterResponder(
+	var gotOrderIDs string
+	httpmock.RegisterRegexpResponder(
 		"GET",
-		fmt.Sprintf("%s/orders/items/get*", serverURL),
+		regexp.MustCompile(regexp.QuoteMeta(serverURL)+`/orders/items/get\?.*`),
 		func(req *http.Request) (*http.Response, error) {
+			gotOrderIDs = req.URL.Query().Get("order_ids")
 			resp := httpmock.NewStringResponse(200, string(mockData))
 			resp.Header.Set("Content-Type", "application/json")
 			return resp, nil
@@ -73,12 +78,32 @@ func Test_Order_GetMultipleOrderItems(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Order.GetMultipleOrderItems(ctx)
+	res, err := client.Order.GetMultipleOrderItems(ctx, map[string]string{"order_ids": "32793"})
 	if err != nil {
-		t.Logf("Order.GetMultipleOrderItems returned error (possibly expected with mock data): %s", err)
+		t.Fatalf("unexpected error: %v", err)
 	}
-
-	t.Logf("Order.GetMultipleOrderItems response: %#v", res)
+	if gotOrderIDs != "32793" {
+		t.Fatalf("expected order_ids=32793 in request, got %q", gotOrderIDs)
+	}
+	if len(res.Response) != 1 {
+		t.Fatalf("expected 1 order batch, got %d", len(res.Response))
+	}
+	if string(res.Response[0].OrderNumber) != "300029225" {
+		t.Fatalf("unexpected order_number: %q", res.Response[0].OrderNumber)
+	}
+	if int64(res.Response[0].OrderId) != 32793 {
+		t.Fatalf("unexpected order_id: %v", res.Response[0].OrderId)
+	}
+	if len(res.Response[0].OrderItems) != 1 {
+		t.Fatalf("expected 1 order item, got %d", len(res.Response[0].OrderItems))
+	}
+	item := res.Response[0].OrderItems[0]
+	if string(item.Name) != "Bean Rester Crest Brown" {
+		t.Fatalf("unexpected item name: %q", item.Name)
+	}
+	if int64(item.OrderItemId) != 100827 {
+		t.Fatalf("unexpected order_item_id: %v", item.OrderItemId)
+	}
 }
 func Test_Order_GetOrder(t *testing.T) {
 	setup()
@@ -143,7 +168,7 @@ func Test_Order_GetOrderItems(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Order.GetOrderItems(ctx)
+	res, err := client.Order.GetOrderItems(ctx, map[string]string{"order_ids": "32793"})
 	if err != nil {
 		t.Logf("Order.GetOrderItems returned error (possibly expected with mock data): %s", err)
 	}

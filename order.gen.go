@@ -12,13 +12,13 @@ type OrderService interface {
 	GetDocument(ctx context.Context) (*GetDocumentResponse, error)
 	// GetMultipleOrderItems Use this API to get the item information of one or more orders.（No more than 50 at a time）
 	// Path: /orders/items/get
-	GetMultipleOrderItems(ctx context.Context) (*GetMultipleOrderItemsResponse, error)
+	GetMultipleOrderItems(ctx context.Context, params map[string]string) (*GetMultipleOrderItemsResponse, error)
 	// GetOrder Use this API to get the list of items for a single order.
 	// Path: /order/get
 	GetOrder(ctx context.Context) (*GetOrderResponse, error)
 	// GetOrderItems Use this API to get the item information of an order.
 	// Path: /order/items/get
-	GetOrderItems(ctx context.Context) (*GetOrderItemsResponse, error)
+	GetOrderItems(ctx context.Context, params map[string]string) (*GetOrderItemsResponse, error)
 	// GetOrders Use this API to get the list of items for a range of orders1..
 	// Path: /orders/get
 	GetOrders(ctx context.Context, params map[string]string) (*GetOrdersResponse, error)
@@ -61,9 +61,8 @@ func (s *OrderServiceOp[T]) GetDocument(ctx context.Context) (*GetDocumentRespon
 
 // GetMultipleOrderItems Use this API to get the item information of one or more orders.（No more than 50 at a time）
 // Path: /orders/items/get
-func (s *OrderServiceOp[T]) GetMultipleOrderItems(ctx context.Context) (*GetMultipleOrderItemsResponse, error) {
+func (s *OrderServiceOp[T]) GetMultipleOrderItems(ctx context.Context, params map[string]string) (*GetMultipleOrderItemsResponse, error) {
 	path := "/orders/items/get"
-	var params map[string]string
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -105,9 +104,8 @@ func (s *OrderServiceOp[T]) GetOrder(ctx context.Context) (*GetOrderResponse, er
 
 // GetOrderItems Use this API to get the item information of an order.
 // Path: /order/items/get
-func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context) (*GetOrderItemsResponse, error) {
+func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context, params map[string]string) (*GetOrderItemsResponse, error) {
 	path := "/order/items/get"
-	var params map[string]string
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
