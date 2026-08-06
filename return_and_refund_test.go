@@ -120,22 +120,20 @@ func Test_ReturnAndRefund_GetReverseOrdersForSeller(t *testing.T) {
 	defer teardown()
 
 	serverURL := client.getServerURL()
-	fixture := "_reverse_getreverseordersforseller_resp.json"
+	fixture := "reverse.getreverseordersforseller_resp.json"
 	data, err := loadFixtureSafe(fixture)
 	if err != nil {
 		t.Skipf("Skipping GetReverseOrdersForSeller due to missing fixture: %v", err)
 	}
+	mockData, _ := json.Marshal(data)
 
-	mockResp := map[string]interface{}{
-		"code": "0",
-		"data": data,
-	}
-	mockData, _ := json.Marshal(mockResp)
-
+	var sawPageNo, sawPageSize string
 	httpmock.RegisterResponder(
 		"GET",
-		fmt.Sprintf("%s/reverse/getreverseordersforseller*", serverURL),
+		fmt.Sprintf("%s/reverse/getreverseordersforseller", serverURL),
 		func(req *http.Request) (*http.Response, error) {
+			sawPageNo = req.URL.Query().Get("page_no")
+			sawPageSize = req.URL.Query().Get("page_size")
 			resp := httpmock.NewStringResponse(200, string(mockData))
 			resp.Header.Set("Content-Type", "application/json")
 			return resp, nil
@@ -143,11 +141,25 @@ func Test_ReturnAndRefund_GetReverseOrdersForSeller(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.ReturnAndRefund.GetReverseOrdersForSeller(ctx)
+	res, err := client.ReturnAndRefund.GetReverseOrdersForSeller(ctx, GetReverseOrdersForSellerRequest{
+		PageNo:   3,
+		PageSize: 25,
+	})
 	if err != nil {
-		t.Logf("ReturnAndRefund.GetReverseOrdersForSeller returned error (possibly expected with mock data): %s", err)
+		t.Fatalf("GetReverseOrdersForSeller failed: %v", err)
 	}
-
+	if sawPageNo != "3" || sawPageSize != "25" {
+		t.Fatalf("expected page_no=3 page_size=25, got page_no=%q page_size=%q", sawPageNo, sawPageSize)
+	}
+	if res.Response.Result == nil {
+		t.Fatalf("expected result to be parsed, got %#v", res)
+	}
+	if res.Response.Result.Total != 50 {
+		t.Fatalf("expected total 50, got %v", res.Response.Result.Total)
+	}
+	if len(res.Response.Result.Items) != 1 {
+		t.Fatalf("expected 1 item, got %d", len(res.Response.Result.Items))
+	}
 	t.Logf("ReturnAndRefund.GetReverseOrdersForSeller response: %#v", res)
 }
 func Test_ReturnAndRefund_InitReverseOrderCancel(t *testing.T) {

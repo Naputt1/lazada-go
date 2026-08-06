@@ -32,16 +32,45 @@ type GetReverseOrderReasonListResponseData struct {
 	Text             string `json:"text"`               // [Required]
 	ReasonId         string `json:"reason_id"`          // [Required]
 }
+type GetReverseOrdersForSellerRequest struct {
+	PageNo                                 int64    `json:"page_no" url:"page_no"`                                                                                   // [Required]
+	PageSize                               int64    `json:"page_size" url:"page_size"`                                                                               // [Required]
+	RequestTypeList                        []string `json:"request_type_list,omitempty" url:"request_type_list,omitempty"`                                           // [Optional]
+	OfcStatusList                          []string `json:"ofc_status_list,omitempty" url:"ofc_status_list,omitempty"`                                               // [Optional]
+	ReverseStatusList                      []string `json:"reverse_status_list,omitempty" url:"reverse_status_list,omitempty"`                                       // [Optional]
+	ReverseOrderId                         *int64   `json:"reverse_order_id,omitempty" url:"reverse_order_id,omitempty"`                                             // [Optional]
+	TradeOrderId                           *int64   `json:"trade_order_id,omitempty" url:"trade_order_id,omitempty"`                                                 // [Optional]
+	ReturnToType                           *string  `json:"return_to_type,omitempty" url:"return_to_type,omitempty"`                                                 // [Optional]
+	DisputeInProgress                      *bool    `json:"dispute_in_progress,omitempty" url:"dispute_in_progress,omitempty"`                                       // [Optional]
+	TradeOrderLineCreatedTimeRangeStart    *int64   `json:"TradeOrderLineCreatedTimeRangeStart,omitempty" url:"TradeOrderLineCreatedTimeRangeStart,omitempty"`       // [Optional]
+	TradeOrderLineCreatedTimeRangeEnd      *int64   `json:"TradeOrderLineCreatedTimeRangeEnd,omitempty" url:"TradeOrderLineCreatedTimeRangeEnd,omitempty"`           // [Optional]
+	ReverseOrderLineTimeRangeStart         *int64   `json:"ReverseOrderLineTimeRangeStart,omitempty" url:"ReverseOrderLineTimeRangeStart,omitempty"`                 // [Optional]
+	ReverseOrderLineTimeRangeEnd           *int64   `json:"ReverseOrderLineTimeRangeEnd,omitempty" url:"ReverseOrderLineTimeRangeEnd,omitempty"`                     // [Optional]
+	ReverseOrderLineModifiedTimeRangeStart *int64   `json:"ReverseOrderLineModifiedTimeRangeStart,omitempty" url:"ReverseOrderLineModifiedTimeRangeStart,omitempty"` // [Optional]
+	ReverseOrderLineModifiedTimeRangeEnd   *int64   `json:"ReverseOrderLineModifiedTimeRangeEnd,omitempty" url:"ReverseOrderLineModifiedTimeRangeEnd,omitempty"`     // [Optional]
+	QCDecision                             *string  `json:"QC_Decision,omitempty" url:"QC_Decision,omitempty"`                                                       // [Optional]
+}
 type GetReverseOrdersForSellerResponse struct {
-	BaseResponse                                              // Common response fields
-	Result       *GetReverseOrdersForSellerResponseDataResult `json:"result,omitempty"` //
+	BaseResponse                                       // Common response fields
+	Response     GetReverseOrdersForSellerResponseData `json:"result"` // Response data
+}
+type GetReverseOrdersForSellerResponseData struct {
+	Result *GetReverseOrdersForSellerResponseDataResult `json:"result"` // Response data
+}
+type GetReverseOrdersForSellerResponseDataItems struct {
+	ReverseOrderLines []ReverseOrderLines `json:"reverse_order_lines"` // [Required]
+	ReverseOrderId    string              `json:"reverse_order_id"`    // [Required]
+	RequestType       string              `json:"request_type"`        // [Required]
+	IsRtm             string              `json:"is_rtm"`              // [Required]
+	ShippingType      string              `json:"shipping_type"`       // [Required]
+	TradeOrderId      string              `json:"trade_order_id"`      // [Required]
 }
 type GetReverseOrdersForSellerResponseDataResult struct {
-	Total    int64         `json:"total"`     // [Required]
-	Success  bool          `json:"success"`   // [Required]
-	PageNo   string        `json:"page_no"`   // [Required]
-	Items    []ResultItems `json:"items"`     // [Required]
-	PageSize int64         `json:"page_size"` // [Required]
+	Total    FlexInt                                      `json:"total"`     // [Required]
+	Success  FlexString                                   `json:"success"`   // [Required]
+	PageNo   string                                       `json:"page_no"`   // [Required]
+	Items    []GetReverseOrdersForSellerResponseDataItems `json:"items"`     // [Required]
+	PageSize FlexInt                                      `json:"page_size"` // [Required]
 }
 type InitReverseOrderCancelDecideResponse struct {
 	BaseResponse // Common response fields
@@ -71,14 +100,6 @@ type ResponseDataPageInfo struct {
 	Total             int64  `json:"total"`               // [Required]
 	PageSize          int64  `json:"page_size"`           // [Required]
 	CurrentPageNumber string `json:"current_page_number"` // [Required]
-}
-type ResultItems struct {
-	ReverseOrderLines []ReverseOrderLines `json:"reverse_order_lines"` // [Required]
-	ReverseOrderId    string              `json:"reverse_order_id"`    // [Required]
-	RequestType       string              `json:"request_type"`        // [Required]
-	IsRtm             string              `json:"is_rtm"`              // [Required]
-	ShippingType      string              `json:"shipping_type"`       // [Required]
-	TradeOrderId      string              `json:"trade_order_id"`      // [Required]
 }
 type ReverseOrderLine struct {
 	PaidPrice          string `json:"paid_price"`            // [Required]
@@ -146,8 +167,8 @@ type ReverseOrderLinesBuyer struct {
 	BuyerId string `json:"buyer_id"` // [Required]
 }
 type ReverseOrderLinesProduct struct {
-	ProductSku string `json:"product_sku"` // [Required]
-	ProductId  int64  `json:"product_id"`  // [Required]
+	ProductSku string  `json:"product_sku"` // [Required]
+	ProductId  FlexInt `json:"product_id"`  // [Required]
 }
 type ReverseOrderOnlyRefundDecideResponse struct {
 	BaseResponse // Common response fields
