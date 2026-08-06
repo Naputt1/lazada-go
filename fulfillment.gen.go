@@ -24,7 +24,7 @@ type FulfillmentService interface {
 	GetShipmentProvider(ctx context.Context) (*GetShipmentProviderResponse, error)
 	// Pack Use this API to mark an order item as being packed.
 	// Path: /order/fulfill/pack
-	Pack(ctx context.Context) (*PackResponse, error)
+	Pack(ctx context.Context, opt PackRequest) (*PackResponse, error)
 	// PackageStatusUpdateForDBS DBS package status update.
 	// This interface is only open to some stores
 	// Path: /order/package/sof/status/update
@@ -33,8 +33,8 @@ type FulfillmentService interface {
 	// Path: /order/package/document/get
 	PrintAWB(ctx context.Context, req PrintAWBRequest) (*PrintAWBResponse, error)
 	// ReadyToShip Use this API to mark an order item as being ready to ship.
-	// Path: /order/package/rts
-	ReadyToShip(ctx context.Context) (*ReadyToShipResponse, error)
+	// Path: /order/rts
+	ReadyToShip(ctx context.Context, opt ReadyToShipRequest) (*ReadyToShipResponse, error)
 	// RecreatePackage Use this API to mark a package item as being repack.
 	// Path: /order/package/repack
 	RecreatePackage(ctx context.Context) (*RecreatePackageResponse, error)
@@ -130,15 +130,20 @@ func (s *FulfillmentServiceOp[T]) GetShipmentProvider(ctx context.Context) (*Get
 }
 
 // Pack Use this API to mark an order item as being packed.
-// Path: /order/fulfill/pack
-func (s *FulfillmentServiceOp[T]) Pack(ctx context.Context) (*PackResponse, error) {
-	path := "/order/fulfill/pack"
-	var params map[string]string
+// Path: /order/pack
+func (s *FulfillmentServiceOp[T]) Pack(ctx context.Context, opt PackRequest) (*PackResponse, error) {
+	path := "/order/pack"
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(PackResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -187,15 +192,20 @@ func (s *FulfillmentServiceOp[T]) PrintAWB(ctx context.Context, req PrintAWBRequ
 }
 
 // ReadyToShip Use this API to mark an order item as being ready to ship.
-// Path: /order/package/rts
-func (s *FulfillmentServiceOp[T]) ReadyToShip(ctx context.Context) (*ReadyToShipResponse, error) {
-	path := "/order/package/rts"
-	var params map[string]string
+// Path: /order/rts
+func (s *FulfillmentServiceOp[T]) ReadyToShip(ctx context.Context, opt ReadyToShipRequest) (*ReadyToShipResponse, error) {
+	path := "/order/rts"
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(ReadyToShipResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

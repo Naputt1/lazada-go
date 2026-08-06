@@ -177,6 +177,9 @@ type GetOVOOrdersResponseDataResult struct {
 	ErrorCode   FlexString    `json:"errorCode"`   // [Required]
 	TradeOrders []TradeOrders `json:"tradeOrders"` // [Required]
 }
+type OrderCancelValidateRequest struct {
+	OrderId string `json:"order_id" url:"order_id"` // [Required]
+}
 type OrderCancelValidateResponse struct {
 	BaseResponse                                 // Common response fields
 	Response     OrderCancelValidateResponseData `json:"data"` // Response data

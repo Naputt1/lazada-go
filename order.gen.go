@@ -27,7 +27,7 @@ type OrderService interface {
 	GetOVOOrders(ctx context.Context) (*GetOVOOrdersResponse, error)
 	// OrderCancelValidate Seller can check whether the order can be canceled through this API and get corresponding reasons if not.
 	// Path: /order/reverse/cancel/validate
-	OrderCancelValidate(ctx context.Context) (*OrderCancelValidateResponse, error)
+	OrderCancelValidate(ctx context.Context, opt OrderCancelValidateRequest) (*OrderCancelValidateResponse, error)
 	// SetInvoiceNumber Use this API to set the invoice number for the specified order.
 	// Path: /order/invoice_number/set
 	SetInvoiceNumber(ctx context.Context) (*SetInvoiceNumberResponse, error)
@@ -166,9 +166,9 @@ func (s *OrderServiceOp[T]) GetOVOOrders(ctx context.Context) (*GetOVOOrdersResp
 
 // OrderCancelValidate Seller can check whether the order can be canceled through this API and get corresponding reasons if not.
 // Path: /order/reverse/cancel/validate
-func (s *OrderServiceOp[T]) OrderCancelValidate(ctx context.Context) (*OrderCancelValidateResponse, error) {
+func (s *OrderServiceOp[T]) OrderCancelValidate(ctx context.Context, opt OrderCancelValidateRequest) (*OrderCancelValidateResponse, error) {
 	path := "/order/reverse/cancel/validate"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err

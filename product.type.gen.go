@@ -9,6 +9,9 @@ type Advanced struct {
 type AttributesOptions struct {
 	Name string `json:"name"` // [Required]
 }
+type BatchUpdateSizeChartRequest struct {
+	Payload string `json:"payload" url:"payload"` // [Required]
+}
 type BatchUpdateSizeChartResponse struct {
 	BaseResponse // Common response fields
 }
@@ -77,7 +80,7 @@ type GetCategoryAttributesRequest struct {
 }
 type GetCategoryAttributesResponse struct {
 	BaseResponse                                   // Common response fields
-	Response     GetCategoryAttributesResponseData `json:"data"` // Response data
+	Response     []GetCategoryAttributesResponseData `json:"data"` // Response data
 }
 type GetCategoryAttributesResponseData struct {
 	Unit          *Unit                 `json:"unit"`           // [Required]
@@ -100,14 +103,14 @@ type GetCategorySuggestionResponseData struct {
 }
 type GetCategoryTreeResponse struct {
 	BaseResponse                             // Common response fields
-	Response     GetCategoryTreeResponseData `json:"data"` // Response data
+	Response     []GetCategoryTreeResponseData `json:"data"` // Response data
 }
 type GetCategoryTreeResponseData struct {
-	CategoryId int64      `json:"category_id"` // [Required]
-	Children   []Children `json:"children"`    // [Required]
-	Var        bool       `json:"var"`         // [Required]
-	Name       string     `json:"name"`        // [Required]
-	Leaf       bool       `json:"leaf"`        // [Required]
+	CategoryId int64                          `json:"category_id"` // [Required]
+	Children   []GetCategoryTreeResponseData  `json:"children"`    // [Required]
+	Var        bool                           `json:"var"`         // [Required]
+	Name       string                         `json:"name"`        // [Required]
+	Leaf       bool                           `json:"leaf"`        // [Required]
 }
 type GetNextCascadePropResponse struct {
 	BaseResponse                                // Common response fields
@@ -272,16 +275,24 @@ type GetSellerItemLimitResponseData struct {
 	ItemLimit       string `json:"itemLimit"`       // [Required]
 	OnlineItemCount string `json:"onlineItemCount"` // [Required]
 }
+type GetSizeChartTemplateRequest struct {
+	PageNo   int64 `json:"page_no" url:"page_no"`     // [Required]
+	PageSize int64 `json:"page_size" url:"page_size"` // [Required]
+}
 type GetSizeChartTemplateResponse struct {
 	BaseResponse                                  // Common response fields
 	Response     GetSizeChartTemplateResponseData `json:"data"` // Response data
 }
 type GetSizeChartTemplateResponseData struct {
-	Total              int64         `json:"total"`              // [Required]
-	PageNo             string        `json:"pageNo"`             // [Required]
-	TotalPage          string        `json:"totalPage"`          // [Required]
-	PageSize           string        `json:"pageSize"`           // [Required]
-	SizeChartResponses []interface{} `json:"sizeChartResponses"` // [Required]
+	Total              interface{}        `json:"total"`              // [Required]
+	PageNo             interface{}        `json:"pageNo"`             // [Required]
+	TotalPage          interface{}        `json:"totalPage"`          // [Required]
+	PageSize           interface{}        `json:"pageSize"`           // [Required]
+	SizeChartResponses []SizeChartTemplate `json:"sizeChartResponses"` // [Required]
+}
+type SizeChartTemplate struct {
+	SizeChartId   int64  `json:"sizeChartId"`   // [Required]
+	SizeChartName string `json:"sizeChartName"` // [Required]
 }
 type GetUnfilledAttributeItemResponse struct {
 	BaseResponse                                                 // Common response fields
@@ -345,6 +356,9 @@ type RejectReason struct {
 	Suggestion      string `json:"suggestion"`      // [Required]
 	ViolationDetail string `json:"violationDetail"` // [Required]
 }
+type RemoveProductRequest struct {
+	SellerSkus []string `json:"seller_skus" url:"seller_skus"` // [Required]
+}
 type RemoveProductResponse struct {
 	BaseResponse // Common response fields
 }
@@ -399,10 +413,10 @@ type SetImagesResponse struct {
 	BaseResponse // Common response fields
 }
 type Unit struct {
-	Precision  string        `json:"precision"`  // [Required]
-	Type       []interface{} `json:"type"`       // [Required]
-	NumericMin string        `json:"numericMin"` // [Required]
-	NumericMax string        `json:"numericMax"` // [Required]
+	Precision  string        `json:"precision"`   // [Required]
+	Type       []interface{} `json:"type"`        // [Required]
+	NumericMin string        `json:"numeric_min"` // [Required]
+	NumericMax string        `json:"numeric_max"` // [Required]
 }
 type UpdatePriceQuantityResponse struct {
 	BaseResponse // Common response fields

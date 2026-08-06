@@ -204,7 +204,7 @@ func Test_ReturnAndRefund_InitReverseOrderCancel(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.ReturnAndRefund.InitReverseOrderCancel(ctx)
+	res, err := client.ReturnAndRefund.InitReverseOrderCancel(ctx, InitReverseOrderCancelRequest{})
 	if err != nil {
 		t.Logf("ReturnAndRefund.InitReverseOrderCancel returned error (possibly expected with mock data): %s", err)
 	}
@@ -274,7 +274,7 @@ func Test_ReturnAndRefund_ReverseOrderOnlyRefundDecide(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.ReturnAndRefund.ReverseOrderOnlyRefundDecide(ctx)
+	res, err := client.ReturnAndRefund.ReverseOrderOnlyRefundDecide(ctx, ReverseOrderOnlyRefundDecideRequest{})
 	if err != nil {
 		t.Logf("ReturnAndRefund.ReverseOrderOnlyRefundDecide returned error (possibly expected with mock data): %s", err)
 	}
@@ -309,7 +309,7 @@ func Test_ReturnAndRefund_ReverseOrderReturnUpdate(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.ReturnAndRefund.ReverseOrderReturnUpdate(ctx)
+	res, err := client.ReturnAndRefund.ReverseOrderReturnUpdate(ctx, ReverseOrderReturnUpdateRequest{})
 	if err != nil {
 		t.Logf("ReturnAndRefund.ReverseOrderReturnUpdate returned error (possibly expected with mock data): %s", err)
 	}

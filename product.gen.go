@@ -15,7 +15,7 @@ type ProductService interface {
 	AdjustSellableQuantity(ctx context.Context) (*AdjustSellableQuantityResponse, error)
 	// BatchUpdateSizeChart 批量更新尺码表
 	// Path: /size/chart/batch/update
-	BatchUpdateSizeChart(ctx context.Context) (*BatchUpdateSizeChartResponse, error)
+	BatchUpdateSizeChart(ctx context.Context, opt BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error)
 	// CreateProduct Use this API to create a single new product.
 	//
 	// Find more details below: https://open.lazada.com/apps/doc/doc?nodeId=30720&docId=120949
@@ -62,7 +62,7 @@ type ProductService interface {
 	GetSellerItemLimit(ctx context.Context) (*GetSellerItemLimitResponse, error)
 	// GetSizeChartTemplate 获取尺码模板列表
 	// Path: /size/chart/template/get
-	GetSizeChartTemplate(ctx context.Context) (*GetSizeChartTemplateResponse, error)
+	GetSizeChartTemplate(ctx context.Context, opt GetSizeChartTemplateRequest) (*GetSizeChartTemplateResponse, error)
 	// GetUnfilledAttributeItem Get products without key attributes. (For cross boarder sellers Only)
 	// Path: /product/unfilled/attribute/get
 	GetUnfilledAttributeItem(ctx context.Context) (*GetUnfilledAttributeItemResponse, error)
@@ -77,7 +77,7 @@ type ProductService interface {
 	ProductCheck(ctx context.Context) (*ProductCheckResponse, error)
 	// RemoveProduct Use this API to remove an existing product, some SKUs in one product, or all SKUs in one product. System supports a maximum number of 50 SellerSkus in one request.
 	// Path: /product/remove
-	RemoveProduct(ctx context.Context) (*RemoveProductResponse, error)
+	RemoveProduct(ctx context.Context, opt RemoveProductRequest) (*RemoveProductResponse, error)
 	// RemoveSku Use this API to delete SKUs and sales attributes of corresponding products.
 	// Path: /product/sku/remove
 	RemoveSku(ctx context.Context) (*RemoveSkuResponse, error)
@@ -124,9 +124,9 @@ func (s *ProductServiceOp[T]) AdjustSellableQuantity(ctx context.Context) (*Adju
 
 // BatchUpdateSizeChart 批量更新尺码表
 // Path: /size/chart/batch/update
-func (s *ProductServiceOp[T]) BatchUpdateSizeChart(ctx context.Context) (*BatchUpdateSizeChartResponse, error) {
+func (s *ProductServiceOp[T]) BatchUpdateSizeChart(ctx context.Context, opt BatchUpdateSizeChartRequest) (*BatchUpdateSizeChartResponse, error) {
 	path := "/size/chart/batch/update"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
@@ -442,9 +442,9 @@ func (s *ProductServiceOp[T]) GetSellerItemLimit(ctx context.Context) (*GetSelle
 
 // GetSizeChartTemplate 获取尺码模板列表
 // Path: /size/chart/template/get
-func (s *ProductServiceOp[T]) GetSizeChartTemplate(ctx context.Context) (*GetSizeChartTemplateResponse, error) {
+func (s *ProductServiceOp[T]) GetSizeChartTemplate(ctx context.Context, opt GetSizeChartTemplateRequest) (*GetSizeChartTemplateResponse, error) {
 	path := "/size/chart/template/get"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -554,9 +554,9 @@ func (s *ProductServiceOp[T]) ProductCheck(ctx context.Context) (*ProductCheckRe
 
 // RemoveProduct Use this API to remove an existing product, some SKUs in one product, or all SKUs in one product. System supports a maximum number of 50 SellerSkus in one request.
 // Path: /product/remove
-func (s *ProductServiceOp[T]) RemoveProduct(ctx context.Context) (*RemoveProductResponse, error) {
+func (s *ProductServiceOp[T]) RemoveProduct(ctx context.Context, opt RemoveProductRequest) (*RemoveProductResponse, error) {
 	path := "/product/remove"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err

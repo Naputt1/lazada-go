@@ -213,7 +213,7 @@ func Test_Fulfillment_Pack(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Fulfillment.Pack(ctx)
+	res, err := client.Fulfillment.Pack(ctx, PackRequest{})
 	if err != nil {
 		t.Logf("Fulfillment.Pack returned error (possibly expected with mock data): %s", err)
 	}
@@ -328,7 +328,7 @@ func Test_Fulfillment_ReadyToShip(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Fulfillment.ReadyToShip(ctx)
+	res, err := client.Fulfillment.ReadyToShip(ctx, ReadyToShipRequest{})
 	if err != nil {
 		t.Logf("Fulfillment.ReadyToShip returned error (possibly expected with mock data): %s", err)
 	}

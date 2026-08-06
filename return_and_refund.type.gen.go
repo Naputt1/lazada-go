@@ -75,6 +75,10 @@ type GetReverseOrdersForSellerResponseDataResult struct {
 type InitReverseOrderCancelDecideResponse struct {
 	BaseResponse // Common response fields
 }
+type InitReverseOrderCancelRequest struct {
+	OrderId      string `json:"order_id" url:"order_id"`           // [Required]
+	ReasonDetail string `json:"reason_detail" url:"reason_detail"` // [Required]
+}
 type InitReverseOrderCancelResponse struct {
 	BaseResponse                                    // Common response fields
 	Response     InitReverseOrderCancelResponseData `json:"data"` // Response data
@@ -170,14 +174,24 @@ type ReverseOrderLinesProduct struct {
 	ProductSku string  `json:"product_sku"` // [Required]
 	ProductId  FlexInt `json:"product_id"`  // [Required]
 }
+type ReverseOrderOnlyRefundDecideRequest struct {
+	ReverseOrderId string `json:"reverse_order_id" url:"reverse_order_id"` // [Required]
+	Action         string `json:"action" url:"action"`                     // [Required]
+}
 type ReverseOrderOnlyRefundDecideResponse struct {
 	BaseResponse // Common response fields
+}
+type ReverseOrderReturnUpdateRequest struct {
+	ReverseOrderId string `json:"reverse_order_id" url:"reverse_order_id"` // [Required]
+	Action         string `json:"action" url:"action"`                     // [Required]
 }
 type ReverseOrderReturnUpdateResponse struct {
 	BaseResponse                                      // Common response fields
 	Response     ReverseOrderReturnUpdateResponseData `json:"data"` // Response data
 }
 type ReverseOrderReturnUpdateResponseData struct {
+	TipContent       string             `json:"tip_content"`        // [Required]
+	TipType          string             `json:"tip_type"`           // [Required]
 	ReasonInfo       []ReasonOptions    `json:"reason_info"`        // [Required]
 	ReverseOrderId   string             `json:"reverse_order_id"`   // [Required]
 	TotalRefund      string             `json:"total_refund"`       // [Required]

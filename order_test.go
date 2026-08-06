@@ -275,7 +275,7 @@ func Test_Order_OrderCancelValidate(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Order.OrderCancelValidate(ctx)
+	res, err := client.Order.OrderCancelValidate(ctx, OrderCancelValidateRequest{})
 	if err != nil {
 		t.Logf("Order.OrderCancelValidate returned error (possibly expected with mock data): %s", err)
 	}
