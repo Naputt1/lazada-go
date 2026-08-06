@@ -78,12 +78,12 @@ func Test_Order_GetMultipleOrderItems(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.Order.GetMultipleOrderItems(ctx, map[string]string{"order_ids": "32793"})
+	res, err := client.Order.GetMultipleOrderItems(ctx, GetMultipleOrderItemsRequest{OrderIds: []int64{32793}})
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
-	if gotOrderIDs != "32793" {
-		t.Fatalf("expected order_ids=32793 in request, got %q", gotOrderIDs)
+	if gotOrderIDs != "[32793]" {
+		t.Fatalf("expected order_ids=[32793] in request, got %q", gotOrderIDs)
 	}
 	if len(res.Response) != 1 {
 		t.Fatalf("expected 1 order batch, got %d", len(res.Response))
@@ -167,8 +167,9 @@ func Test_Order_GetOrderItems(t *testing.T) {
 		},
 	)
 
+	var req GetOrderItemsRequest
 	ctx := context.Background()
-	res, err := client.Order.GetOrderItems(ctx, map[string]string{"order_ids": "32793"})
+	res, err := client.Order.GetOrderItems(ctx, req)
 	if err != nil {
 		t.Logf("Order.GetOrderItems returned error (possibly expected with mock data): %s", err)
 	}
@@ -202,8 +203,9 @@ func Test_Order_GetOrders(t *testing.T) {
 		},
 	)
 
+	var req GetOrdersRequest
 	ctx := context.Background()
-	res, err := client.Order.GetOrders(ctx, map[string]string{})
+	res, err := client.Order.GetOrders(ctx, req)
 	if err != nil {
 		t.Logf("Order.GetOrders returned error (possibly expected with mock data): %s", err)
 	}

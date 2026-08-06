@@ -94,7 +94,7 @@ func TestGetOrdersAutoRefreshesOnIllegalAccessToken(t *testing.T) {
 		},
 	)
 
-	res, err := client.Order.GetOrders(context.Background(), map[string]string{})
+	res, err := client.Order.GetOrders(context.Background(), GetOrdersRequest{})
 	if err != nil {
 		t.Fatalf("GetOrders after auto-refresh: %v", err)
 	}

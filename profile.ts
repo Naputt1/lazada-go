@@ -1,6 +1,8 @@
 import { defineProfile, loadTemplate, defaultBuildEndpointStructs } from '@doclient/renderer-go';
 import type { StructGenerator } from '@doclient/renderer-go';
+import { toPascalCase } from '@doclient/cli';
 import type { IREndpoint, IRParam } from '@doclient/cli';
+import { structTypeOverrides } from './overrides.js';
 
 function param(name: string, type: string, shopeeType: string, children: IRParam[] = [], required = false): IRParam {
   return { name, type, shopeeType, description: '', required, children };
@@ -36,6 +38,28 @@ const getCategoryAttributesReq: IRParam[] = [
   param('language_code', 'string', 'string', [], true),
 ];
 
+// /orders/get and the order-items endpoints. Lazada's API doc omits the
+// request parameters for these, so the SDK's generated methods historically
+// took no arguments and could never send order_ids. They are declared here so
+// the generator emits typed request structs.
+const getOrdersReq: IRParam[] = [
+  param('created_after', 'string', 'string', [], true),
+  param('created_before', 'string', 'string', [], false),
+  param('update_after', 'string', 'string', [], false),
+  param('sort_by', 'string', 'string', [], false),
+  param('sort_direction', 'string', 'string', [], false),
+  param('offset', 'int64', 'int64', [], false),
+  param('limit', 'int64', 'int64', [], false),
+];
+
+const getOrderItemsReq: IRParam[] = [
+  param('order_ids', 'int64[]', 'int64[]', [], true),
+];
+
+const getMultipleOrderItemsReq: IRParam[] = [
+  param('order_ids', 'int64[]', 'int64[]', [], true),
+];
+
 const getReverseOrdersForSellerReq: IRParam[] = [
   param('page_no', 'int64', 'int64', [], true),
   param('page_size', 'int64', 'int64', [], true),
@@ -62,6 +86,9 @@ const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRPara
   UpdateProduct: { request: updateProductReq, response: [] },
   GetProducts: { request: getProductsReq, response: [] },
   GetProductItem: { request: getProductItemReq, response: [] },
+  GetOrders: { request: getOrdersReq, response: [] },
+  GetOrderItems: { request: getOrderItemsReq, response: [] },
+  GetMultipleOrderItems: { request: getMultipleOrderItemsReq, response: [] },
   GetReverseOrdersForSeller: { request: getReverseOrdersForSellerReq, response: [] },
 };
 
@@ -148,6 +175,62 @@ function buildReverseOrdersResponse(structGen: StructGenerator, moduleName: stri
   flexFields(childStruct(lines, 'Buyer'), { BuyerId: 'FlexString' });
 }
 
+// The renderer's built-in structTypeOverrides lookup is keyed off the last
+// chain segment (e.g. "ResponseData"), which never matches the full struct
+// names in doclient.config.ts. Apply the same overrides as a post-processor
+// over the generated structs by name instead.
+function applyStructTypeOverrides(structGen: StructGenerator): void {
+  for (const [structName, fields] of Object.entries(structTypeOverrides)) {
+    const s = structGen.allStructs.get(structName);
+    if (!s) continue;
+    const pascalToType = new Map<string, string>();
+    for (const [field, type] of Object.entries(fields)) {
+      pascalToType.set(toPascalCase(field), type);
+    }
+    for (const f of s.fields) {
+      const override = pascalToType.get(f.name);
+      if (override) f.type = override;
+    }
+  }
+}
+
+// /orders/items/get returns "data" as an array of order batches, but the API
+// doc models it as a single object. Make the wrapper field a slice of the
+// generated batch struct so the real payload unmarshals.
+function applyOrderItemsArrayResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'GetMultipleOrderItems') return;
+  const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');
+  const resp = structGen.allStructs.get(respName);
+  const dataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  if (!resp || !structGen.allStructs.has(dataName)) return;
+  const field = resp.fields.find((f) => f.name === 'Response');
+  if (field) field.type = '[]' + dataName;
+}
+
+// Tolerances that depend on the generated struct shape rather than field types:
+// add the model_quantity_purchased field the API doc omits, and reuse the
+// billing address structs for the shipping address so duplicate structs are not
+// emitted.
+function applyOrderTuning(structGen: StructGenerator): void {
+  for (const structName of ['OrderItems', 'GetOrderItemsResponseData']) {
+    const s = structGen.allStructs.get(structName);
+    if (!s) continue;
+    if (!s.fields.some((f) => f.name === 'ModelQuantityPurchased')) {
+      s.fields.push({ name: 'ModelQuantityPurchased', type: 'FlexInt', jsonTag: 'model_quantity_purchased', urlTag: '', comment: '' });
+    }
+  }
+
+  const repoint = (structName: string, fieldName: string, reuse: string, drop: string) => {
+    const s = structGen.allStructs.get(structName);
+    if (!s) return;
+    const f = s.fields.find((x) => x.name === fieldName);
+    if (f && f.type === '*' + drop) f.type = '*' + reuse;
+    structGen.allStructs.delete(drop);
+  };
+  repoint('GetOrderResponseData', 'AddressShipping', 'ResponseDataAddressBilling', 'ResponseDataAddressShipping');
+  repoint('ResponseDataOrders', 'AddressShipping', 'OrdersAddressBilling', 'OrdersAddressShipping');
+}
+
 export const lazadaProfile = defineProfile({
   ...profileConfig,
 
@@ -179,10 +262,14 @@ export const lazadaProfile = defineProfile({
     // key and Lazada encodes numerics as JSON strings; see buildReverseOrdersResponse.
     if (ep.name === 'GetReverseOrdersForSeller') {
       buildReverseOrdersResponse(structGen, moduleName, ep);
+      applyStructTypeOverrides(structGen);
       return;
     }
 
     defaultBuildEndpointStructs(profileConfig as any)(structGen, moduleName, ep);
+    applyStructTypeOverrides(structGen);
+    applyOrderItemsArrayResponse(structGen, moduleName, ep);
+    applyOrderTuning(structGen);
   },
 
   renderClientFile: (pkg, services, init) =>

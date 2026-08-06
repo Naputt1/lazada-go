@@ -12,6 +12,9 @@ type GetDocumentResponse struct {
 type GetDocumentResponseData struct {
 	Document *Document `json:"document"` // [Required]
 }
+type GetMultipleOrderItemsRequest struct {
+	OrderIds []int64 `json:"order_ids" url:"order_ids"` // [Required]
+}
 type GetMultipleOrderItemsResponse struct {
 	BaseResponse                                     // Common response fields
 	Response     []GetMultipleOrderItemsResponseData `json:"data"` // Response data
@@ -20,6 +23,9 @@ type GetMultipleOrderItemsResponseData struct {
 	OrderNumber FlexString   `json:"order_number"` // [Required]
 	OrderId     FlexInt      `json:"order_id"`     // [Required]
 	OrderItems  []OrderItems `json:"order_items"`  // [Required]
+}
+type GetOrderItemsRequest struct {
+	OrderIds []int64 `json:"order_ids" url:"order_ids"` // [Required]
 }
 type GetOrderItemsResponse struct {
 	BaseResponse                           // Common response fields
@@ -59,7 +65,6 @@ type GetOrderItemsResponseData struct {
 	SkuId                         FlexInt          `json:"sku_id"`                           // [Required]
 	TrackingCodePre               FlexString       `json:"tracking_code_pre"`                // [Required]
 	OrderItemId                   FlexInt          `json:"order_item_id"`                    // [Required]
-	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
 	ShopId                        FlexString       `json:"shop_id"`                          // [Required]
 	OrderFlag                     FlexString       `json:"order_flag"`                       // [Required]
 	IsFbl                         FlexString       `json:"is_fbl"`                           // [Required]
@@ -105,6 +110,7 @@ type GetOrderItemsResponseData struct {
 	SupplyPriceCurrency           FlexString       `json:"supply_price_currency"`            // [Required]
 	DigitalDeliveryInfo           FlexString       `json:"digital_delivery_info"`            // [Required]
 	ExtraAttributes               FlexString       `json:"extra_attributes"`                 // [Required]
+	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
 }
 type GetOrderResponse struct {
 	BaseResponse                      // Common response fields
@@ -143,6 +149,15 @@ type GetOrderResponseData struct {
 	GiftMessage                 FlexString                  `json:"gift_message"`                   // [Required]
 	Remarks                     FlexString                  `json:"remarks"`                        // [Required]
 	AddressShipping             *ResponseDataAddressBilling `json:"address_shipping"`               // [Required]
+}
+type GetOrdersRequest struct {
+	CreatedAfter  string  `json:"created_after" url:"created_after"`                       // [Required]
+	CreatedBefore *string `json:"created_before,omitempty" url:"created_before,omitempty"` // [Optional]
+	UpdateAfter   *string `json:"update_after,omitempty" url:"update_after,omitempty"`     // [Optional]
+	SortBy        *string `json:"sort_by,omitempty" url:"sort_by,omitempty"`               // [Optional]
+	SortDirection *string `json:"sort_direction,omitempty" url:"sort_direction,omitempty"` // [Optional]
+	Offset        *int64  `json:"offset,omitempty" url:"offset,omitempty"`                 // [Optional]
+	Limit         *int64  `json:"limit,omitempty" url:"limit,omitempty"`                   // [Optional]
 }
 type GetOrdersResponse struct {
 	BaseResponse                       // Common response fields
@@ -204,7 +219,6 @@ type OrderItems struct {
 	SkuId                         FlexInt          `json:"sku_id"`                           // [Required]
 	TrackingCodePre               FlexString       `json:"tracking_code_pre"`                // [Required]
 	OrderItemId                   FlexInt          `json:"order_item_id"`                    // [Required]
-	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
 	ShopId                        FlexString       `json:"shop_id"`                          // [Required]
 	OrderFlag                     FlexString       `json:"order_flag"`                       // [Required]
 	IsFbl                         FlexString       `json:"is_fbl"`                           // [Required]
@@ -250,6 +264,7 @@ type OrderItems struct {
 	SupplyPriceCurrency           FlexString       `json:"supply_price_currency"`            // [Required]
 	DigitalDeliveryInfo           FlexString       `json:"digital_delivery_info"`            // [Required]
 	ExtraAttributes               FlexString       `json:"extra_attributes"`                 // [Required]
+	ModelQuantityPurchased        FlexInt          `json:"model_quantity_purchased"`         //
 }
 type OrdersAddressBilling struct {
 	Country         FlexString `json:"country"`         // [Required]

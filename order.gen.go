@@ -12,16 +12,16 @@ type OrderService interface {
 	GetDocument(ctx context.Context) (*GetDocumentResponse, error)
 	// GetMultipleOrderItems Use this API to get the item information of one or more orders.（No more than 50 at a time）
 	// Path: /orders/items/get
-	GetMultipleOrderItems(ctx context.Context, params map[string]string) (*GetMultipleOrderItemsResponse, error)
+	GetMultipleOrderItems(ctx context.Context, opt GetMultipleOrderItemsRequest) (*GetMultipleOrderItemsResponse, error)
 	// GetOrder Use this API to get the list of items for a single order.
 	// Path: /order/get
 	GetOrder(ctx context.Context) (*GetOrderResponse, error)
 	// GetOrderItems Use this API to get the item information of an order.
 	// Path: /order/items/get
-	GetOrderItems(ctx context.Context, params map[string]string) (*GetOrderItemsResponse, error)
+	GetOrderItems(ctx context.Context, opt GetOrderItemsRequest) (*GetOrderItemsResponse, error)
 	// GetOrders Use this API to get the list of items for a range of orders1..
 	// Path: /orders/get
-	GetOrders(ctx context.Context, params map[string]string) (*GetOrdersResponse, error)
+	GetOrders(ctx context.Context, opt GetOrdersRequest) (*GetOrdersResponse, error)
 	// GetOVOOrders This interface is only applicable to the merchant side of the business and is used to set the maximum number of SKUs that certain merchants can sell per day
 	// Path: /orders/ovo/get
 	GetOVOOrders(ctx context.Context) (*GetOVOOrdersResponse, error)
@@ -61,8 +61,9 @@ func (s *OrderServiceOp[T]) GetDocument(ctx context.Context) (*GetDocumentRespon
 
 // GetMultipleOrderItems Use this API to get the item information of one or more orders.（No more than 50 at a time）
 // Path: /orders/items/get
-func (s *OrderServiceOp[T]) GetMultipleOrderItems(ctx context.Context, params map[string]string) (*GetMultipleOrderItemsResponse, error) {
+func (s *OrderServiceOp[T]) GetMultipleOrderItems(ctx context.Context, opt GetMultipleOrderItemsRequest) (*GetMultipleOrderItemsResponse, error) {
 	path := "/orders/items/get"
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -104,8 +105,9 @@ func (s *OrderServiceOp[T]) GetOrder(ctx context.Context) (*GetOrderResponse, er
 
 // GetOrderItems Use this API to get the item information of an order.
 // Path: /order/items/get
-func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context, params map[string]string) (*GetOrderItemsResponse, error) {
+func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context, opt GetOrderItemsRequest) (*GetOrderItemsResponse, error) {
 	path := "/order/items/get"
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
@@ -125,8 +127,9 @@ func (s *OrderServiceOp[T]) GetOrderItems(ctx context.Context, params map[string
 
 // GetOrders Use this API to get the list of items for a range of orders1..
 // Path: /orders/get
-func (s *OrderServiceOp[T]) GetOrders(ctx context.Context, params map[string]string) (*GetOrdersResponse, error) {
+func (s *OrderServiceOp[T]) GetOrders(ctx context.Context, opt GetOrdersRequest) (*GetOrdersResponse, error) {
 	path := "/orders/get"
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
