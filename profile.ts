@@ -1,4 +1,5 @@
 import { defineProfile, loadTemplate, defaultBuildEndpointStructs } from '@doclient/renderer-go';
+import type { StructGenerator } from '@doclient/renderer-go';
 import type { IREndpoint, IRParam } from '@doclient/cli';
 
 function param(name: string, type: string, shopeeType: string, children: IRParam[] = [], required = false): IRParam {
@@ -35,6 +36,25 @@ const getCategoryAttributesReq: IRParam[] = [
   param('language_code', 'string', 'string', [], true),
 ];
 
+const getReverseOrdersForSellerReq: IRParam[] = [
+  param('page_no', 'int64', 'int64', [], true),
+  param('page_size', 'int64', 'int64', [], true),
+  param('request_type_list', 'string[]', 'string[]', [], false),
+  param('ofc_status_list', 'string[]', 'string[]', [], false),
+  param('reverse_status_list', 'string[]', 'string[]', [], false),
+  param('reverse_order_id', 'int64', 'int64', [], false),
+  param('trade_order_id', 'int64', 'int64', [], false),
+  param('return_to_type', 'string', 'string', [], false),
+  param('dispute_in_progress', 'bool', 'boolean', [], false),
+  param('TradeOrderLineCreatedTimeRangeStart', 'int64', 'int64', [], false),
+  param('TradeOrderLineCreatedTimeRangeEnd', 'int64', 'int64', [], false),
+  param('ReverseOrderLineTimeRangeStart', 'int64', 'int64', [], false),
+  param('ReverseOrderLineTimeRangeEnd', 'int64', 'int64', [], false),
+  param('ReverseOrderLineModifiedTimeRangeStart', 'int64', 'int64', [], false),
+  param('ReverseOrderLineModifiedTimeRangeEnd', 'int64', 'int64', [], false),
+  param('QC_Decision', 'string', 'string', [], false),
+];
+
 const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRParam[] }> = {
   GetBrandByPages: { request: getBrandByPagesReq, response: [] },
   GetCategoryAttributes: { request: getCategoryAttributesReq, response: [] },
@@ -42,6 +62,7 @@ const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRPara
   UpdateProduct: { request: updateProductReq, response: [] },
   GetProducts: { request: getProductsReq, response: [] },
   GetProductItem: { request: getProductItemReq, response: [] },
+  GetReverseOrdersForSeller: { request: getReverseOrdersForSellerReq, response: [] },
 };
 
 const clientTpl = loadTemplate('./templates/client.go');
@@ -59,6 +80,52 @@ const profileConfig = {
   ],
   name: 'lazada' as const,
 };
+
+// The /reverse/getreverseordersforseller endpoint returns its payload under a
+// top-level "result" key, and the SDK's default GET method parses wrapper.Data
+// straight into &resp.Response. Build the response against the "result" wrapper
+// so a `Response` field is emitted, then wrap the generated payload struct in a
+// single `Result` field (json tag "result") so that unmarshal maps the key.
+// Lazada also encodes numerics as JSON strings, so relax those fields to the
+// string-tolerant Flex types.
+function buildReverseOrdersResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  defaultBuildEndpointStructs({ ...profileConfig, responseDataFieldName: 'result' } as any)(structGen, moduleName, ep);
+
+  const respDataName = structGen.getNameForChain(moduleName, ep.name, 'ResponseData');
+  const payload = structGen.allStructs.get(respDataName);
+  if (!payload) return;
+
+  const payloadName = respDataName + 'Result';
+  payload.name = payloadName;
+  structGen.allStructs.delete(respDataName);
+  structGen.allStructs.set(payloadName, payload);
+
+  structGen.allStructs.set(respDataName, {
+    name: respDataName,
+    fields: [
+      { name: 'Result', type: '*' + payloadName, jsonTag: 'result', urlTag: '', comment: 'Response data' },
+    ],
+    fileName: payload.fileName,
+  });
+
+  const setField = (s: any, name: string, type: string) => {
+    const f = s?.fields.find((x: any) => x.name === name);
+    if (f) f.type = type;
+  };
+  const childStruct = (parent: any, field: string): any => {
+    const f = parent?.fields.find((x: any) => x.name === field);
+    if (!f) return null;
+    const name = f.type.replace(/^(\[\]|\*)/, '');
+    return structGen.allStructs.get(name) ?? null;
+  };
+
+  setField(payload, 'Total', 'FlexInt');
+  setField(payload, 'PageSize', 'FlexInt');
+  setField(payload, 'Success', 'FlexString');
+
+  const product = childStruct(childStruct(childStruct(payload, 'Items'), 'ReverseOrderLines'), 'Product');
+  setField(product, 'ProductId', 'FlexInt');
+}
 
 export const lazadaProfile = defineProfile({
   ...profileConfig,
@@ -86,6 +153,13 @@ export const lazadaProfile = defineProfile({
       }
     };
     fixType(ep.responseParams);
+
+    // GetReverseOrdersForSeller returns its payload under a top-level "result"
+    // key and Lazada encodes numerics as JSON strings; see buildReverseOrdersResponse.
+    if (ep.name === 'GetReverseOrdersForSeller') {
+      buildReverseOrdersResponse(structGen, moduleName, ep);
+      return;
+    }
 
     defaultBuildEndpointStructs(profileConfig as any)(structGen, moduleName, ep);
   },

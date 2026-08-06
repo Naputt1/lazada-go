@@ -18,7 +18,7 @@ type ReturnAndRefundService interface {
 	GetReverseOrderReasonList(ctx context.Context) (*GetReverseOrderReasonListResponse, error)
 	// GetReverseOrdersForSeller Use this API to get the list of items for a range of reverse orders.
 	// Path: /reverse/getreverseordersforseller
-	GetReverseOrdersForSeller(ctx context.Context) (*GetReverseOrdersForSellerResponse, error)
+	GetReverseOrdersForSeller(ctx context.Context, opt GetReverseOrdersForSellerRequest) (*GetReverseOrdersForSellerResponse, error)
 	// InitReverseOrderCancel Seller initiates a cancelation
 	// Path: /order/reverse/cancel/create
 	InitReverseOrderCancel(ctx context.Context) (*InitReverseOrderCancelResponse, error)
@@ -105,14 +105,19 @@ func (s *ReturnAndRefundServiceOp[T]) GetReverseOrderReasonList(ctx context.Cont
 
 // GetReverseOrdersForSeller Use this API to get the list of items for a range of reverse orders.
 // Path: /reverse/getreverseordersforseller
-func (s *ReturnAndRefundServiceOp[T]) GetReverseOrdersForSeller(ctx context.Context) (*GetReverseOrdersForSellerResponse, error) {
+func (s *ReturnAndRefundServiceOp[T]) GetReverseOrdersForSeller(ctx context.Context, opt GetReverseOrdersForSellerRequest) (*GetReverseOrdersForSellerResponse, error) {
 	path := "/reverse/getreverseordersforseller"
-	var params map[string]string
+	params := paramsFromStruct(opt)
 	wrapper, err := s.client.Get(ctx, path, params)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(GetReverseOrdersForSellerResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
