@@ -108,9 +108,11 @@ function buildReverseOrdersResponse(structGen: StructGenerator, moduleName: stri
     fileName: payload.fileName,
   });
 
-  const setField = (s: any, name: string, type: string) => {
-    const f = s?.fields.find((x: any) => x.name === name);
-    if (f) f.type = type;
+  const flexFields = (s: any, overrides: Record<string, string>) => {
+    if (!s) return;
+    for (const f of s.fields) {
+      if (overrides[f.name]) f.type = overrides[f.name];
+    }
   };
   const childStruct = (parent: any, field: string): any => {
     const f = parent?.fields.find((x: any) => x.name === field);
@@ -119,12 +121,31 @@ function buildReverseOrdersResponse(structGen: StructGenerator, moduleName: stri
     return structGen.allStructs.get(name) ?? null;
   };
 
-  setField(payload, 'Total', 'FlexInt');
-  setField(payload, 'PageSize', 'FlexInt');
-  setField(payload, 'Success', 'FlexString');
+  // Lazada declares these response fields as Number/Boolean but returns them
+  // inconsistently as JSON strings or numbers depending on the payload. Relax
+  // every one of them to FlexString so parsing cannot fail.
+  flexFields(payload, { Total: 'FlexInt', Success: 'FlexString', PageNo: 'FlexString', PageSize: 'FlexInt' });
 
-  const product = childStruct(childStruct(childStruct(payload, 'Items'), 'ReverseOrderLines'), 'Product');
-  setField(product, 'ProductId', 'FlexInt');
+  const items = childStruct(payload, 'Items');
+  flexFields(items, { ReverseOrderId: 'FlexString', TradeOrderId: 'FlexString', IsRtm: 'FlexString' });
+
+  const lines = childStruct(items, 'ReverseOrderLines');
+  flexFields(lines, {
+    TradeOrderGmtCreate: 'FlexString',
+    RefundAmount: 'FlexString',
+    ReasonCode: 'FlexString',
+    ReturnOrderLineGmtCreate: 'FlexString',
+    ReturnOrderLineGmtModified: 'FlexString',
+    ItemUnitPrice: 'FlexString',
+    Sla: 'FlexString',
+    ReverseOrderLineId: 'FlexString',
+    TradeOrderLineId: 'FlexString',
+    IsDispute: 'FlexString',
+    IsNeedRefund: 'FlexString',
+  });
+
+  flexFields(childStruct(lines, 'Product'), { ProductId: 'FlexInt' });
+  flexFields(childStruct(lines, 'Buyer'), { BuyerId: 'FlexString' });
 }
 
 export const lazadaProfile = defineProfile({

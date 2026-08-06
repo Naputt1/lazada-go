@@ -59,16 +59,16 @@ type GetReverseOrdersForSellerResponseData struct {
 }
 type GetReverseOrdersForSellerResponseDataItems struct {
 	ReverseOrderLines []ReverseOrderLines `json:"reverse_order_lines"` // [Required]
-	ReverseOrderId    string              `json:"reverse_order_id"`    // [Required]
+	ReverseOrderId    FlexString          `json:"reverse_order_id"`    // [Required]
 	RequestType       string              `json:"request_type"`        // [Required]
-	IsRtm             string              `json:"is_rtm"`              // [Required]
+	IsRtm             FlexString          `json:"is_rtm"`              // [Required]
 	ShippingType      string              `json:"shipping_type"`       // [Required]
-	TradeOrderId      string              `json:"trade_order_id"`      // [Required]
+	TradeOrderId      FlexString          `json:"trade_order_id"`      // [Required]
 }
 type GetReverseOrdersForSellerResponseDataResult struct {
 	Total    FlexInt                                      `json:"total"`     // [Required]
 	Success  FlexString                                   `json:"success"`   // [Required]
-	PageNo   string                                       `json:"page_no"`   // [Required]
+	PageNo   FlexString                                   `json:"page_no"`   // [Required]
 	Items    []GetReverseOrdersForSellerResponseDataItems `json:"items"`     // [Required]
 	PageSize FlexInt                                      `json:"page_size"` // [Required]
 }
@@ -141,30 +141,30 @@ type ReverseOrderLineDTO struct {
 }
 type ReverseOrderLines struct {
 	Product                    *ReverseOrderLinesProduct `json:"product"`                        // [Required]
-	ReturnOrderLineGmtCreate   string                    `json:"return_order_line_gmt_create"`   // [Required]
+	ReturnOrderLineGmtCreate   FlexString                `json:"return_order_line_gmt_create"`   // [Required]
 	PlatformSkuId              string                    `json:"platform_sku_id"`                // [Required]
-	TradeOrderGmtCreate        string                    `json:"trade_order_gmt_create"`         // [Required]
-	IsNeedRefund               string                    `json:"is_need_refund"`                 // [Required]
+	TradeOrderGmtCreate        FlexString                `json:"trade_order_gmt_create"`         // [Required]
+	IsNeedRefund               FlexString                `json:"is_need_refund"`                 // [Required]
 	ReasonText                 string                    `json:"reason_text"`                    // [Required]
-	ItemUnitPrice              string                    `json:"item_unit_price"`                // [Required]
-	Sla                        string                    `json:"sla"`                            // [Required]
-	ReturnOrderLineGmtModified string                    `json:"return_order_line_gmt_modified"` // [Required]
-	TradeOrderLineId           string                    `json:"trade_order_line_id"`            // [Required]
+	ItemUnitPrice              FlexString                `json:"item_unit_price"`                // [Required]
+	Sla                        FlexString                `json:"sla"`                            // [Required]
+	ReturnOrderLineGmtModified FlexString                `json:"return_order_line_gmt_modified"` // [Required]
+	TradeOrderLineId           FlexString                `json:"trade_order_line_id"`            // [Required]
 	OfcStatus                  string                    `json:"ofc_status"`                     // [Required]
 	SellerSkuId                string                    `json:"seller_sku_id"`                  // [Required]
 	RefundPaymentMethod        string                    `json:"refund_payment_method"`          // [Required]
 	Buyer                      *ReverseOrderLinesBuyer   `json:"buyer"`                          // [Required]
-	ReasonCode                 string                    `json:"reason_code"`                    // [Required]
+	ReasonCode                 FlexString                `json:"reason_code"`                    // [Required]
 	WhqcDecision               string                    `json:"whqc_decision"`                  // [Required]
 	ReverseStatus              string                    `json:"reverse_status"`                 // [Required]
-	RefundAmount               string                    `json:"refund_amount"`                  // [Required]
+	RefundAmount               FlexString                `json:"refund_amount"`                  // [Required]
 	TrackingNumber             string                    `json:"tracking_number"`                // [Required]
 	ReceiverAddress            string                    `json:"receiver_address"`               // [Required]
-	IsDispute                  string                    `json:"is_dispute"`                     // [Required]
-	ReverseOrderLineId         string                    `json:"reverse_order_line_id"`          // [Required]
+	IsDispute                  FlexString                `json:"is_dispute"`                     // [Required]
+	ReverseOrderLineId         FlexString                `json:"reverse_order_line_id"`          // [Required]
 }
 type ReverseOrderLinesBuyer struct {
-	BuyerId string `json:"buyer_id"` // [Required]
+	BuyerId FlexString `json:"buyer_id"` // [Required]
 }
 type ReverseOrderLinesProduct struct {
 	ProductSku string  `json:"product_sku"` // [Required]

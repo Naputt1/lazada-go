@@ -125,7 +125,21 @@ func Test_ReturnAndRefund_GetReverseOrdersForSeller(t *testing.T) {
 	if err != nil {
 		t.Skipf("Skipping GetReverseOrdersForSeller due to missing fixture: %v", err)
 	}
+
+	// Lazada sends the numeric result fields as JSON strings in some payloads and
+	// as real numbers in others. Force them to numbers to reproduce the payload
+	// that previously broke decoding.
 	mockData, _ := json.Marshal(data)
+	var mockObj map[string]any
+	if err := json.Unmarshal(mockData, &mockObj); err != nil {
+		t.Fatalf("failed to decode fixture: %v", err)
+	}
+	result := mockObj["result"].(map[string]any)
+	result["page_no"] = float64(1)
+	result["page_size"] = float64(10)
+	result["total"] = float64(50)
+	result["success"] = true
+	mockData, _ = json.Marshal(mockObj)
 
 	var sawPageNo, sawPageSize string
 	httpmock.RegisterResponder(
