@@ -60,6 +60,20 @@ const getMultipleOrderItemsReq: IRParam[] = [
   param('order_ids', 'int64[]', 'int64[]', [], true),
 ];
 
+// /order/package/document/get (PrintAWB) wraps its whole request in a single
+// getDocumentReq object. The API doc nests the real fields under it, so model
+// it as an object param with children; paramsFromStruct then serializes the
+// value as the JSON body Lazada requires.
+const printAWBReq: IRParam[] = [
+  param('getDocumentReq', 'object', 'object', [
+    param('doc_type', 'string', 'string', [], true),
+    param('packages', 'object[]', 'object[]', [
+      param('package_id', 'string', 'string', [], true),
+    ], true),
+    param('print_item_list', 'bool', 'boolean', [], false),
+  ], true),
+];
+
 const getReverseOrdersForSellerReq: IRParam[] = [
   param('page_no', 'int64', 'int64', [], true),
   param('page_size', 'int64', 'int64', [], true),
@@ -89,6 +103,7 @@ const manualEndpointTypes: Record<string, { request: IRParam[]; response: IRPara
   GetOrders: { request: getOrdersReq, response: [] },
   GetOrderItems: { request: getOrderItemsReq, response: [] },
   GetMultipleOrderItems: { request: getMultipleOrderItemsReq, response: [] },
+  PrintAWB: { request: printAWBReq, response: [] },
   GetReverseOrdersForSeller: { request: getReverseOrdersForSellerReq, response: [] },
 };
 
@@ -207,6 +222,30 @@ function applyOrderItemsArrayResponse(structGen: StructGenerator, moduleName: st
   if (field) field.type = '[]' + dataName;
 }
 
+// PrintAWB (/order/package/document/get) returns its payload under a top-level
+// "result" key. The generated method only unmarshals the response when the
+// wrapper struct has a field named "Response", and wrapper.Data is the whole
+// body ({result:...}), so the Response field must parse that body. Restructure
+// like the reverse-orders endpoints: a PrintAWBResponseData wrapper with a
+// single Result field (json "result") that captures the payload.
+function applyPrintAWBResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
+  if (ep.name !== 'PrintAWB') return;
+  const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');
+  const resp = structGen.allStructs.get(respName);
+  if (!resp) return;
+  const field = resp.fields.find((f) => f.name === 'Result' || f.name === 'Response');
+  if (!field) return;
+  const payloadName = field.type.replace(/^\*/, '');
+  const wrapperName = respName + 'Data';
+  structGen.allStructs.set(wrapperName, {
+    name: wrapperName,
+    fields: [{ name: 'Result', type: '*' + payloadName, jsonTag: 'result', urlTag: '', comment: 'Response data' }],
+    fileName: resp.fileName,
+  });
+  field.name = 'Response';
+  field.type = wrapperName;
+}
+
 // Tolerances that depend on the generated struct shape rather than field types:
 // add the model_quantity_purchased field the API doc omits, and reuse the
 // billing address structs for the shipping address so duplicate structs are not
@@ -269,6 +308,7 @@ export const lazadaProfile = defineProfile({
     defaultBuildEndpointStructs(profileConfig as any)(structGen, moduleName, ep);
     applyStructTypeOverrides(structGen);
     applyOrderItemsArrayResponse(structGen, moduleName, ep);
+    applyPrintAWBResponse(structGen, moduleName, ep);
     applyOrderTuning(structGen);
   },
 

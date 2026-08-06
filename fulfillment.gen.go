@@ -2,6 +2,8 @@ package golazada
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 )
 
 type FulfillmentService interface {
@@ -29,7 +31,7 @@ type FulfillmentService interface {
 	PackageStatusUpdateForDBS(ctx context.Context) (*PackageStatusUpdateForDBSResponse, error)
 	// PrintAWB Use this API to retrieve order-related documents, only for shipping labels.
 	// Path: /order/package/document/get
-	PrintAWB(ctx context.Context) (*PrintAWBResponse, error)
+	PrintAWB(ctx context.Context, req PrintAWBRequest) (*PrintAWBResponse, error)
 	// ReadyToShip Use this API to mark an order item as being ready to ship.
 	// Path: /order/package/rts
 	ReadyToShip(ctx context.Context) (*ReadyToShipResponse, error)
@@ -164,14 +166,19 @@ func (s *FulfillmentServiceOp[T]) PackageStatusUpdateForDBS(ctx context.Context)
 
 // PrintAWB Use this API to retrieve order-related documents, only for shipping labels.
 // Path: /order/package/document/get
-func (s *FulfillmentServiceOp[T]) PrintAWB(ctx context.Context) (*PrintAWBResponse, error) {
+func (s *FulfillmentServiceOp[T]) PrintAWB(ctx context.Context, req PrintAWBRequest) (*PrintAWBResponse, error) {
 	path := "/order/package/document/get"
-	var params map[string]string
+	params := paramsFromStruct(req)
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(PrintAWBResponse)
+	if string(wrapper.Data) != "null" && len(wrapper.Data) > 0 {
+		if err := json.Unmarshal(wrapper.Data, &resp.Response); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+	}
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message

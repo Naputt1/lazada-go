@@ -34,6 +34,14 @@ type FailedDeliveryForDBSResponse struct {
 	BaseResponse                                         // Common response fields
 	Result       *ConfirmCollectForDBSResponseDataResult `json:"result,omitempty"` //
 }
+type GetDocumentReq struct {
+	DocType       string                   `json:"doc_type"`                  // [Required]
+	Packages      []GetDocumentReqPackages `json:"packages"`                  // [Required]
+	PrintItemList *bool                    `json:"print_item_list,omitempty"` // [Optional]
+}
+type GetDocumentReqPackages struct {
+	PackageId string `json:"package_id"` // [Required]
+}
 type GetShipmentProviderResponse struct {
 	BaseResponse                                        // Common response fields
 	Result       *GetShipmentProviderResponseDataResult `json:"result,omitempty"` //
@@ -99,9 +107,15 @@ type PackResponseDataResult struct {
 type PackResponseDataResultData struct {
 	PackOrderList []PackOrder `json:"pack_order_list"` // [Required]
 }
+type PrintAWBRequest struct {
+	GetDocumentReq *GetDocumentReq `json:"getDocumentReq"` // [Required]
+}
 type PrintAWBResponse struct {
-	BaseResponse                             // Common response fields
-	Result       *PrintAWBResponseDataResult `json:"result,omitempty"` //
+	BaseResponse                      // Common response fields
+	Response     PrintAWBResponseData `json:"result,omitempty"` //
+}
+type PrintAWBResponseData struct {
+	Result *PrintAWBResponseDataResult `json:"result"` // Response data
 }
 type PrintAWBResponseDataResult struct {
 	ErrorMsg  string                          `json:"error_msg"`  // [Required]

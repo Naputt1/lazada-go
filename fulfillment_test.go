@@ -260,35 +260,45 @@ func Test_Fulfillment_PrintAWB(t *testing.T) {
 	defer teardown()
 
 	serverURL := client.getServerURL()
-	fixture := "_order_package_document_get_resp.json"
-	data, err := loadFixtureSafe(fixture)
-	if err != nil {
-		t.Skipf("Skipping PrintAWB due to missing fixture: %v", err)
-	}
 
-	mockResp := map[string]interface{}{
-		"code": "0",
-		"data": data,
-	}
-	mockData, _ := json.Marshal(mockResp)
+	// Mirrors the real /order/package/document/get payload: a top-level
+	// "result" object with a base64-encoded file, a pdf_url and a doc_type.
+	mockBody := `{"result":{"success":true,"data":{"file":"PGlmcmFtZSBzcm","pdf_url":"http://www.test.com/xxx.pdf","doc_type":"PDF"}}}`
 
+	var gotDocumentReq string
 	httpmock.RegisterResponder(
 		"POST",
-		fmt.Sprintf("%s/order/package/document/get*", serverURL),
+		fmt.Sprintf("%s/order/package/document/get", serverURL),
 		func(req *http.Request) (*http.Response, error) {
-			resp := httpmock.NewStringResponse(200, string(mockData))
+			gotDocumentReq = req.FormValue("getDocumentReq")
+			resp := httpmock.NewStringResponse(200, mockBody)
 			resp.Header.Set("Content-Type", "application/json")
 			return resp, nil
 		},
 	)
 
 	ctx := context.Background()
-	res, err := client.Fulfillment.PrintAWB(ctx)
+	res, err := client.Fulfillment.PrintAWB(ctx, PrintAWBRequest{
+		GetDocumentReq: &GetDocumentReq{
+			DocType: "PDF",
+			Packages: []GetDocumentReqPackages{
+				{PackageId: "FP094613261252939"},
+			},
+		},
+	})
 	if err != nil {
-		t.Logf("Fulfillment.PrintAWB returned error (possibly expected with mock data): %s", err)
+		t.Fatalf("unexpected error: %v", err)
 	}
-
-	t.Logf("Fulfillment.PrintAWB response: %#v", res)
+	want := `{"doc_type":"PDF","packages":[{"package_id":"FP094613261252939"}]}`
+	if gotDocumentReq != want {
+		t.Fatalf("expected getDocumentReq=%s, got %q", want, gotDocumentReq)
+	}
+	if res.Response.Result == nil {
+		t.Fatalf("expected parsed response, got %#v", res)
+	}
+	if res.Response.Result.Data == nil || res.Response.Result.Data.PdfUrl != "http://www.test.com/xxx.pdf" || res.Response.Result.Data.DocType != "PDF" {
+		t.Fatalf("unexpected response data: %#v", res.Response.Result.Data)
+	}
 }
 func Test_Fulfillment_ReadyToShip(t *testing.T) {
 	setup()
