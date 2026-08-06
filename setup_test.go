@@ -32,14 +32,6 @@ func teardown() {
 	httpmock.DeactivateAndReset()
 }
 
-func loadFixture(path string) []byte {
-	data, err := os.ReadFile("fixtures/" + path)
-	if err != nil {
-		panic(err)
-	}
-	return data
-}
-
 func loadFixtureSafe(path string) (interface{}, error) {
 	f, err := os.Open("fixtures/" + path)
 	if err != nil {

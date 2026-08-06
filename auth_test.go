@@ -14,8 +14,16 @@ func TestAuthGetAccessToken(t *testing.T) {
 	client.Region = "AUTH"
 	serverURL := regionURLs["AUTH"]
 
-	httpmock.RegisterResponder("GET", serverURL+"/auth/token/create",
-		httpmock.NewBytesResponder(200, loadFixture("auth.token.create_resp.json")))
+	data, err := loadFixtureSafe("auth.token.create_resp.json")
+	if err != nil {
+		t.Fatalf("load fixture: %v", err)
+	}
+
+	responder, err := httpmock.NewJsonResponder(200, data)
+	if err != nil {
+		t.Fatalf("create responder: %v", err)
+	}
+	httpmock.RegisterResponder("GET", serverURL+"/auth/token/create", responder)
 
 	res, err := client.Auth.GetAccessToken(context.Background(), "test_code")
 	if err != nil {
@@ -34,8 +42,16 @@ func TestAuthRefreshAccessToken(t *testing.T) {
 	client.Region = "AUTH"
 	serverURL := regionURLs["AUTH"]
 
-	httpmock.RegisterResponder("GET", serverURL+"/auth/token/refresh",
-		httpmock.NewBytesResponder(200, loadFixture("auth.token.refresh_resp.json")))
+	data, err := loadFixtureSafe("auth.token.refresh_resp.json")
+	if err != nil {
+		t.Fatalf("load fixture: %v", err)
+	}
+
+	responder, err := httpmock.NewJsonResponder(200, data)
+	if err != nil {
+		t.Fatalf("create responder: %v", err)
+	}
+	httpmock.RegisterResponder("GET", serverURL+"/auth/token/refresh", responder)
 
 	res, err := client.Auth.RefreshAccessToken(context.Background(), "test_refresh_token")
 	if err != nil {
