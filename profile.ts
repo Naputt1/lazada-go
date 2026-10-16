@@ -176,13 +176,9 @@ const profileConfig = {
   name: 'lazada' as const,
 };
 
-// The /reverse/getreverseordersforseller endpoint returns its payload under a
-// top-level "result" key, and the SDK's default GET method parses wrapper.Data
-// straight into &resp.Response. Build the response against the "result" wrapper
-// so a `Response` field is emitted, then wrap the generated payload struct in a
-// single `Result` field (json tag "result") so that unmarshal maps the key.
-// Lazada also encodes numerics as JSON strings, so relax those fields to the
-// string-tolerant Flex types.
+// The reverse-orders endpoint returns its payload under a top-level "result" key, but the
+// default GET method parses wrapper.Data straight into &resp.Response. Build the response
+// against the "result" wrapper and relax numeric fields to string-tolerant Flex types.
 function buildReverseOrdersResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
   defaultBuildEndpointStructs({ ...profileConfig, responseDataFieldName: 'result' } as any)(structGen, moduleName, ep);
 
@@ -275,12 +271,9 @@ function applyOrderItemsArrayResponse(structGen: StructGenerator, moduleName: st
   if (field) field.type = '[]' + dataName;
 }
 
-// PrintAWB (/order/package/document/get) returns its payload under a top-level
-// "result" key. The generated method only unmarshals the response when the
-// wrapper struct has a field named "Response", and wrapper.Data is the whole
-// body ({result:...}), so the Response field must parse that body. Restructure
-// like the reverse-orders endpoints: a PrintAWBResponseData wrapper with a
-// single Result field (json "result") that captures the payload.
+// PrintAWB returns its payload under a top-level "result" key and the generated method only
+// unmarshals when the wrapper struct has a Response field. Restructure like the reverse-orders
+// endpoints: a wrapper with a single Result field (json "result").
 function applyPrintAWBResponse(structGen: StructGenerator, moduleName: string, ep: IREndpoint): void {
   if (ep.name !== 'PrintAWB') return;
   const respName = structGen.getNameForChain(moduleName, ep.name, 'Response');

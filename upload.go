@@ -6,11 +6,9 @@ import (
 	"fmt"
 )
 
-// UploadImageBytes uploads a single image from raw bytes to the Lazada site.
-// Unlike the generated UploadImage method (which streams an io.Reader), this
-// takes an in-memory []byte so callers can upload data they already hold.
-// Declared here as a package function (not on the ProductService interface) so
-// it survives regeneration of the generated files.
+// UploadImageBytes uploads an image from raw bytes. Unlike the generated UploadImage
+// (io.Reader), it takes an in-memory []byte. Declared here as a package function so it
+// survives regeneration of the generated files.
 func UploadImageBytes[T any](ctx context.Context, client *Client[T], filename string, data []byte) (*UploadImageResponse, error) {
 	path := "/image/upload"
 	wrapper, err := client.Post(ctx, path, nil, map[string][]byte{filename: data})
