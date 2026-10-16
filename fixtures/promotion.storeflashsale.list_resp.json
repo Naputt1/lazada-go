@@ -1,0 +1,28 @@
+{
+  "error_msg": "null",
+  "code": "0",
+  "data": {
+    "data_list": [
+      {
+        "period_start_time": "2026-05-13 01:00:00",
+        "period_end_time": "2026-05-13 02:00:00",
+        "id": "91472079869907",
+        "sku_model_list": [
+          {
+            "item_id": "13717278058",
+            "price": "4.00",
+            "sku_id": "124649796084",
+            "sku_quantity": "6"
+          }
+        ],
+        "status": "FINISH"
+      }
+    ],
+    "total": "165",
+    "current": "1",
+    "page_size": "1"
+  },
+  "success": "true",
+  "error_code": "null",
+  "request_id": "0ba2887315178178017221014"
+}

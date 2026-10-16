@@ -90,6 +90,7 @@ type Client[T any] struct {
 	ServiceMarket              ServiceMarketService
 	SponsoredSolutions         SponsoredSolutionsService
 	StoreDecoration            StoreDecorationService
+	StoreFlashSale             StoreFlashSaleService
 	System                     SystemService
 }
 
@@ -136,6 +137,7 @@ func NewClient[T any](app App, opts ...Option[T]) *Client[T] {
 	c.ServiceMarket = &ServiceMarketServiceOp[T]{client: c}
 	c.SponsoredSolutions = &SponsoredSolutionsServiceOp[T]{client: c}
 	c.StoreDecoration = &StoreDecorationServiceOp[T]{client: c}
+	c.StoreFlashSale = &StoreFlashSaleServiceOp[T]{client: c}
 	c.System = &SystemServiceOp[T]{client: c}
 	for _, opt := range opts {
 		opt(c)

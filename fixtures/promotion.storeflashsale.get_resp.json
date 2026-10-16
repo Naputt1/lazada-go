@@ -1,0 +1,21 @@
+{
+  "error_msg": "\"E023: Store Flash Sale not found\"",
+  "code": "0",
+  "data": {
+    "period_start_time": "2026-03-30 22:00:00",
+    "period_end_time": "2026-03-31 22:00:00",
+    "id": "900000515202001",
+    "sku_model_list": [
+      {
+        "item_id": "3223958015",
+        "price": "9000.00",
+        "sku_id": "15467018015",
+        "sku_quantity": "3"
+      }
+    ],
+    "status": "FINISH"
+  },
+  "success": "true",
+  "error_code": "23",
+  "request_id": "0ba2887315178178017221014"
+}
