@@ -10,6 +10,41 @@ import (
 	"github.com/jarcoal/httpmock"
 )
 
+func Test_SponsoredSolutions_AdAlgoSellerBaseInfo(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_adAlgoSellerBaseInfo_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping AdAlgoSellerBaseInfo due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/adAlgoSellerBaseInfo*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.AdAlgoSellerBaseInfo(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.AdAlgoSellerBaseInfo returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.AdAlgoSellerBaseInfo response: %#v", res)
+}
 func Test_SponsoredSolutions_AddAdgroupBatch(t *testing.T) {
 	setup()
 	defer teardown()
@@ -44,6 +79,41 @@ func Test_SponsoredSolutions_AddAdgroupBatch(t *testing.T) {
 	}
 
 	t.Logf("SponsoredSolutions.AddAdgroupBatch response: %#v", res)
+}
+func Test_SponsoredSolutions_AddSMaxAASolution(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_addSMaxAASolution_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping AddSMaxAASolution due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/addSMaxAASolution*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.AddSMaxAASolution(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.AddSMaxAASolution returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.AddSMaxAASolution response: %#v", res)
 }
 func Test_SponsoredSolutions_AddSolution(t *testing.T) {
 	setup()
@@ -254,6 +324,41 @@ func Test_SponsoredSolutions_GetAutoTopUpOptionOneConfig(t *testing.T) {
 	}
 
 	t.Logf("SponsoredSolutions.GetAutoTopUpOptionOneConfig response: %#v", res)
+}
+func Test_SponsoredSolutions_GetBlackItemDetail(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_getBlackItemDetail_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping GetBlackItemDetail due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/getBlackItemDetail*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.GetBlackItemDetail(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.GetBlackItemDetail returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.GetBlackItemDetail response: %#v", res)
 }
 func Test_SponsoredSolutions_GetCampaign(t *testing.T) {
 	setup()
@@ -540,10 +645,45 @@ func Test_SponsoredSolutions_GetReportOverview(t *testing.T) {
 	defer teardown()
 
 	serverURL := client.getServerURL()
-	fixture := "_sponsor_solutions_report_getReportOverview_resp.json"
+	fixture := "_sponsor_solution_smax_report_getReportOverview_resp.json"
 	data, err := loadFixtureSafe(fixture)
 	if err != nil {
 		t.Skipf("Skipping GetReportOverview due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/report/getReportOverview*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.GetReportOverview(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.GetReportOverview returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.GetReportOverview response: %#v", res)
+}
+func Test_SponsoredSolutions_GetReportOverview1(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solutions_report_getReportOverview_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping GetReportOverview1 due to missing fixture: %v", err)
 	}
 
 	mockResp := map[string]interface{}{
@@ -563,14 +703,49 @@ func Test_SponsoredSolutions_GetReportOverview(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.SponsoredSolutions.GetReportOverview(ctx)
+	res, err := client.SponsoredSolutions.GetReportOverview1(ctx)
 	if err != nil {
-		t.Logf("SponsoredSolutions.GetReportOverview returned error (possibly expected with mock data): %s", err)
+		t.Logf("SponsoredSolutions.GetReportOverview1 returned error (possibly expected with mock data): %s", err)
 	}
 
-	t.Logf("SponsoredSolutions.GetReportOverview response: %#v", res)
+	t.Logf("SponsoredSolutions.GetReportOverview1 response: %#v", res)
 }
 func Test_SponsoredSolutions_GetReportOverviewMetric(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_report_getReportOverviewMetric_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping GetReportOverviewMetric due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/report/getReportOverviewMetric*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.GetReportOverviewMetric(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.GetReportOverviewMetric returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.GetReportOverviewMetric response: %#v", res)
+}
+func Test_SponsoredSolutions_GetReportOverviewMetric1(t *testing.T) {
 	setup()
 	defer teardown()
 
@@ -578,7 +753,7 @@ func Test_SponsoredSolutions_GetReportOverviewMetric(t *testing.T) {
 	fixture := "_sponsor_solutions_report_getReportOverviewMetric_resp.json"
 	data, err := loadFixtureSafe(fixture)
 	if err != nil {
-		t.Skipf("Skipping GetReportOverviewMetric due to missing fixture: %v", err)
+		t.Skipf("Skipping GetReportOverviewMetric1 due to missing fixture: %v", err)
 	}
 
 	mockResp := map[string]interface{}{
@@ -598,12 +773,12 @@ func Test_SponsoredSolutions_GetReportOverviewMetric(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	res, err := client.SponsoredSolutions.GetReportOverviewMetric(ctx)
+	res, err := client.SponsoredSolutions.GetReportOverviewMetric1(ctx)
 	if err != nil {
-		t.Logf("SponsoredSolutions.GetReportOverviewMetric returned error (possibly expected with mock data): %s", err)
+		t.Logf("SponsoredSolutions.GetReportOverviewMetric1 returned error (possibly expected with mock data): %s", err)
 	}
 
-	t.Logf("SponsoredSolutions.GetReportOverviewMetric response: %#v", res)
+	t.Logf("SponsoredSolutions.GetReportOverviewMetric1 response: %#v", res)
 }
 func Test_SponsoredSolutions_ListCategory(t *testing.T) {
 	setup()
@@ -885,6 +1060,41 @@ func Test_SponsoredSolutions_SearchProductWithPage(t *testing.T) {
 
 	t.Logf("SponsoredSolutions.SearchProductWithPage response: %#v", res)
 }
+func Test_SponsoredSolutions_SearchSmaxCampaign(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_searchSmaxCampaign_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping SearchSmaxCampaign due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/searchSmaxCampaign*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.SearchSmaxCampaign(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.SearchSmaxCampaign returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.SearchSmaxCampaign response: %#v", res)
+}
 func Test_SponsoredSolutions_Sign(t *testing.T) {
 	setup()
 	defer teardown()
@@ -919,6 +1129,41 @@ func Test_SponsoredSolutions_Sign(t *testing.T) {
 	}
 
 	t.Logf("SponsoredSolutions.Sign response: %#v", res)
+}
+func Test_SponsoredSolutions_SmaxAaGmvPrediction(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_smaxAaGmvPrediction_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping SmaxAaGmvPrediction due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/smaxAaGmvPrediction*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.SmaxAaGmvPrediction(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.SmaxAaGmvPrediction returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.SmaxAaGmvPrediction response: %#v", res)
 }
 func Test_SponsoredSolutions_UpdateAdgroupBatch(t *testing.T) {
 	setup()
@@ -989,4 +1234,109 @@ func Test_SponsoredSolutions_UpdateCampaign(t *testing.T) {
 	}
 
 	t.Logf("SponsoredSolutions.UpdateCampaign response: %#v", res)
+}
+func Test_SponsoredSolutions_UpdateItemBlackList(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_updateItemBlackList_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping UpdateItemBlackList due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/updateItemBlackList*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.UpdateItemBlackList(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.UpdateItemBlackList returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.UpdateItemBlackList response: %#v", res)
+}
+func Test_SponsoredSolutions_UpdateSmaxCampaign(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_updateSmaxCampaign_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping UpdateSmaxCampaign due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/updateSmaxCampaign*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.UpdateSmaxCampaign(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.UpdateSmaxCampaign returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.UpdateSmaxCampaign response: %#v", res)
+}
+func Test_SponsoredSolutions_UpdateSmaxStatusWithoutAd(t *testing.T) {
+	setup()
+	defer teardown()
+
+	serverURL := client.getServerURL()
+	fixture := "_sponsor_solution_smax_updateSmaxStatusWithoutAd_resp.json"
+	data, err := loadFixtureSafe(fixture)
+	if err != nil {
+		t.Skipf("Skipping UpdateSmaxStatusWithoutAd due to missing fixture: %v", err)
+	}
+
+	mockResp := map[string]interface{}{
+		"code": "0",
+		"data": data,
+	}
+	mockData, _ := json.Marshal(mockResp)
+
+	httpmock.RegisterResponder(
+		"POST",
+		fmt.Sprintf("%s/sponsor/solution/smax/updateSmaxStatusWithoutAd*", serverURL),
+		func(req *http.Request) (*http.Response, error) {
+			resp := httpmock.NewStringResponse(200, string(mockData))
+			resp.Header.Set("Content-Type", "application/json")
+			return resp, nil
+		},
+	)
+
+	ctx := context.Background()
+	res, err := client.SponsoredSolutions.UpdateSmaxStatusWithoutAd(ctx)
+	if err != nil {
+		t.Logf("SponsoredSolutions.UpdateSmaxStatusWithoutAd returned error (possibly expected with mock data): %s", err)
+	}
+
+	t.Logf("SponsoredSolutions.UpdateSmaxStatusWithoutAd response: %#v", res)
 }

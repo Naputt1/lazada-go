@@ -1,0 +1,37 @@
+{
+  "result": [
+    {
+      "smaxAaColdStartStatus": "FINISHED",
+      "campaignObjective": "1",
+      "campaignType": "1",
+      "endDate": "2026-11-15",
+      "campaignId": "101100021686346",
+      "biddingType": "troi",
+      "onlineStatus": "1",
+      "switchStatus": "1",
+      "version": "1",
+      "platform": [
+        1,
+        2
+      ],
+      "budgetUsedAmount": "35.20",
+      "campaignModel": "1",
+      "maxBid": "0.62",
+      "sceneId": "0",
+      "clicks": "107",
+      "autoCreative": "1",
+      "budgetViewDTO": {},
+      "campaignName": "MyCampaign",
+      "startDate": "2026-10-15",
+      "totalCost": "35.20",
+      "budget": "100.00"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "0b1c2d3e",
+  "errorCode": "null",
+  "totalCount": "17",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "null"
+}

@@ -1,0 +1,20 @@
+{
+  "result": [
+    {
+      "itemId": "123456",
+      "itemName": "Test Item",
+      "quantity": "20",
+      "picTextDTO": {},
+      "campaignId": "101100021686346",
+      "unitsSold": "18",
+      "imageUrl": "https://...",
+      "pdpLink": "https://...",
+      "retailPrice": "10.99"
+    }
+  ],
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "0b1c2d3e",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "INTERNAL_ERROR"
+}

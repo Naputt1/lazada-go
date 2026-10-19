@@ -1,0 +1,20 @@
+{
+  "result": {
+    "predictedGmv": "650.00",
+    "defaultPredictGmv": "600.00",
+    "suggestedSugMaxRoi": "4.2",
+    "troiList": [
+      {}
+    ],
+    "biddingType": "troi",
+    "defaultBudget": "100.00",
+    "source": "SMAX",
+    "sugMinBudget": "80.00",
+    "budget": "100.00"
+  },
+  "code": "0",
+  "success": "true",
+  "analyseTraceId": "0b1c2d3e",
+  "request_id": "0ba2887315178178017221014",
+  "errorMsg": "INTERNAL_ERROR"
+}

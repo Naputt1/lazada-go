@@ -1,10 +1,35 @@
 package golazada
 
+type AdAlgoSellerBaseInfoResponse struct {
+	BaseResponse                                           // Common response fields
+	AnalyseTraceId string                                  `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                  `json:"errorMsg,omitempty"`       //
+	Result         *AdAlgoSellerBaseInfoResponseDataResult `json:"result,omitempty"`         //
+}
+type AdAlgoSellerBaseInfoResponseDataResult struct {
+	AvgClicksPerOrder string `json:"avgClicksPerOrder"` // [Required]
+	SellerId          string `json:"sellerId"`          // [Required]
+	SmaxSugMaxCpc     string `json:"smaxSugMaxCpc"`     // [Required]
+	PrefilledMaxCpc   string `json:"prefilledMaxCpc"`   // [Required]
+	SugBiddingType    string `json:"sugBiddingType"`    // [Required]
+	Venture           string `json:"venture"`           // [Required]
+	MsaSugMaxCpc      string `json:"msaSugMaxCpc"`      // [Required]
+}
 type AddAdgroupBatchResponse struct {
 	BaseResponse          // Common response fields
 	AnalyseTraceId string `json:"analyseTraceId,omitempty"` //
 	ErrorMsg       string `json:"errorMsg,omitempty"`       //
 	Result         string `json:"result,omitempty"`         //
+}
+type AddSMaxAASolutionResponse struct {
+	BaseResponse                                        // Common response fields
+	AnalyseTraceId string                               `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                               `json:"errorMsg,omitempty"`       //
+	Result         *AddSMaxAASolutionResponseDataResult `json:"result,omitempty"`         //
+}
+type AddSMaxAASolutionResponseDataResult struct {
+	AdgroupAndCreativeMap interface{} `json:"adgroupAndCreativeMap"` // [Required]
+	CampaignId            string      `json:"campaignId"`            // [Required]
 }
 type AddSolutionResponse struct {
 	BaseResponse               // Common response fields
@@ -48,6 +73,23 @@ type GetAutoTopUpOptionOneConfigResponseDataResult struct {
 	LimitAmount string `json:"limitAmount"` // [Required]
 	TopUpAmount string `json:"topUpAmount"` // [Required]
 	Status      string `json:"status"`      // [Required]
+}
+type GetBlackItemDetailResponse struct {
+	BaseResponse                                          // Common response fields
+	AnalyseTraceId string                                 `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                 `json:"errorMsg,omitempty"`       //
+	Result         []GetBlackItemDetailResponseDataResult `json:"result,omitempty"`         //
+}
+type GetBlackItemDetailResponseDataResult struct {
+	ItemId      string      `json:"itemId"`      // [Required]
+	ItemName    string      `json:"itemName"`    // [Required]
+	Quantity    string      `json:"quantity"`    // [Required]
+	PicTextDTO  interface{} `json:"picTextDTO"`  // [Required]
+	CampaignId  string      `json:"campaignId"`  // [Required]
+	UnitsSold   string      `json:"unitsSold"`   // [Required]
+	ImageUrl    string      `json:"imageUrl"`    // [Required]
+	PdpLink     string      `json:"pdpLink"`     // [Required]
+	RetailPrice string      `json:"retailPrice"` // [Required]
 }
 type GetCampaignCountResponse struct {
 	BaseResponse          // Common response fields
@@ -239,6 +281,18 @@ type GetReportCampaignOnFIrstSlotResponseDataResultResult struct {
 	ProductType       string `json:"productType"`       // [Required]
 	DayBudget         string `json:"dayBudget"`         // [Required]
 	ProductA2c        string `json:"productA2c"`        // [Required]
+}
+type GetReportOverview1Response struct {
+	BaseResponse                                        // Common response fields
+	AnalyseTraceId string                               `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                               `json:"errorMsg,omitempty"`       //
+	Result         *GetReportOverviewResponseDataResult `json:"result,omitempty"`         //
+}
+type GetReportOverviewMetric1Response struct {
+	BaseResponse                                              // Common response fields
+	AnalyseTraceId string                                     `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                     `json:"errorMsg,omitempty"`       //
+	Result         *GetReportOverviewMetricResponseDataResult `json:"result,omitempty"`         //
 }
 type GetReportOverviewMetricResponse struct {
 	BaseResponse                                              // Common response fields
@@ -464,11 +518,59 @@ type SearchProductWithPageResponseDataResult struct {
 	CategoryId         string   `json:"categoryId"`         // [Required]
 	Cvr                string   `json:"cvr"`                // [Required]
 }
+type SearchSmaxCampaignResponse struct {
+	BaseResponse                                          // Common response fields
+	AnalyseTraceId string                                 `json:"analyseTraceId,omitempty"` //
+	ErrorCode      string                                 `json:"errorCode,omitempty"`      //
+	ErrorMsg       string                                 `json:"errorMsg,omitempty"`       //
+	Result         []SearchSmaxCampaignResponseDataResult `json:"result,omitempty"`         //
+	TotalCount     string                                 `json:"totalCount,omitempty"`     //
+}
+type SearchSmaxCampaignResponseDataResult struct {
+	SmaxAaColdStartStatus string      `json:"smaxAaColdStartStatus"` // [Required]
+	CampaignObjective     string      `json:"campaignObjective"`     // [Required]
+	CampaignType          string      `json:"campaignType"`          // [Required]
+	EndDate               string      `json:"endDate"`               // [Required]
+	CampaignId            string      `json:"campaignId"`            // [Required]
+	BiddingType           string      `json:"biddingType"`           // [Required]
+	OnlineStatus          string      `json:"onlineStatus"`          // [Required]
+	SwitchStatus          string      `json:"switchStatus"`          // [Required]
+	Version               string      `json:"version"`               // [Required]
+	Platform              []string    `json:"platform"`              // [Required]
+	BudgetUsedAmount      string      `json:"budgetUsedAmount"`      // [Required]
+	CampaignModel         string      `json:"campaignModel"`         // [Required]
+	MaxBid                string      `json:"maxBid"`                // [Required]
+	SceneId               string      `json:"sceneId"`               // [Required]
+	Clicks                string      `json:"clicks"`                // [Required]
+	AutoCreative          string      `json:"autoCreative"`          // [Required]
+	BudgetViewDTO         interface{} `json:"budgetViewDTO"`         // [Required]
+	CampaignName          string      `json:"campaignName"`          // [Required]
+	StartDate             string      `json:"startDate"`             // [Required]
+	TotalCost             string      `json:"totalCost"`             // [Required]
+	Budget                string      `json:"budget"`                // [Required]
+}
 type SignResponse struct {
 	BaseResponse               // Common response fields
 	AnalyseTraceId string      `json:"analyseTraceId,omitempty"` //
 	ErrorMsg       string      `json:"errorMsg,omitempty"`       //
 	Result         interface{} `json:"result,omitempty"`         //
+}
+type SmaxAaGmvPredictionResponse struct {
+	BaseResponse                                          // Common response fields
+	AnalyseTraceId string                                 `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                 `json:"errorMsg,omitempty"`       //
+	Result         *SmaxAaGmvPredictionResponseDataResult `json:"result,omitempty"`         //
+}
+type SmaxAaGmvPredictionResponseDataResult struct {
+	PredictedGmv       string        `json:"predictedGmv"`       // [Required]
+	DefaultPredictGmv  string        `json:"defaultPredictGmv"`  // [Required]
+	SuggestedSugMaxRoi string        `json:"suggestedSugMaxRoi"` // [Required]
+	TroiList           []interface{} `json:"troiList"`           // [Required]
+	BiddingType        string        `json:"biddingType"`        // [Required]
+	DefaultBudget      string        `json:"defaultBudget"`      // [Required]
+	Source             string        `json:"source"`             // [Required]
+	SugMinBudget       string        `json:"sugMinBudget"`       // [Required]
+	Budget             string        `json:"budget"`             // [Required]
 }
 type UpdateAdgroupBatchResponse struct {
 	BaseResponse          // Common response fields
@@ -481,4 +583,22 @@ type UpdateCampaignResponse struct {
 	AnalyseTraceId string      `json:"analyseTraceId,omitempty"` //
 	ErrorMsg       string      `json:"errorMsg,omitempty"`       //
 	Result         interface{} `json:"result,omitempty"`         //
+}
+type UpdateItemBlackListResponse struct {
+	BaseResponse          // Common response fields
+	AnalyseTraceId string `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string `json:"errorMsg,omitempty"`       //
+	Result         string `json:"result,omitempty"`         //
+}
+type UpdateSmaxCampaignResponse struct {
+	BaseResponse                                         // Common response fields
+	AnalyseTraceId string                                `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                `json:"errorMsg,omitempty"`       //
+	Result         *SearchSmaxCampaignResponseDataResult `json:"result,omitempty"`         //
+}
+type UpdateSmaxStatusWithoutAdResponse struct {
+	BaseResponse          // Common response fields
+	AnalyseTraceId string `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string `json:"errorMsg,omitempty"`       //
+	Result         string `json:"result,omitempty"`         //
 }

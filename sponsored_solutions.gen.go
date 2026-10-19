@@ -5,9 +5,15 @@ import (
 )
 
 type SponsoredSolutionsService interface {
+	// AdAlgoSellerBaseInfo Get seller algo base info for SMAX (suggested bidding type, prefilled/suggested max CPC, average clicks per order). venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/adAlgoSellerBaseInfo
+	AdAlgoSellerBaseInfo(ctx context.Context) (*AdAlgoSellerBaseInfoResponse, error)
 	// AddAdgroupBatch Do add adgroup for one campaign.
 	// Path: /sponsor/solutions/adgroup/addAdgroupBatch
 	AddAdgroupBatch(ctx context.Context) (*AddAdgroupBatchResponse, error)
+	// AddSMaxAASolution Create an SMAX AA solution. Bidding modes: bcb (Budget-based, requires budget), mcb (Max CPC-based, requires positive maxBid), troi (Target ROI, requires userProperties key _iop_roas, e.g. {"_iop_roas":"4"}). Campaign model/type/objective/platform are set by the platform; defaults apply when optional fields are empty (startDate=today, endDate=no end date, autoCreative=ON).
+	// Path: /sponsor/solution/smax/addSMaxAASolution
+	AddSMaxAASolution(ctx context.Context) (*AddSMaxAASolutionResponse, error)
 	// AddSolution Add sponsor solution
 	// Path: /sponsor/solutions/addSolution
 	AddSolution(ctx context.Context) (*AddSolutionResponse, error)
@@ -26,6 +32,9 @@ type SponsoredSolutionsService interface {
 	// GetAutoTopUpOptionOneConfig Get auto top up option one config.
 	// Path: /sponsor/solutions/wallet/getAutoTopUpOptionOneConfig
 	GetAutoTopUpOptionOneConfig(ctx context.Context) (*GetAutoTopUpOptionOneConfigResponse, error)
+	// GetBlackItemDetail Get the item black list detail of an SMAX AA campaign by campaignId. venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/getBlackItemDetail
+	GetBlackItemDetail(ctx context.Context) (*GetBlackItemDetailResponse, error)
 	// GetCampaign Get campaign list with bizCode by seller.
 	// Path: /sponsor/solutions/campaign/getCampaign
 	GetCampaign(ctx context.Context) (*GetCampaignResponse, error)
@@ -50,12 +59,18 @@ type SponsoredSolutionsService interface {
 	// GetReportCampaignOnFIrstSlot Get sponsored discovery report campaign first slot
 	// Path: /sponsor/solutions/report/getReportCampaignOnPrePlacement
 	GetReportCampaignOnFIrstSlot(ctx context.Context) (*GetReportCampaignOnFIrstSlotResponse, error)
-	// GetReportOverview Get report overview.
-	// Path: /sponsor/solutions/report/getReportOverview
+	// GetReportOverview Get SMAX report overview (Sponsored Max). Returns current and last-period summary metrics (spend, impressions, clicks, CTR, revenue, ROI, etc.). Date range and useRtTable are passed through to the report service; venture/sellerId are injected by the gateway.
+	// Path: /sponsor/solution/smax/report/getReportOverview
 	GetReportOverview(ctx context.Context) (*GetReportOverviewResponse, error)
-	// GetReportOverviewMetric get report overview metric
-	// Path: /sponsor/solutions/report/getReportOverviewMetric
+	// GetReportOverview1 Get report overview.
+	// Path: /sponsor/solutions/report/getReportOverview
+	GetReportOverview1(ctx context.Context) (*GetReportOverview1Response, error)
+	// GetReportOverviewMetric Get SMAX report overview metric time series (Sponsored Max). Returns timeline (dateList/hourList) and metric values for the requested metricType (1-11: spend, impressions, clicks, ctr, units sold, revenue, cpc, roi, store order, store a2c, product order). Date range and useRtTable are passed through; venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/report/getReportOverviewMetric
 	GetReportOverviewMetric(ctx context.Context) (*GetReportOverviewMetricResponse, error)
+	// GetReportOverviewMetric1 get report overview metric
+	// Path: /sponsor/solutions/report/getReportOverviewMetric
+	GetReportOverviewMetric1(ctx context.Context) (*GetReportOverviewMetric1Response, error)
 	// ListCategory list category
 	// Path: /sponsor/solutions/category/listCategory
 	ListCategory(ctx context.Context) (*ListCategoryResponse, error)
@@ -81,20 +96,52 @@ type SponsoredSolutionsService interface {
 	// SearchProductWithPage Search product.
 	// Path: /sponsor/solutions/product/searchProductWithPage
 	SearchProductWithPage(ctx context.Context) (*SearchProductWithPageResponse, error)
+	// SearchSmaxCampaign Search SMAX campaigns. By default returns campaigns of both SMAX and SMAX AA scenes; pass sceneId (12021 for SMAX AA) to narrow to a single scene. venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/searchSmaxCampaign
+	SearchSmaxCampaign(ctx context.Context) (*SearchSmaxCampaignResponse, error)
 	// Sign Description: Do sign for seller. Seller or agencies can use this api to sign up the t&c.
 	// Timeout Period： the api timeout is 10s, max qps is 300, make sure do not over these num, especially qps, otherwise you may be blacklisted or limited request count for a while.
 	// Path: /sponsor/solutions/account/sign
 	Sign(ctx context.Context) (*SignResponse, error)
+	// SmaxAaGmvPrediction Predict GMV for an SMAX configuration. Provide biddingType (bcb/mcb/troi), budget and mode-specific fields (smaxMaxCpc for mcb, troi for troi); returns predicted GMV, suggested min budget and the Troi-GMV curve. venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/smaxAaGmvPrediction
+	SmaxAaGmvPrediction(ctx context.Context) (*SmaxAaGmvPredictionResponse, error)
 	// UpdateAdgroupBatch Update adgroup batch.
 	// Path: /sponsor/solutions/adgroup/updateAdgroupBatch
 	UpdateAdgroupBatch(ctx context.Context) (*UpdateAdgroupBatchResponse, error)
 	// UpdateCampaign Update campaign with status field.
 	// Path: /sponsor/solutions/campaign/updateCampaign
 	UpdateCampaign(ctx context.Context) (*UpdateCampaignResponse, error)
+	// UpdateItemBlackList Overwrite the item black list of an SMAX AA campaign. Provide campaignViewDTO with campaignId and itemBlackList (the full list replaces existing entries). venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/updateItemBlackList
+	UpdateItemBlackList(ctx context.Context) (*UpdateItemBlackListResponse, error)
+	// UpdateSmaxCampaign Update an SMAX campaign. When biddingType is provided: troi requires userProperties key _iop_roas, mcb requires positive maxBid, other modes reset maxBid to unlimit. venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/updateSmaxCampaign
+	UpdateSmaxCampaign(ctx context.Context) (*UpdateSmaxCampaignResponse, error)
+	// UpdateSmaxStatusWithoutAd Enable or pause an SMAX AA campaign without touching its ads. Only campaignId and switchStatus are needed; the switch status also updates the campaign online status. venture/sellerId injected by the gateway.
+	// Path: /sponsor/solution/smax/updateSmaxStatusWithoutAd
+	UpdateSmaxStatusWithoutAd(ctx context.Context) (*UpdateSmaxStatusWithoutAdResponse, error)
 }
 
 type SponsoredSolutionsServiceOp[T any] struct {
 	client *Client[T]
+}
+
+// AdAlgoSellerBaseInfo Get seller algo base info for SMAX (suggested bidding type, prefilled/suggested max CPC, average clicks per order). venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/adAlgoSellerBaseInfo
+func (s *SponsoredSolutionsServiceOp[T]) AdAlgoSellerBaseInfo(ctx context.Context) (*AdAlgoSellerBaseInfoResponse, error) {
+	path := "/sponsor/solution/smax/adAlgoSellerBaseInfo"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(AdAlgoSellerBaseInfoResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
 }
 
 // AddAdgroupBatch Do add adgroup for one campaign.
@@ -107,6 +154,23 @@ func (s *SponsoredSolutionsServiceOp[T]) AddAdgroupBatch(ctx context.Context) (*
 		return nil, err
 	}
 	resp := new(AddAdgroupBatchResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// AddSMaxAASolution Create an SMAX AA solution. Bidding modes: bcb (Budget-based, requires budget), mcb (Max CPC-based, requires positive maxBid), troi (Target ROI, requires userProperties key _iop_roas, e.g. {"_iop_roas":"4"}). Campaign model/type/objective/platform are set by the platform; defaults apply when optional fields are empty (startDate=today, endDate=no end date, autoCreative=ON).
+// Path: /sponsor/solution/smax/addSMaxAASolution
+func (s *SponsoredSolutionsServiceOp[T]) AddSMaxAASolution(ctx context.Context) (*AddSMaxAASolutionResponse, error) {
+	path := "/sponsor/solution/smax/addSMaxAASolution"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(AddSMaxAASolutionResponse)
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -209,6 +273,23 @@ func (s *SponsoredSolutionsServiceOp[T]) GetAutoTopUpOptionOneConfig(ctx context
 		return nil, err
 	}
 	resp := new(GetAutoTopUpOptionOneConfigResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// GetBlackItemDetail Get the item black list detail of an SMAX AA campaign by campaignId. venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/getBlackItemDetail
+func (s *SponsoredSolutionsServiceOp[T]) GetBlackItemDetail(ctx context.Context) (*GetBlackItemDetailResponse, error) {
+	path := "/sponsor/solution/smax/getBlackItemDetail"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(GetBlackItemDetailResponse)
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -352,10 +433,10 @@ func (s *SponsoredSolutionsServiceOp[T]) GetReportCampaignOnFIrstSlot(ctx contex
 	return resp, nil
 }
 
-// GetReportOverview Get report overview.
-// Path: /sponsor/solutions/report/getReportOverview
+// GetReportOverview Get SMAX report overview (Sponsored Max). Returns current and last-period summary metrics (spend, impressions, clicks, CTR, revenue, ROI, etc.). Date range and useRtTable are passed through to the report service; venture/sellerId are injected by the gateway.
+// Path: /sponsor/solution/smax/report/getReportOverview
 func (s *SponsoredSolutionsServiceOp[T]) GetReportOverview(ctx context.Context) (*GetReportOverviewResponse, error) {
-	path := "/sponsor/solutions/report/getReportOverview"
+	path := "/sponsor/solution/smax/report/getReportOverview"
 	var params map[string]string
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
@@ -369,16 +450,50 @@ func (s *SponsoredSolutionsServiceOp[T]) GetReportOverview(ctx context.Context) 
 	return resp, nil
 }
 
-// GetReportOverviewMetric get report overview metric
-// Path: /sponsor/solutions/report/getReportOverviewMetric
+// GetReportOverview1 Get report overview.
+// Path: /sponsor/solutions/report/getReportOverview
+func (s *SponsoredSolutionsServiceOp[T]) GetReportOverview1(ctx context.Context) (*GetReportOverview1Response, error) {
+	path := "/sponsor/solutions/report/getReportOverview"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(GetReportOverview1Response)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// GetReportOverviewMetric Get SMAX report overview metric time series (Sponsored Max). Returns timeline (dateList/hourList) and metric values for the requested metricType (1-11: spend, impressions, clicks, ctr, units sold, revenue, cpc, roi, store order, store a2c, product order). Date range and useRtTable are passed through; venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/report/getReportOverviewMetric
 func (s *SponsoredSolutionsServiceOp[T]) GetReportOverviewMetric(ctx context.Context) (*GetReportOverviewMetricResponse, error) {
-	path := "/sponsor/solutions/report/getReportOverviewMetric"
+	path := "/sponsor/solution/smax/report/getReportOverviewMetric"
 	var params map[string]string
 	wrapper, err := s.client.Post(ctx, path, params, nil)
 	if err != nil {
 		return nil, err
 	}
 	resp := new(GetReportOverviewMetricResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// GetReportOverviewMetric1 get report overview metric
+// Path: /sponsor/solutions/report/getReportOverviewMetric
+func (s *SponsoredSolutionsServiceOp[T]) GetReportOverviewMetric1(ctx context.Context) (*GetReportOverviewMetric1Response, error) {
+	path := "/sponsor/solutions/report/getReportOverviewMetric"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(GetReportOverviewMetric1Response)
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -523,6 +638,23 @@ func (s *SponsoredSolutionsServiceOp[T]) SearchProductWithPage(ctx context.Conte
 	return resp, nil
 }
 
+// SearchSmaxCampaign Search SMAX campaigns. By default returns campaigns of both SMAX and SMAX AA scenes; pass sceneId (12021 for SMAX AA) to narrow to a single scene. venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/searchSmaxCampaign
+func (s *SponsoredSolutionsServiceOp[T]) SearchSmaxCampaign(ctx context.Context) (*SearchSmaxCampaignResponse, error) {
+	path := "/sponsor/solution/smax/searchSmaxCampaign"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(SearchSmaxCampaignResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
 // Sign Description: Do sign for seller. Seller or agencies can use this api to sign up the t&c.
 // Timeout Period： the api timeout is 10s, max qps is 300, make sure do not over these num, especially qps, otherwise you may be blacklisted or limited request count for a while.
 // Path: /sponsor/solutions/account/sign
@@ -534,6 +666,23 @@ func (s *SponsoredSolutionsServiceOp[T]) Sign(ctx context.Context) (*SignRespons
 		return nil, err
 	}
 	resp := new(SignResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// SmaxAaGmvPrediction Predict GMV for an SMAX configuration. Provide biddingType (bcb/mcb/troi), budget and mode-specific fields (smaxMaxCpc for mcb, troi for troi); returns predicted GMV, suggested min budget and the Troi-GMV curve. venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/smaxAaGmvPrediction
+func (s *SponsoredSolutionsServiceOp[T]) SmaxAaGmvPrediction(ctx context.Context) (*SmaxAaGmvPredictionResponse, error) {
+	path := "/sponsor/solution/smax/smaxAaGmvPrediction"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(SmaxAaGmvPredictionResponse)
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
@@ -568,6 +717,57 @@ func (s *SponsoredSolutionsServiceOp[T]) UpdateCampaign(ctx context.Context) (*U
 		return nil, err
 	}
 	resp := new(UpdateCampaignResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// UpdateItemBlackList Overwrite the item black list of an SMAX AA campaign. Provide campaignViewDTO with campaignId and itemBlackList (the full list replaces existing entries). venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/updateItemBlackList
+func (s *SponsoredSolutionsServiceOp[T]) UpdateItemBlackList(ctx context.Context) (*UpdateItemBlackListResponse, error) {
+	path := "/sponsor/solution/smax/updateItemBlackList"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(UpdateItemBlackListResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// UpdateSmaxCampaign Update an SMAX campaign. When biddingType is provided: troi requires userProperties key _iop_roas, mcb requires positive maxBid, other modes reset maxBid to unlimit. venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/updateSmaxCampaign
+func (s *SponsoredSolutionsServiceOp[T]) UpdateSmaxCampaign(ctx context.Context) (*UpdateSmaxCampaignResponse, error) {
+	path := "/sponsor/solution/smax/updateSmaxCampaign"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(UpdateSmaxCampaignResponse)
+	resp.Code = wrapper.Code
+	resp.Type = wrapper.Type
+	resp.Message = wrapper.Message
+	resp.RequestID = wrapper.RequestID
+	return resp, nil
+}
+
+// UpdateSmaxStatusWithoutAd Enable or pause an SMAX AA campaign without touching its ads. Only campaignId and switchStatus are needed; the switch status also updates the campaign online status. venture/sellerId injected by the gateway.
+// Path: /sponsor/solution/smax/updateSmaxStatusWithoutAd
+func (s *SponsoredSolutionsServiceOp[T]) UpdateSmaxStatusWithoutAd(ctx context.Context) (*UpdateSmaxStatusWithoutAdResponse, error) {
+	path := "/sponsor/solution/smax/updateSmaxStatusWithoutAd"
+	var params map[string]string
+	wrapper, err := s.client.Post(ctx, path, params, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp := new(UpdateSmaxStatusWithoutAdResponse)
 	resp.Code = wrapper.Code
 	resp.Type = wrapper.Type
 	resp.Message = wrapper.Message
