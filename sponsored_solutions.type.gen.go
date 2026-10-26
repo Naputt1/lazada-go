@@ -41,6 +41,10 @@ type AudienceViewDTO struct {
 	AdCrowdTag string `json:"adCrowdTag"` // [Required]
 	Discount   string `json:"discount"`   // [Required]
 }
+type CampaignSettingViewDTO struct {
+	IopRoas       string `json:"iopRoas"`       // [Required]
+	OpenApiAppKey string `json:"openApiAppKey"` // [Required]
+}
 type ClickserverResponse struct {
 	BaseResponse                                       // Common response fields
 	Result       *GetPickUpStoreListResponseDataResult `json:"result,omitempty"` //
@@ -527,27 +531,29 @@ type SearchSmaxCampaignResponse struct {
 	TotalCount     string                                 `json:"totalCount,omitempty"`     //
 }
 type SearchSmaxCampaignResponseDataResult struct {
-	SmaxAaColdStartStatus string      `json:"smaxAaColdStartStatus"` // [Required]
-	CampaignObjective     string      `json:"campaignObjective"`     // [Required]
-	CampaignType          string      `json:"campaignType"`          // [Required]
-	EndDate               string      `json:"endDate"`               // [Required]
-	CampaignId            string      `json:"campaignId"`            // [Required]
-	BiddingType           string      `json:"biddingType"`           // [Required]
-	OnlineStatus          string      `json:"onlineStatus"`          // [Required]
-	SwitchStatus          string      `json:"switchStatus"`          // [Required]
-	Version               string      `json:"version"`               // [Required]
-	Platform              []string    `json:"platform"`              // [Required]
-	BudgetUsedAmount      string      `json:"budgetUsedAmount"`      // [Required]
-	CampaignModel         string      `json:"campaignModel"`         // [Required]
-	MaxBid                string      `json:"maxBid"`                // [Required]
-	SceneId               string      `json:"sceneId"`               // [Required]
-	Clicks                string      `json:"clicks"`                // [Required]
-	AutoCreative          string      `json:"autoCreative"`          // [Required]
-	BudgetViewDTO         interface{} `json:"budgetViewDTO"`         // [Required]
-	CampaignName          string      `json:"campaignName"`          // [Required]
-	StartDate             string      `json:"startDate"`             // [Required]
-	TotalCost             string      `json:"totalCost"`             // [Required]
-	Budget                string      `json:"budget"`                // [Required]
+	SmaxAaColdStartStatus  string                  `json:"smaxAaColdStartStatus"`  // [Required]
+	CampaignObjective      string                  `json:"campaignObjective"`      // [Required]
+	CampaignType           string                  `json:"campaignType"`           // [Required]
+	EndDate                string                  `json:"endDate"`                // [Required]
+	CampaignId             string                  `json:"campaignId"`             // [Required]
+	BiddingType            string                  `json:"biddingType"`            // [Required]
+	OnlineStatus           string                  `json:"onlineStatus"`           // [Required]
+	SwitchStatus           string                  `json:"switchStatus"`           // [Required]
+	Version                string                  `json:"version"`                // [Required]
+	Platform               []string                `json:"platform"`               // [Required]
+	BudgetUsedAmount       string                  `json:"budgetUsedAmount"`       // [Required]
+	CampaignSettingViewDTO *CampaignSettingViewDTO `json:"campaignSettingViewDTO"` // [Required]
+	CampaignModel          string                  `json:"campaignModel"`          // [Required]
+	MaxBid                 string                  `json:"maxBid"`                 // [Required]
+	SceneId                string                  `json:"sceneId"`                // [Required]
+	UserProperties         *UserProperties         `json:"userProperties"`         // [Required]
+	Clicks                 string                  `json:"clicks"`                 // [Required]
+	AutoCreative           string                  `json:"autoCreative"`           // [Required]
+	BudgetViewDTO          interface{}             `json:"budgetViewDTO"`          // [Required]
+	CampaignName           string                  `json:"campaignName"`           // [Required]
+	StartDate              string                  `json:"startDate"`              // [Required]
+	TotalCost              string                  `json:"totalCost"`              // [Required]
+	Budget                 string                  `json:"budget"`                 // [Required]
 }
 type SignResponse struct {
 	BaseResponse               // Common response fields
@@ -601,4 +607,7 @@ type UpdateSmaxStatusWithoutAdResponse struct {
 	AnalyseTraceId string `json:"analyseTraceId,omitempty"` //
 	ErrorMsg       string `json:"errorMsg,omitempty"`       //
 	Result         string `json:"result,omitempty"`         //
+}
+type UserProperties struct {
+	IopRoas string `json:"_iop_roas"` // [Required]
 }
