@@ -15,10 +15,6 @@
         2
       ],
       "budgetUsedAmount": "35.20",
-      "campaignSettingViewDTO": {
-        "iopRoas": "4.0",
-        "openApiAppKey": "114124"
-      },
       "campaignModel": "1",
       "maxBid": "0.62",
       "sceneId": "0",
