@@ -77,10 +77,14 @@ type InsuranceAlterOrderStatusResponse struct {
 }
 type InsuranceCreateOrderResponse struct {
 	BaseResponse               // Common response fields
+	ActualPrice         string `json:"actualPrice,omitempty"`         //
 	ItemPrice           string `json:"itemPrice,omitempty"`           //
 	PaymentLink         string `json:"paymentLink,omitempty"`         //
+	PromoPrice          string `json:"promoPrice,omitempty"`          //
 	ResultCode          string `json:"resultCode,omitempty"`          //
+	SubActualPrice      string `json:"subActualPrice,omitempty"`      //
 	SubItemPrice        string `json:"subItemPrice,omitempty"`        //
+	SubPromoPrice       string `json:"subPromoPrice,omitempty"`       //
 	SubTradeOrderLineId string `json:"subTradeOrderLineId,omitempty"` //
 	TraceId             string `json:"traceId,omitempty"`             //
 	TradeOrderLineId    string `json:"tradeOrderLineId,omitempty"`    //
