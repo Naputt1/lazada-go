@@ -287,10 +287,14 @@ type GetReportCampaignOnFIrstSlotResponseDataResultResult struct {
 	ProductA2c        string `json:"productA2c"`        // [Required]
 }
 type GetReportOverview1Response struct {
-	BaseResponse                                        // Common response fields
-	AnalyseTraceId string                               `json:"analyseTraceId,omitempty"` //
-	ErrorMsg       string                               `json:"errorMsg,omitempty"`       //
-	Result         *GetReportOverviewResponseDataResult `json:"result,omitempty"`         //
+	BaseResponse                                         // Common response fields
+	AnalyseTraceId string                                `json:"analyseTraceId,omitempty"` //
+	ErrorMsg       string                                `json:"errorMsg,omitempty"`       //
+	Result         *GetReportOverview1ResponseDataResult `json:"result,omitempty"`         //
+}
+type GetReportOverview1ResponseDataResult struct {
+	LastReportOverviewDetailDTO *ResultLastReportOverviewDetailDTO `json:"lastReportOverviewDetailDTO"` // [Required]
+	ReportOverviewDetailDTO     *ResultLastReportOverviewDetailDTO `json:"reportOverviewDetailDTO"`     // [Required]
 }
 type GetReportOverviewMetric1Response struct {
 	BaseResponse                                              // Common response fields
@@ -320,14 +324,24 @@ type GetReportOverviewResponseDataResult struct {
 	ReportOverviewDetailDTO     *LastReportOverviewDetailDTO `json:"reportOverviewDetailDTO"`     // [Required]
 }
 type LastReportOverviewDetailDTO struct {
-	Ctr         string `json:"ctr"`         // [Required]
-	Revenue     string `json:"revenue"`     // [Required]
-	Spend       string `json:"spend"`       // [Required]
-	UnitsSold   string `json:"unitsSold"`   // [Required]
-	Cpc         string `json:"cpc"`         // [Required]
-	Clicks      string `json:"clicks"`      // [Required]
-	Impressions string `json:"impressions"` // [Required]
-	Roi         string `json:"roi"`         // [Required]
+	Ctr             string `json:"ctr"`             // [Required]
+	ProductRoi      string `json:"productRoi"`      // [Required]
+	Cpo             string `json:"cpo"`             // [Required]
+	UnitsSold       string `json:"unitsSold"`       // [Required]
+	StoreCvr        string `json:"storeCvr"`        // [Required]
+	StoreA2c        string `json:"storeA2c"`        // [Required]
+	StoreOrders     string `json:"storeOrders"`     // [Required]
+	ProductUnitSold string `json:"productUnitSold"` // [Required]
+	Impressions     string `json:"impressions"`     // [Required]
+	Roi             string `json:"roi"`             // [Required]
+	Revenue         string `json:"revenue"`         // [Required]
+	A2c             string `json:"a2c"`             // [Required]
+	Spend           string `json:"spend"`           // [Required]
+	Cpc             string `json:"cpc"`             // [Required]
+	Clicks          string `json:"clicks"`          // [Required]
+	ProductRevenue  string `json:"productRevenue"`  // [Required]
+	Cvr             string `json:"cvr"`             // [Required]
+	Order           string `json:"order"`           // [Required]
 }
 type ListCategoryResponse struct {
 	BaseResponse                                    // Common response fields
@@ -395,6 +409,16 @@ type ResponseDataResultResult struct {
 	StoreUnitSold   string `json:"storeUnitSold"`   // [Required]
 	CampaignName    string `json:"campaignName"`    // [Required]
 	ProductA2c      string `json:"productA2c"`      // [Required]
+}
+type ResultLastReportOverviewDetailDTO struct {
+	Ctr         string `json:"ctr"`         // [Required]
+	Revenue     string `json:"revenue"`     // [Required]
+	Spend       string `json:"spend"`       // [Required]
+	UnitsSold   string `json:"unitsSold"`   // [Required]
+	Cpc         string `json:"cpc"`         // [Required]
+	Clicks      string `json:"clicks"`      // [Required]
+	Impressions string `json:"impressions"` // [Required]
+	Roi         string `json:"roi"`         // [Required]
 }
 type ResultResult struct {
 	DateRange       string `json:"dateRange"`       // [Required]
